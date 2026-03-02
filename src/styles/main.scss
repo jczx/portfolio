@@ -1,5 +1,7 @@
 @use "./variables" as *;
 
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap");
+
 :root {
   color-scheme: dark;
 }
@@ -7,22 +9,21 @@
 * {
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; // prevents the sticky header covering section titles
+  scroll-padding-top: 80px;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: "JetBrains Mono", "Segoe UI", monospace;
   background:
-    radial-gradient(1800px circle at 15% 15%, rgba(56, 189, 248, 0.10), transparent 50%),
-    radial-gradient(900px circle at 85% 25%, rgba(168, 85, 247, 0.08), transparent 65%),
-    $bg;
+    radial-gradient(1200px circle at top, rgba(186, 90, 29, 0.14), transparent 38%),
+    linear-gradient(180deg, #050505 0%, #000000 100%);
   color: $text;
   line-height: 1.5;
 }
-
 
 a {
   color: inherit;
@@ -34,127 +35,246 @@ a {
 }
 
 .hero {
-  padding: 5rem 0;
+  padding: 6rem 0 5rem;
+}
 
-  h1 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    margin: 0 0 0.75rem;
-  }
+.hero__content {
+  display: block;
+}
+
+.hero__copy {
+  min-width: 0;
+  position: relative;
+  max-width: 42rem;
 
   p {
     margin: 0 0 1.5rem;
-    color: rgba(232, 238, 252, 0.75);
-    font-size: 1.125rem;
-    max-width: 60ch;
+    color: $muted;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 52ch;
   }
 }
 
-.hero__buttons {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+.hero__eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: rgba(255, 178, 122, 0.75);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
 
-  a {
-    display: inline-block;
-    padding: 0.75rem 1rem;
-    border-radius: 0.75rem;
-    text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  a:hover {
-    transform: translateY(-1px);
-  }
+.hero__name {
+  margin: 0 0 1rem;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: clamp(3.4rem, 7vw, 5.8rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: rgba(255, 248, 242, 0.97);
 }
 
 .header {
   position: sticky;
   top: 0;
-  backdrop-filter: blur(10px);
-  background: rgba($bg, 0.75);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  z-index: 10;
+  z-index: 50;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.96), rgba(37, 15, 4, 0.94) 45%, rgba(0, 0, 0, 0.96));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid $border;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201, 103, 37, 0.95), transparent);
 }
 
 .header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.9rem 0;
+  height: 64px;
 }
 
 .header__brand {
   width: 40px;
   height: 40px;
-  border-radius: 0.9rem;
+  border-radius: 999px;
   display: grid;
   place-items: center;
   text-decoration: none;
-  font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
+  color: $text;
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: linear-gradient(180deg, rgba(186, 90, 29, 0.18), rgba(186, 90, 29, 0.05));
+  border: 1px solid $border;
+  box-shadow: inset 0 0 0 1px rgba(255, 211, 179, 0.08);
 }
 
 .header__nav {
   list-style: none;
   display: flex;
-  gap: 1rem;
-  margin: 0;
+  align-items: center;
+  gap: 0.75rem;
   padding: 0;
+  margin: 0;
+}
 
-  a {
-    text-decoration: none;
-    color: rgba(232, 238, 252, 0.85);
+.header__nav a {
+  text-decoration: none;
+  color: $muted;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.8rem;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.header__nav a:hover {
+  color: #ffb27a;
+  background: rgba(186, 90, 29, 0.12);
+}
+
+.header__nav a:focus-visible {
+  outline: 2px solid rgba(201, 103, 37, 0.55);
+  outline-offset: 2px;
+  color: $text;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 4.25rem 0 3.5rem;
   }
 
-  a:hover {
-    color: rgba(232, 238, 252, 1);
+  .hero__name {
+    margin-bottom: 0.85rem;
+    font-size: clamp(2.7rem, 12vw, 4.4rem);
+  }
+
+  .hero__eyebrow {
+    margin-bottom: 0.8rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+  }
+
+  .header__inner {
+    height: 58px;
+  }
+
+  .header__nav {
+    gap: 0.4rem;
+  }
+
+  .header__nav a {
+    padding: 0.4rem 0.55rem;
+    font-size: 0.9rem;
   }
 }
 
 .section {
   padding: 4rem 0;
+  scroll-margin-top: 80px;
 }
 
 .section h2 {
+  font-family: inherit;
   font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
   margin: 0 0 0.5rem;
 }
 
 .section__lead {
   margin: 0 0 1.5rem;
-  color: rgba(232, 238, 252, 0.75);
+  color: $muted;
   max-width: 70ch;
 }
 
-.projectsGrid {
+.timeline {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  left: 0.7rem;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 160, 92, 0.7),
+    rgba(186, 90, 29, 0.14)
+  );
+}
+
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
   gap: 1rem;
+  align-items: start;
+}
+
+.timeline__rail {
+  position: relative;
+  min-height: 100%;
+}
+
+.timeline__dot {
+  position: absolute;
+  top: 1.1rem;
+  left: 0.2rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  border: 2px solid rgba(201, 103, 37, 0.9);
+  background: $bg;
+  box-shadow: 0 0 0 6px rgba(186, 90, 29, 0.14);
 }
 
 .projectCard {
-  grid-column: span 12;
   display: block;
   padding: 1.25rem;
   border-radius: 1.25rem;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid $border;
+  background:
+    linear-gradient(180deg, rgba(186, 90, 29, 0.1), rgba(255, 255, 255, 0.02));
+  box-shadow: inset 0 1px 0 rgba(255, 196, 150, 0.05);
 }
 
-.projectCard:hover {
-  transform: translateY(-2px);
+.projectCard__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.75rem;
+  color: rgba(255, 178, 122, 0.82);
+  font-size: 0.9rem;
 }
 
 .projectCard__title {
+  font-family: inherit;
   margin: 0 0 0.5rem;
+  font-size: 1.55rem;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .projectCard__desc {
   margin: 0 0 1rem;
-  color: rgba(232, 238, 252, 0.75);
+  color: $muted;
 }
 
 .projectCard__tech {
@@ -169,13 +289,57 @@ a {
     font-size: 0.85rem;
     padding: 0.25rem 0.5rem;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid $border;
+    background: rgba(186, 90, 29, 0.1);
   }
 }
 
-@media (min-width: 720px) {
-  .projectCard {
-    grid-column: span 6;
+.projectCard__highlights {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.projectCard__highlights li + li {
+  margin-top: 0.45rem;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact__links a {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  border: 1px solid $border;
+  background: linear-gradient(180deg, rgba(186, 90, 29, 0.18), rgba(186, 90, 29, 0.07));
+}
+
+.contact__links a:hover {
+  color: #ffb27a;
+  background: linear-gradient(180deg, rgba(201, 103, 37, 0.28), rgba(186, 90, 29, 0.12));
+}
+
+@media (max-width: 640px) {
+  .timeline__item {
+    grid-template-columns: 1.6rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .timeline::before {
+    left: 0.55rem;
+  }
+
+  .timeline__dot {
+    left: 0.05rem;
+  }
+
+  .projectCard__meta {
+    flex-direction: column;
+    gap: 0.25rem;
   }
 }

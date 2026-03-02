@@ -6,16 +6,33 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <a className="projectCard" href={project.href} target="_blank" rel="noreferrer">
-      <h3 className="projectCard__title">{project.title}</h3>
-      <p className="projectCard__desc">{project.description}</p>
+    <article className="timeline__item">
+      <div className="timeline__rail" aria-hidden="true">
+        <span className="timeline__dot" />
+      </div>
 
-      <ul className="projectCard__tech" aria-label="Tech stack">
-        {project.tech.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ul>
-    </a>
+      <div className="projectCard">
+        <p className="projectCard__meta">
+          <span>{project.company}</span>
+          <span>{project.period}</span>
+        </p>
+
+        <h3 className="projectCard__title">{project.title}</h3>
+        <p className="projectCard__desc">{project.description}</p>
+
+        <ul className="projectCard__tech" aria-label="Key skills">
+          {project.tech.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+
+        <ul className="projectCard__highlights" aria-label="Role highlights">
+          {project.highlights.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </article>
   );
 };
 

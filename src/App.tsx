@@ -2,16 +2,20 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+
 
 function App() {
   return (
-    <>
-      <div id="top" />
+    <div id="top">
       <Header />
-      <Hero />
-      <About />
-      <Projects />
-    </>
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <Contact/>
+      </main>
+    </div>
   );
 }
 
