@@ -1,19 +1,37 @@
-import { projects } from "../data/projects";
+import type { CSSProperties } from "react";
+import { projectsByLanguage } from "../data/projects";
 import ProjectCard from "./ProjectCard";
+import type { Language } from "../i18n/content";
 
-const Projects = () => {
+type ProjectsProps = {
+  language: Language;
+  copy: {
+    title: string;
+    lead: string;
+    timelineLabel: string;
+    skillsLabel: string;
+    highlightsLabel: string;
+  };
+};
+
+const Projects = ({ language, copy }: ProjectsProps) => {
+  const projects = projectsByLanguage[language];
+
   return (
-    <section className="section" id="experience">
+    <section className="section reveal-on-scroll" id="experience" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
       <div className="container">
-        <h2>Experience</h2>
-        <p className="section__lead">
-          Recent roles across BI consulting, DWH operations, analytics, and data
-          platform support.
-        </p>
+        <h2>{copy.title}</h2>
+        <p className="section__lead">{copy.lead}</p>
 
-        <div className="timeline" aria-label="Career timeline">
-          {projects.map((p) => (
-            <ProjectCard key={`${p.company}-${p.title}`} project={p} />
+        <div className="timeline" aria-label={copy.timelineLabel}>
+          {projects.map((p, index) => (
+            <ProjectCard
+              key={`${p.company}-${p.title}`}
+              project={p}
+              index={index}
+              skillsLabel={copy.skillsLabel}
+              highlightsLabel={copy.highlightsLabel}
+            />
           ))}
         </div>
       </div>

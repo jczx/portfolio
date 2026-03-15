@@ -1,20 +1,25 @@
-const About = () => {
-  return (
-    <section className="section" id="about">
-      <div className="container">
-        <h2>About</h2>
-        <p className="section__lead">
-          I am a Berlin-based consultant working across Business Intelligence,
-          Data Warehousing, and DevOps operations.
-        </p>
+import type { CSSProperties } from "react";
 
-        <p>
-          My work covers BI delivery, DWH operations, ETL and ELT development,
-          SQL and PL/SQL optimization, release coordination, regression testing,
-          and reporting for regulated environments. I have grown from hands-on
-          data management roles into analytics, BI consulting, and DevOps support
-          for data platforms.
-        </p>
+type AboutProps = {
+  copy: {
+    title: string;
+    lead: string;
+    points: string[];
+  };
+};
+
+const About = ({ copy }: AboutProps) => {
+  return (
+    <section className="section section--about reveal-on-scroll" id="about" style={{ "--reveal-delay": "80ms" } as CSSProperties}>
+      <div className="container">
+        <h2>{copy.title}</h2>
+        <p className="section__lead">{copy.lead}</p>
+
+        <ul className="about__points">
+          {copy.points.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
       </div>
     </section>
   );
