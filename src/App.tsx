@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import { copyByLanguage, type Language } from "./i18n/content";
@@ -72,6 +73,7 @@ function App() {
       <main>
         <Hero copy={copy.hero} />
         <About copy={copy.about} />
+        <Skills copy={copy.skills} />
         <Projects language={language} copy={copy.experience} />
         <Contact copy={copy.contact} />
       </main>
