@@ -89,9 +89,9 @@ export const projectsByLanguage: Record<Language, Project[]> = {
         "Betrieb und Stabilisierung von BI- und DWH-Umgebungen mit Release-Koordination, Patch-Management, Regressionstests und Produktivsupport.",
       tech: ["DWH-Betrieb", "Release-Management", "Tomcat", "Oracle", "SAP BW", "SAP ABAKUS"],
       highlights: [
-        "Leitung von Patch- und Change-Management-Aktivitaten fur stabile und konforme Umgebungen.",
-        "Koordination von Regressionstests und Validierung zentraler BI- und DWH-Workflows.",
-        "Verantwortung fur den taglichen Betrieb von operativen bis DWH-Landschaften inklusive Batch- und ETL-Monitoring.",
+        "Steuerung von Patch- und Change-Management-Aktivitaten fur stabile und konforme Umgebungen.",
+        "Koordination von Regressionstests fur BI- und DWH-Workflows, um Release-Risiken zu senken und die Produktionsreife zu verbessern.",
+        "Verantwortung fur den taglichen Betrieb von operativen bis DWH-Landschaften inklusive nachtlichem Batch- und ETL-Monitoring.",
         "Planung von Releases, Deployment-Fenstern, Stakeholder-Kommunikation und Rollback-Bereitschaft.",
         "Konzeption und Umsetzung von End-to-End-Datenpipelines und Monitoring-Dashboards fur Integration, Verarbeitung und Visualisierung.",
       ],

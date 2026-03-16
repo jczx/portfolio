@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+  <title id="title">JC favicon</title>
+  <desc id="desc">Circular premium navy-black JC monogram favicon.</desc>
+  <defs>
+    <radialGradient id="mist" cx="76%" cy="18%" r="72%">
+      <stop offset="0%" stop-color="#d5e0ea" stop-opacity="0.22" />
+      <stop offset="26%" stop-color="#8d9fb5" stop-opacity="0.14" />
+      <stop offset="60%" stop-color="#152231" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#04090f" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071019" />
+      <stop offset="58%" stop-color="#050b12" />
+      <stop offset="100%" stop-color="#04090f" />
+    </linearGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b8c6d8" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="#5c708d" stop-opacity="0.4" />
+    </linearGradient>
+  </defs>
+
+  <circle cx="60" cy="60" r="58" fill="url(#bg)" />
+  <circle cx="60" cy="60" r="58" fill="url(#mist)" />
+  <circle cx="60" cy="60" r="58" fill="none" stroke="url(#stroke)" stroke-width="2" />
+  <text
+    x="60"
+    y="69"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="42"
+    font-weight="600"
+    letter-spacing="0.5"
+    fill="#f4f7fb"
+  >
+    JC
+  </text>
+</svg>

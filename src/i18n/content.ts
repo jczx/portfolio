@@ -51,7 +51,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     },
     hero: {
       subtitle:
-        "DataOps / Analytics Engineer.",
+        "DataOps / Analytics Engineer",
       intro: [
         "I build reliable data platforms and turn data into usable insights.",
       ],
@@ -77,36 +77,36 @@ export const copyByLanguage: Record<Language, Copy> = {
         {
           title: "Reliability & Operations",
           items: [
-            "ETL / batch monitoring",
-            "release coordination",
-            "regression testing",
-            "patch & change management",
-            "Tomcat / platform operations",
-            "incident coordination",
-            "production readiness",
+            "ETL / Batch Monitoring",
+            "Release Coordination",
+            "Regression Testing",
+            "Patch & Change Management",
+            "Tomcat / Platform Operations",
+            "Incident Coordination",
+            "Production Readiness",
           ],
         },
         {
           title: "Data Engineering & BI",
           items: [
             "SQL / PL/SQL / T-SQL",
-            "ETL / ELT pipelines",
-            "DWH workflows",
-            "reporting pipelines",
-            "dashboard development",
-            "cross-system reconciliation",
-            "CI/CD for data workflows",
+            "ETL / ELT Pipelines",
+            "DWH Workflows",
+            "Reporting Pipelines",
+            "Dashboard Development",
+            "Cross-System Reconciliation",
+            "CI/CD for Data Workflows",
           ],
         },
         {
           title: "Analytics & Data Science",
           items: [
-            "trend / pattern detection",
-            "anomaly detection",
-            "NLP / screening models",
-            "fraud detection projects",
-            "clustering / machine learning",
-            "business insight generation",
+            "Trend / Pattern Detection",
+            "Anomaly Detection",
+            "NLP / Screening Models",
+            "Fraud Detection Projects",
+            "Clustering / Machine Learning",
+            "Business Insight Generation",
           ],
         },
       ],
@@ -122,7 +122,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     contact: {
       title: "Contact",
       lead:
-        "Based in Berlin, Germany. Connect on LinkedIn or explore code and side projects on GitHub.",
+        "Based in Berlin, Germany. Here are a few ways to connect and learn more about my work:",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
       emailLabel: "Email",
@@ -137,9 +137,9 @@ export const copyByLanguage: Record<Language, Copy> = {
     },
     hero: {
       subtitle:
-        "Ich arbeite dort, wo Datenplattformen, BI-Betrieb und Produktionsstabilitat zusammenkommen.",
+        "DataOps / Analytics Engineer",
       intro: [
-        "Ich baue stabile Systeme fur Analytics-Workflows — von SQL und Release-Koordination bis zu Produktionssupport und operativer Verbesserung.",
+        "Ich baue verlassliche Datenplattformen und mache Daten zu nutzbaren Erkenntnissen.",
       ],
       primaryCta: "Kontakt",
       secondaryCta: "Erfahrung ansehen",
@@ -147,29 +147,53 @@ export const copyByLanguage: Record<Language, Copy> = {
     about: {
       title: "Uber mich",
       lead:
-        "Ich arbeite am besten in Umgebungen, in denen Analytics, Infrastruktur und operative Disziplin verlasslich zusammenspielen mussen.",
+        "Ich arbeite an der Schnittstelle von Datenzuverlassigkeit, Plattformbetrieb und Analytics. Von ETL-Monitoring und Release-Koordination bis zu SQL-Entwicklung, Dashboards und angewandter Data Science.",
       points: [
         "Praxis in Banken, FMCG und regulierten produktiven Datenumgebungen.",
         "Starke in BI- und DWH-Betrieb, SQL- und PL/SQL-Umsetzung sowie Release-Stabilitat.",
-        "Verantwortungsvolle Arbeitsweise mit Testfokus, klarer Kommunikation und sauberer Ubergabe.",
+        "Ich setze Analytics und Machine Learning ein, wenn ein Problem mehr als Reporting braucht.",
+        "Ich helfe Teams, stabile Releases und verlassliches Reporting zu liefern.",
       ],
     },
     skills: {
       title: "Kompetenzen",
       lead:
-        "Eine praxisnahe Mischung aus Datenplattform-Support, BI- und DWH-Betrieb sowie delivery-orientierter Umsetzung.",
+        "Eine praxisnahe Mischung aus Plattformzuverlassigkeit, Data Engineering, BI-Umsetzung und angewandter Analytics.",
       groups: [
         {
-          title: "Betrieb",
-          items: ["Produktivsupport", "Release-Koordination", "Regressionstests", "Patch-Management", "Monitoring"],
+          title: "Zuverlassigkeit & Betrieb",
+          items: [
+            "ETL- / Batch-Monitoring",
+            "Release-Koordination",
+            "Regressionstests",
+            "Patch- & Change-Management",
+            "Tomcat- / Plattformbetrieb",
+            "Incident-Koordination",
+            "Produktionsreife",
+          ],
         },
         {
-          title: "Daten & BI",
-          items: ["SQL", "PL/SQL", "ETL / ELT", "Oracle", "SAP BW", "ReportServer"],
+          title: "Data Engineering & BI",
+          items: [
+            "SQL / PL/SQL / T-SQL",
+            "ETL- / ELT-Pipelines",
+            "DWH-Workflows",
+            "Reporting-Pipelines",
+            "Dashboard-Entwicklung",
+            "Systemabstimmung",
+            "CI/CD fur Daten-Workflows",
+          ],
         },
         {
-          title: "Umsetzung",
-          items: ["CI/CD", "Stakeholder-Kommunikation", "Operative Verbesserung", "Analytics-Workflows", "Zuverlassigkeit"],
+          title: "Analytics & Data Science",
+          items: [
+            "Trend- / Mustererkennung",
+            "Anomalieerkennung",
+            "NLP- / Screening-Modelle",
+            "Fraud-Detection-Projekte",
+            "Clustering / Machine Learning",
+            "Business-Insight-Gewinnung",
+          ],
         },
       ],
     },

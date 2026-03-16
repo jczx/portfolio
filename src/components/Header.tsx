@@ -1,4 +1,5 @@
 import type { Language } from "../i18n/content";
+import wordmark from "../assets/julio_logo.png";
 
 type HeaderProps = {
   language: Language;
@@ -16,7 +17,7 @@ const Header = ({ language, navCopy, languageToggleLabel, onLanguageChange }: He
     <header className="header">
       <div className="container header__inner">
         <a className="header__brand" href="#top" aria-label="Back to top">
-          <img className="header__brandLogo" src="/logo-jc.svg" alt="JC logo" />
+          <img className="header__brandLogo" src={wordmark} alt="Julio Caesar" />
         </a>
 
         <nav aria-label="Primary">

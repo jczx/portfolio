@@ -13,10 +13,7 @@ const Hero = ({ copy }: HeroProps) => {
     <section className="hero reveal-on-scroll" id="hero" style={{ "--reveal-delay": "40ms" } as CSSProperties}>
       <div className="container hero__content">
         <div className="hero__copy">
-          <h1 className="hero__name">
-            <span>Julio</span>
-            <span>Caesar</span>
-          </h1>
+          <h1 className="hero__name">Julio Caesar</h1>
           <span className="hero__eyebrow">{copy.subtitle}</span>
           {copy.intro.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -31,6 +28,7 @@ const Hero = ({ copy }: HeroProps) => {
           </div>
         </div>
       </div>
+      <div className="hero__blend" aria-hidden="true" />
     </section>
   );
 };
