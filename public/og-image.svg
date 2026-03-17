@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Julio Caesar social preview</title>
+  <desc id="desc">Dark navy atmospheric preview image with Julio Caesar wordmark and DataOps / Analytics Engineer subtitle.</desc>
+  <defs>
+    <radialGradient id="mist" cx="82%" cy="10%" r="72%">
+      <stop offset="0%" stop-color="#d8e2ea" stop-opacity="0.28" />
+      <stop offset="26%" stop-color="#90a3b8" stop-opacity="0.16" />
+      <stop offset="60%" stop-color="#152231" stop-opacity="0.06" />
+      <stop offset="100%" stop-color="#04090f" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="shadow" cx="32%" cy="54%" r="58%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.68" />
+      <stop offset="55%" stop-color="#04090f" stop-opacity="0.36" />
+      <stop offset="100%" stop-color="#04090f" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#03070b" />
+      <stop offset="48%" stop-color="#050b12" />
+      <stop offset="100%" stop-color="#04080e" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#mist)" />
+  <rect width="1200" height="630" fill="url(#shadow)" />
+
+  <g opacity="0.2">
+    <ellipse cx="930" cy="120" rx="260" ry="150" fill="#d7e1ea" />
+    <ellipse cx="830" cy="210" rx="220" ry="130" fill="#6d809a" />
+    <ellipse cx="1020" cy="510" rx="270" ry="170" fill="#142131" />
+  </g>
+
+  <text
+    x="116"
+    y="338"
+    fill="#f4f7fb"
+    font-family="'Cormorant Garamond', Georgia, serif"
+    font-size="138"
+    font-weight="500"
+    letter-spacing="-2"
+  >
+    Julio Caesar
+  </text>
+
+  <text
+    x="122"
+    y="404"
+    fill="#bccadc"
+    font-family="Inter, 'Segoe UI', Arial, sans-serif"
+    font-size="30"
+    font-weight="500"
+    letter-spacing="4"
+    text-transform="uppercase"
+  >
+    DataOps / Analytics Engineer
+  </text>
+</svg>

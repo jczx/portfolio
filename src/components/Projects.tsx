@@ -18,7 +18,7 @@ const Projects = ({ language, copy }: ProjectsProps) => {
   const projects = projectsByLanguage[language];
 
   return (
-    <section className="section reveal-on-scroll" id="experience" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
+    <section className="section section--experience reveal-on-scroll" id="experience" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
       <div className="container">
         <h2>{copy.title}</h2>
         <p className="section__lead">{copy.lead}</p>

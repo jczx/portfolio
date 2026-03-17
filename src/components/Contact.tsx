@@ -12,7 +12,7 @@ type ContactProps = {
 
 const Contact = ({ copy }: ContactProps) => {
   return (
-    <section className="section reveal-on-scroll" id="contact" style={{ "--reveal-delay": "160ms" } as CSSProperties}>
+    <section className="section section--contact reveal-on-scroll" id="contact" style={{ "--reveal-delay": "160ms" } as CSSProperties}>
       <div className="container">
         <h2>{copy.title}</h2>
         <p className="section__lead">{copy.lead}</p>

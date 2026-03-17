@@ -24,10 +24,10 @@
   <circle cx="60" cy="60" r="58" fill="none" stroke="url(#stroke)" stroke-width="2" />
   <text
     x="60"
-    y="69"
+    y="71"
     text-anchor="middle"
     font-family="Georgia, 'Times New Roman', serif"
-    font-size="42"
+    font-size="50"
     font-weight="600"
     letter-spacing="0.5"
     fill="#f4f7fb"
