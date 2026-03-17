@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">Julio Caesar social preview</title>
-  <desc id="desc">Dark navy atmospheric preview image with Julio Caesar wordmark and DataOps / Analytics Engineer subtitle.</desc>
+  <desc id="desc">Dark navy atmospheric preview image with Julio Caesar wordmark and DataOps Consultant / Analytics Engineer subtitle.</desc>
   <defs>
     <radialGradient id="mist" cx="82%" cy="10%" r="72%">
       <stop offset="0%" stop-color="#d8e2ea" stop-opacity="0.28" />
@@ -52,6 +52,6 @@
     letter-spacing="4"
     text-transform="uppercase"
   >
-    DataOps / Analytics Engineer
+    DataOps Consultant / Analytics Engineer
   </text>
 </svg>

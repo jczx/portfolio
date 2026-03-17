@@ -12,11 +12,11 @@ export type Project = {
 export const projectsByLanguage: Record<Language, Project[]> = {
   en: [
     {
-      title: "DevOps Consultant (Data Platform / DWH)",
+      title: "DataOps Consultant / Analytics Engineer",
       company: "InfoFabrik GmbH",
       period: "January 2026 to Present",
       description:
-        "Operating and stabilizing BI and DWH environments with release coordination, patch management, regression testing, and production support.",
+        "Consulting on and stabilizing BI and DWH environments with release coordination, patch management, regression testing, production support, and analytics engineering delivery.",
       tech: ["DWH Operations", "Release Management", "Tomcat", "Oracle", "Azure", "SAP BW", "SAP ABAKUS"],
       highlights: [
         "Led patch and change management activities ensuring stable and compliant environments.",
@@ -82,11 +82,11 @@ export const projectsByLanguage: Record<Language, Project[]> = {
   ],
   de: [
     {
-      title: "DevOps-Berater (Datenplattform / DWH)",
+      title: "DataOps-Berater / Analytics Engineer",
       company: "InfoFabrik GmbH",
       period: "Januar 2026 bis heute",
       description:
-        "Betrieb und Stabilisierung von BI- und DWH-Umgebungen mit Release-Koordination, Patch-Management, Regressionstests und Produktivsupport.",
+        "Beratung, Betrieb und Stabilisierung von BI- und DWH-Umgebungen mit Release-Koordination, Patch-Management, Regressionstests, Produktivsupport und Analytics-Engineering-Delivery.",
       tech: ["DWH-Betrieb", "Release-Management", "Tomcat", "Oracle", "Azure", "SAP BW", "SAP ABAKUS"],
       highlights: [
         "Steuerung von Patch- und Change-Management-Aktivitaten fur stabile und konforme Umgebungen.",

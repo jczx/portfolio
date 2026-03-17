@@ -51,7 +51,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     },
     hero: {
       subtitle:
-        "DataOps / Analytics Engineer",
+        "DataOps Consultant / Analytics Engineer",
       intro: [
         "I build reliable data platforms and turn data into usable insights.",
       ],
@@ -114,7 +114,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     experience: {
       title: "Experience",
       lead:
-        "Recent roles across BI consulting, DWH operations, analytics, and data platform support.",
+        "Recent roles across DataOps consulting, analytics engineering, DWH operations, and data platform support.",
       timelineLabel: "Career timeline",
       skillsLabel: "Key skills",
       highlightsLabel: "Role highlights",
@@ -137,7 +137,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     },
     hero: {
       subtitle:
-        "DataOps / Analytics Engineer",
+        "DataOps Consultant / Analytics Engineer",
       intro: [
         "Ich baue zuverlässige Datenplattformen und mache Daten zu nutzbaren Erkenntnissen.",
       ],
@@ -200,7 +200,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     experience: {
       title: "Erfahrung",
       lead:
-        "Aktuelle Rollen in BI-Consulting, DWH-Betrieb, Analytics und Support für Datenplattformen.",
+        "Aktuelle Rollen in DataOps-Consulting, Analytics Engineering, DWH-Betrieb und Support für Datenplattformen.",
       timelineLabel: "Karriereverlauf",
       skillsLabel: "Kernkompetenzen",
       highlightsLabel: "Aufgabenschwerpunkte",
