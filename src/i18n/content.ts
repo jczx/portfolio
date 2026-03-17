@@ -131,7 +131,7 @@ export const copyByLanguage: Record<Language, Copy> = {
   },
   de: {
     nav: {
-      about: "Uber mich",
+      about: "Über mich",
       experience: "Erfahrung",
       contact: "Kontakt",
     },
@@ -139,29 +139,29 @@ export const copyByLanguage: Record<Language, Copy> = {
       subtitle:
         "DataOps / Analytics Engineer",
       intro: [
-        "Ich baue verlassliche Datenplattformen und mache Daten zu nutzbaren Erkenntnissen.",
+        "Ich baue zuverlässige Datenplattformen und mache Daten zu nutzbaren Erkenntnissen.",
       ],
       primaryCta: "Kontakt",
       secondaryCta: "Erfahrung ansehen",
     },
     about: {
-      title: "Uber mich",
+      title: "Über mich",
       lead:
-        "Ich arbeite an der Schnittstelle von Datenzuverlassigkeit, Plattformbetrieb und Analytics. Von ETL-Monitoring und Release-Koordination bis zu SQL-Entwicklung, Dashboards und angewandter Data Science.",
+        "Ich arbeite an der Schnittstelle von Datenzuverlässigkeit, Plattformbetrieb und Analytics. Von ETL-Monitoring und Release-Koordination bis zu SQL-Entwicklung, Dashboards und angewandter Data Science.",
       points: [
         "Praxis in Banken, FMCG und regulierten produktiven Datenumgebungen.",
-        "Starke in BI- und DWH-Betrieb, SQL- und PL/SQL-Umsetzung sowie Release-Stabilitat.",
+        "Stärken in BI- und DWH-Betrieb, SQL- und PL/SQL-Umsetzung sowie Release-Stabilität.",
         "Ich setze Analytics und Machine Learning ein, wenn ein Problem mehr als Reporting braucht.",
-        "Ich helfe Teams, stabile Releases und verlassliches Reporting zu liefern.",
+        "Ich helfe Teams, stabile Releases und verlässliches Reporting zu liefern.",
       ],
     },
     skills: {
       title: "Kompetenzen",
       lead:
-        "Eine praxisnahe Mischung aus Plattformzuverlassigkeit, Data Engineering, BI-Umsetzung und angewandter Analytics.",
+        "Eine praxisnahe Mischung aus Plattformzuverlässigkeit, Data Engineering, BI-Umsetzung und angewandter Analytics.",
       groups: [
         {
-          title: "Zuverlassigkeit & Betrieb",
+          title: "Zuverlässigkeit & Betrieb",
           items: [
             "ETL- / Batch-Monitoring",
             "Release-Koordination",
@@ -180,8 +180,8 @@ export const copyByLanguage: Record<Language, Copy> = {
             "DWH-Workflows",
             "Reporting-Pipelines",
             "Dashboard-Entwicklung",
-            "Systemabstimmung",
-            "CI/CD fur Daten-Workflows",
+            "Systemübergreifende Abstimmung",
+            "CI/CD für Daten-Workflows",
           ],
         },
         {
@@ -200,7 +200,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     experience: {
       title: "Erfahrung",
       lead:
-        "Aktuelle Rollen in BI-Consulting, DWH-Betrieb, Analytics und Support fur Datenplattformen.",
+        "Aktuelle Rollen in BI-Consulting, DWH-Betrieb, Analytics und Support für Datenplattformen.",
       timelineLabel: "Karriereverlauf",
       skillsLabel: "Kernkompetenzen",
       highlightsLabel: "Aufgabenschwerpunkte",
@@ -208,7 +208,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     contact: {
       title: "Kontakt",
       lead:
-        "Standort Berlin, Deutschland. Vernetze dich auf LinkedIn oder sieh dir Code und Nebenprojekte auf GitHub an.",
+        "Standort Berlin, Deutschland. Hier sind ein paar Wege, um mit mir in Kontakt zu treten und mehr über meine Arbeit zu erfahren:",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
       emailLabel: "E-Mail",

@@ -13,7 +13,7 @@ type SkillsProps = {
 
 const Skills = ({ copy }: SkillsProps) => {
   return (
-    <section className="section reveal-on-scroll" id="skills" style={{ "--reveal-delay": "100ms" } as CSSProperties}>
+    <section className="section section--skills reveal-on-scroll" id="skills" style={{ "--reveal-delay": "100ms" } as CSSProperties}>
       <div className="container">
         <h2>{copy.title}</h2>
         <p className="section__lead">{copy.lead}</p>

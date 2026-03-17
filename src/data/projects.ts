@@ -17,7 +17,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       period: "January 2026 to Present",
       description:
         "Operating and stabilizing BI and DWH environments with release coordination, patch management, regression testing, and production support.",
-      tech: ["DWH Operations", "Release Management", "Tomcat", "Oracle", "SAP BW", "SAP ABAKUS"],
+      tech: ["DWH Operations", "Release Management", "Tomcat", "Oracle", "Azure", "SAP BW", "SAP ABAKUS"],
       highlights: [
         "Led patch and change management activities ensuring stable and compliant environments.",
         "Coordinated regression testing for BI and DWH workflows to reduce release risk and improve production readiness.",
@@ -32,7 +32,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       period: "November 2024 to December 2025",
       description:
         "End-to-end BI consulting for German state development banks, covering delivery, SQL development, ELT pipelines, validation workflows, and secure reporting.",
-      tech: ["Oracle", "PL/SQL", "CI/CD", "ETL/ELT", "SAP BW", "ReportServer", "Levenshtein"],
+      tech: ["Oracle", "PL/SQL", "CI/CD", "Azure", "ETL/ELT", "SAP BW", "ReportServer", "Levenshtein"],
       highlights: [
         "Developed and optimized SQL logic, procedures, and performance tuning workflows.",
         "Built CI and CD pipelines for DWH development and implemented plausibility validation for funding applications.",
@@ -46,7 +46,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       period: "December 2023 to September 2024",
       description:
         "Built analytics pipelines and pattern detection workflows with Python and SQL for FMCG data use cases.",
-      tech: ["Python", "PostgreSQL", "BigQuery", "ETL", "Analytics"],
+      tech: ["Python", "PostgreSQL", "BigQuery", "GCP", "ETL", "Analytics"],
       highlights: [
         "Developed and designed an ETL process from OneSignal to BigQuery.",
         "Implemented trend and pattern detection models using Python and SQL.",
@@ -59,7 +59,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       period: "September 2023 to December 2023",
       description:
         "Translated business requirements into technical specifications and delivered dashboards and analytical models for decision-making.",
-      tech: ["Python", "PostgreSQL", "Tableau", "Analytics"],
+      tech: ["Python", "PostgreSQL", "GCP", "Tableau", "Analytics"],
       highlights: [
         "Built interactive dashboards to visualize product journeys and market trends.",
         "Applied statistical and mathematical models in data analysis.",
@@ -87,7 +87,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       period: "Januar 2026 bis heute",
       description:
         "Betrieb und Stabilisierung von BI- und DWH-Umgebungen mit Release-Koordination, Patch-Management, Regressionstests und Produktivsupport.",
-      tech: ["DWH-Betrieb", "Release-Management", "Tomcat", "Oracle", "SAP BW", "SAP ABAKUS"],
+      tech: ["DWH-Betrieb", "Release-Management", "Tomcat", "Oracle", "Azure", "SAP BW", "SAP ABAKUS"],
       highlights: [
         "Steuerung von Patch- und Change-Management-Aktivitaten fur stabile und konforme Umgebungen.",
         "Koordination von Regressionstests fur BI- und DWH-Workflows, um Release-Risiken zu senken und die Produktionsreife zu verbessern.",
@@ -102,7 +102,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       period: "November 2024 bis Dezember 2025",
       description:
         "Ganzheitliches BI-Consulting fur deutsche Landesforderbanken mit Fokus auf Delivery, SQL-Entwicklung, ELT-Pipelines, Validierungs-Workflows und sicheres Reporting.",
-      tech: ["Oracle", "PL/SQL", "CI/CD", "ETL/ELT", "SAP BW", "ReportServer", "Levenshtein"],
+      tech: ["Oracle", "PL/SQL", "CI/CD", "Azure", "ETL/ELT", "SAP BW", "ReportServer", "Levenshtein"],
       highlights: [
         "Entwicklung und Optimierung von SQL-Logik, Prozeduren und Performance-Tuning-Workflows.",
         "Aufbau von CI/CD-Pipelines fur DWH-Entwicklung sowie Plausibilitatsprufungen fur Forderantrage.",
@@ -116,7 +116,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       period: "Dezember 2023 bis September 2024",
       description:
         "Aufbau von Analytics-Pipelines und Mustererkennungs-Workflows mit Python und SQL fur FMCG-Datenanwendungen.",
-      tech: ["Python", "PostgreSQL", "BigQuery", "ETL", "Analytics"],
+      tech: ["Python", "PostgreSQL", "BigQuery", "GCP", "ETL", "Analytics"],
       highlights: [
         "Konzeption und Umsetzung eines ETL-Prozesses von OneSignal nach BigQuery.",
         "Implementierung von Trend- und Mustererkennungsmodellen mit Python und SQL.",
@@ -129,7 +129,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       period: "September 2023 bis Dezember 2023",
       description:
         "Ubersetzung fachlicher Anforderungen in technische Spezifikationen sowie Lieferung von Dashboards und Analysemodellen fur Entscheidungen.",
-      tech: ["Python", "PostgreSQL", "Tableau", "Analytics"],
+      tech: ["Python", "PostgreSQL", "GCP", "Tableau", "Analytics"],
       highlights: [
         "Entwicklung interaktiver Dashboards zur Visualisierung von Produktreisen und Markttrends.",
         "Anwendung statistischer und mathematischer Modelle in der Datenanalyse.",

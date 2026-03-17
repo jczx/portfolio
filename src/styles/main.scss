@@ -474,6 +474,10 @@ a {
   padding-top: clamp(0.75rem, 1.8vw, 1.25rem);
 }
 
+.section--skills {
+  padding-top: clamp(2rem, 4vw, 2.75rem);
+}
+
 #experience {
   scroll-margin-top: 105px;
 }
@@ -682,6 +686,10 @@ a {
   .section--about {
     margin-top: -56px;
     padding-top: 0.6rem;
+  }
+
+  .section--skills {
+    padding-top: 1.6rem;
   }
 
   .section__lead {
