@@ -37,8 +37,15 @@ function App() {
       return;
     }
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const showAllRevealElements = () => {
       revealElements.forEach((element) => element.classList.add("is-visible"));
+    };
+
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) {
+      showAllRevealElements();
       return;
     }
 
@@ -52,8 +59,8 @@ function App() {
         });
       },
       {
-        threshold: 0.2,
-        rootMargin: "0px 0px -8% 0px",
+        threshold: 0.01,
+        rootMargin: "0px 0px -10% 0px",
       },
     );
 
