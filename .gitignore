@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+analysis/raw/eu/
+analysis/docs/
+analysis/derived/
+analysis/raw/
+analysis/scripts/

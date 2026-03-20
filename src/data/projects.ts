@@ -89,11 +89,11 @@ export const projectsByLanguage: Record<Language, Project[]> = {
         "Beratung, Betrieb und Stabilisierung von BI- und DWH-Umgebungen mit Release-Koordination, Patch-Management, Regressionstests, Produktivsupport und Analytics-Engineering-Delivery.",
       tech: ["DWH-Betrieb", "Release-Management", "Tomcat", "Oracle", "Azure", "SAP BW", "SAP ABAKUS"],
       highlights: [
-        "Steuerung von Patch- und Change-Management-Aktivitaten fur stabile und konforme Umgebungen.",
-        "Koordination von Regressionstests fur BI- und DWH-Workflows, um Release-Risiken zu senken und die Produktionsreife zu verbessern.",
-        "Verantwortung fur den taglichen Betrieb von operativen bis DWH-Landschaften inklusive nachtlichem Batch- und ETL-Monitoring.",
+        "Steuerung von Patch- und Change-Management-Aktivitäten für stabile und konforme Umgebungen.",
+        "Koordination von Regressionstests für BI- und DWH-Workflows, um Release-Risiken zu senken und die Produktionsreife zu verbessern.",
+        "Verantwortung für den täglichen Betrieb von operativen bis DWH-Landschaften inklusive nächtlichem Batch- und ETL-Monitoring.",
         "Planung von Releases, Deployment-Fenstern, Stakeholder-Kommunikation und Rollback-Bereitschaft.",
-        "Konzeption und Umsetzung von End-to-End-Datenpipelines und Monitoring-Dashboards fur Integration, Verarbeitung und Visualisierung.",
+        "Konzeption und Umsetzung von End-to-End-Datenpipelines und Monitoring-Dashboards für Integration, Verarbeitung und Visualisierung.",
       ],
     },
     {
@@ -101,11 +101,11 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       company: "InfoFabrik GmbH",
       period: "November 2024 bis Dezember 2025",
       description:
-        "Ganzheitliches BI-Consulting fur deutsche Landesforderbanken mit Fokus auf Delivery, SQL-Entwicklung, ELT-Pipelines, Validierungs-Workflows und sicheres Reporting.",
+        "Ganzheitliches BI-Consulting für deutsche Landesförderbanken mit Fokus auf Delivery, SQL-Entwicklung, ELT-Pipelines, Validierungs-Workflows und sicheres Reporting.",
       tech: ["Oracle", "PL/SQL", "CI/CD", "Azure", "ETL/ELT", "SAP BW", "ReportServer", "Levenshtein"],
       highlights: [
         "Entwicklung und Optimierung von SQL-Logik, Prozeduren und Performance-Tuning-Workflows.",
-        "Aufbau von CI/CD-Pipelines fur DWH-Entwicklung sowie Plausibilitatsprufungen fur Forderantrage.",
+        "Aufbau von CI/CD-Pipelines für DWH-Entwicklung sowie Plausibilitätsprüfungen für Förderanträge.",
         "Entwicklung eines automatisierten ELT-Prozesses und eines NLP-basierten Sanktions-Screenings.",
         "Design von ETL- und ELT-Pipelines sowie Migration alter Datenverarbeitungsprozesse.",
       ],
@@ -115,7 +115,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       company: "Magaloop GmbH",
       period: "Dezember 2023 bis September 2024",
       description:
-        "Aufbau von Analytics-Pipelines und Mustererkennungs-Workflows mit Python und SQL fur FMCG-Datenanwendungen.",
+        "Aufbau von Analytics-Pipelines und Mustererkennungs-Workflows mit Python und SQL für FMCG-Datenanwendungen.",
       tech: ["Python", "PostgreSQL", "BigQuery", "GCP", "ETL", "Analytics"],
       highlights: [
         "Konzeption und Umsetzung eines ETL-Prozesses von OneSignal nach BigQuery.",
@@ -128,12 +128,12 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       company: "Magaloop GmbH",
       period: "September 2023 bis Dezember 2023",
       description:
-        "Ubersetzung fachlicher Anforderungen in technische Spezifikationen sowie Lieferung von Dashboards und Analysemodellen fur Entscheidungen.",
+        "Übersetzung fachlicher Anforderungen in technische Spezifikationen sowie Lieferung von Dashboards und Analysemodellen für Entscheidungen.",
       tech: ["Python", "PostgreSQL", "GCP", "Tableau", "Analytics"],
       highlights: [
         "Entwicklung interaktiver Dashboards zur Visualisierung von Produktreisen und Markttrends.",
         "Anwendung statistischer und mathematischer Modelle in der Datenanalyse.",
-        "Prasentation von Erkenntnissen und Dashboard-Ergebnissen direkt an C-Level-Fuhrungskrafte.",
+        "Präsentation von Erkenntnissen und Dashboard-Ergebnissen direkt an C-Level-Führungskräfte.",
       ],
     },
     {
@@ -141,12 +141,12 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       company: "Magaloop GmbH",
       period: "April 2021 bis September 2023",
       description:
-        "Steuerung von Datenoperationen mit hohem Volumen und Verbesserung der Datenqualitat uber mehrere Systeme hinweg.",
-      tech: ["Datenqualitat", "Operations", "Stammdaten", "Risikomanagement"],
+        "Steuerung von Datenoperationen mit hohem Volumen und Verbesserung der Datenqualität über mehrere Systeme hinweg.",
+      tech: ["Datenqualität", "Operations", "Stammdaten", "Risikomanagement"],
       highlights: [
-        "Tagliche Verarbeitung und Verwaltung groser Datenmengen.",
-        "Sicherstellung der Datenintegritat uber mehrere Datenbanken hinweg.",
-        "Leitung eines dreikopfigen Teams in einem Risikomanagement-Projekt zur Verbesserung der Stammdatenqualitat.",
+        "Tägliche Verarbeitung und Verwaltung großer Datenmengen.",
+        "Sicherstellung der Datenintegrität über mehrere Datenbanken hinweg.",
+        "Leitung eines dreiköpfigen Teams in einem Risikomanagement-Projekt zur Verbesserung der Stammdatenqualität.",
       ],
     },
   ],
