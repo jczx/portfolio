@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "analysis:build": "node analysis/scripts/build-hyperscaler-metrics.mjs && node analysis/scripts/build-eu-sanctions-data.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

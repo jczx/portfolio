@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "generatedAt": "2026-03-20T16:49:18.094Z",
+    "sourceKind": "official-xml",
+    "sourceDate": "2026-03-20T00:27:38.159+01:00",
+    "sourceLabel": "Official EU FSF XML export",
+    "ingestionMode": "local-xml"
+  },
+  "metrics": {
+    "recordCount": 5819,
+    "previousRecordCount": 5819,
+    "recordDelta": 0,
+    "personCount": 4323,
+    "entityCount": 1496,
+    "aliasTotal": 23561,
+    "entriesWithAliases": 5113,
+    "aliasCoveragePct": 87.9,
+    "latestPublicationDate": "2026-01-29",
+    "matcherDatasetBytes": 2332456,
+    "rawXmlBytes": 24099325,
+    "topProgrammes": [
+      {
+        "programme": "UKR",
+        "count": 2596
+      },
+      {
+        "programme": "IRN",
+        "count": 692
+      },
+      {
+        "programme": "SYR",
+        "count": 380
+      },
+      {
+        "programme": "BLR",
+        "count": 369
+      },
+      {
+        "programme": "TAQA",
+        "count": 344
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "source-access",
+      "label": "Source access",
+      "status": "healthy",
+      "detail": "Official FSF XML available via local-xml."
+    },
+    {
+      "id": "parse",
+      "label": "Parse step",
+      "status": "healthy",
+      "detail": "5,819 entities parsed with 23,561 aliases retained."
+    },
+    {
+      "id": "freshness",
+      "label": "Source freshness",
+      "status": "healthy",
+      "detail": "Source export is 17.4 hours old."
+    },
+    {
+      "id": "publish",
+      "label": "Publish step",
+      "status": "healthy",
+      "detail": "Matcher dataset written successfully at 2.22 MB."
+    },
+    {
+      "id": "coverage",
+      "label": "Alias coverage",
+      "status": "healthy",
+      "detail": "87.9% of entities carry at least one alias in the generated dataset."
+    }
+  ]
+}

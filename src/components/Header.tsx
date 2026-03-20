@@ -2,30 +2,40 @@ import type { Language } from "../i18n/content";
 
 type HeaderProps = {
   language: Language;
-  navCopy: {
-    about: string;
-    experience: string;
-    contact: string;
-  };
+  navItems: Array<{
+    href: string;
+    label: string;
+  }>;
+  brandHref: string;
+  brandLabel: string;
   languageToggleLabel: string;
   onLanguageChange: (language: Language) => void;
 };
 
-const Header = ({ language, navCopy, languageToggleLabel, onLanguageChange }: HeaderProps) => {
+const Header = ({
+  language,
+  navItems,
+  brandHref,
+  brandLabel,
+  languageToggleLabel,
+  onLanguageChange,
+}: HeaderProps) => {
   const brandLogo = `${import.meta.env.BASE_URL}favicon-jc.svg`;
 
   return (
     <header className="header">
       <div className="container header__inner">
-        <a className="header__brand" href="#top" aria-label="Back to top">
+        <a className="header__brand" href={brandHref} aria-label={brandLabel}>
           <img className="header__brandLogo" src={brandLogo} alt="JC" />
         </a>
 
         <nav aria-label="Primary">
           <ul className="header__nav">
-            <li><a href="#about">{navCopy.about}</a></li>
-            <li><a href="#experience">{navCopy.experience}</a></li>
-            <li><a href="#contact">{navCopy.contact}</a></li>
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))}
           </ul>
         </nav>
 
