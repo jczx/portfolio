@@ -86,6 +86,8 @@ const copyByLanguage = {
     recordsLabel: "Entities parsed",
     aliasesLabel: "Aliases retained",
     freshnessLabel: "Source freshness",
+    sourceExportLabel: "Source export date",
+    generatedAtLabel: "Last generated",
     publishLabel: "Published payload",
     flowTitle: "Pipeline flow",
     flowSteps: ["FSF XML", "Parse aliases", "Publish matcher JSON"],
@@ -121,6 +123,8 @@ const copyByLanguage = {
     recordsLabel: "Geparste Einträge",
     aliasesLabel: "Übernommene Aliase",
     freshnessLabel: "Source-Freshness",
+    sourceExportLabel: "Exportdatum der Source",
+    generatedAtLabel: "Zuletzt generiert",
     publishLabel: "Publizierte Payload",
     flowTitle: "Pipeline-Flow",
     flowSteps: ["FSF XML", "Aliase parsen", "Matcher-JSON publizieren"],
@@ -156,6 +160,8 @@ const copyByLanguage = {
     recordsLabel: string;
     aliasesLabel: string;
     freshnessLabel: string;
+    sourceExportLabel: string;
+    generatedAtLabel: string;
     publishLabel: string;
     flowTitle: string;
     flowSteps: string[];
@@ -230,6 +236,18 @@ const getFreshnessHours = (value: string) => {
   }
 
   return Number(((Date.now() - parsed.getTime()) / (1000 * 60 * 60)).toFixed(1));
+};
+
+const formatFreshness = (value: string, language: Language) => {
+  const freshness = getFreshnessHours(value);
+
+  if (freshness === null) {
+    return "â€”";
+  }
+
+  return language === "de"
+    ? `${freshness.toLocaleString("de-DE")} Std.`
+    : `${freshness.toLocaleString("en-US")} hrs`;
 };
 
 const buildCheckDetail = (
@@ -374,7 +392,15 @@ const SanctionsPipelineMonitorPage = ({
                 </article>
                 <article className="monitorMetricCard">
                   <p className="caseCard__label">{copy.freshnessLabel}</p>
+                  <strong>{formatFreshness(payload.meta.sourceDate, language)}</strong>
+                </article>
+                <article className="monitorMetricCard">
+                  <p className="caseCard__label">{copy.sourceExportLabel}</p>
                   <strong>{formatDate(payload.meta.sourceDate, language)}</strong>
+                </article>
+                <article className="monitorMetricCard">
+                  <p className="caseCard__label">{copy.generatedAtLabel}</p>
+                  <strong>{formatDate(payload.meta.generatedAt, language)}</strong>
                 </article>
                 <article className="monitorMetricCard">
                   <p className="caseCard__label">{copy.publishLabel}</p>

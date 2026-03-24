@@ -173,7 +173,7 @@ const typeLabelByLanguage = {
   },
 } satisfies Record<Language, Record<"P" | "E", string>>;
 
-const formatSourceDate = (value: string, language: Language) => {
+const formatSourceDate = (value: string, language: Language, includeTime = false) => {
   const parsed = new Date(value);
 
   if (Number.isNaN(parsed.getTime())) {
@@ -182,6 +182,7 @@ const formatSourceDate = (value: string, language: Language) => {
 
   return new Intl.DateTimeFormat(language === "de" ? "de-DE" : "en-US", {
     dateStyle: "medium",
+    timeStyle: includeTime ? "short" : undefined,
   }).format(parsed);
 };
 
@@ -191,11 +192,13 @@ const buildHelperText = (payload: SanctionsDatasetPayload, language: Language, f
   }
 
   const count = payload.meta.recordCount.toLocaleString(language === "de" ? "de-DE" : "en-US");
-  const date = formatSourceDate(payload.meta.sourceDate, language);
+  const sourceDate = formatSourceDate(payload.meta.sourceDate, language);
+  const generatedAt = formatSourceDate(payload.meta.generatedAt, language, true);
+  const date = sourceDate;
 
   return language === "de"
     ? `Offizieller FSF-XML-Export vom ${date} mit ${count} Einträgen.`
-    : `Official FSF XML export dated ${date} with ${count} entries.`;
+    : `Official FSF XML export from ${sourceDate}, last rebuilt on ${generatedAt}, with ${count} entries.`;
 };
 
 const buildDataUrl = (fileName: string) =>
