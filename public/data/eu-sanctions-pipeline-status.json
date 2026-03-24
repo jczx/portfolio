@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-03-24T22:08:18.626Z",
+    "generatedAt": "2026-03-24T22:15:41.058Z",
     "sourceKind": "official-xml",
     "sourceDate": "2026-03-20T00:27:38.159+01:00",
     "sourceLabel": "Official EU FSF XML export",
@@ -60,7 +60,7 @@
       "id": "freshness",
       "label": "Source freshness",
       "status": "watch",
-      "detail": "Source export is 118.7 hours old."
+      "detail": "Source export is 118.8 hours old."
     },
     {
       "id": "publish",
