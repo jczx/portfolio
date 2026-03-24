@@ -281,6 +281,9 @@ const buildCheckDetail = (
     : `${metrics.aliasCoveragePct.toLocaleString("en-US")}% of entries carry at least one alias.`;
 };
 
+const buildDataUrl = (fileName: string) =>
+  `${import.meta.env.BASE_URL}data/${fileName}?ts=${Date.now()}`;
+
 const SanctionsPipelineMonitorPage = ({
   homeHref,
   language,
@@ -293,7 +296,9 @@ const SanctionsPipelineMonitorPage = ({
 
     const loadStatus = async () => {
       try {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/eu-sanctions-pipeline-status.json`);
+        const response = await fetch(buildDataUrl("eu-sanctions-pipeline-status.json"), {
+          cache: "no-store",
+        });
 
         if (!response.ok) {
           return;

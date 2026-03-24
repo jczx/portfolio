@@ -198,6 +198,9 @@ const buildHelperText = (payload: SanctionsDatasetPayload, language: Language, f
     : `Official FSF XML export dated ${date} with ${count} entries.`;
 };
 
+const buildDataUrl = (fileName: string) =>
+  `${import.meta.env.BASE_URL}data/${fileName}?ts=${Date.now()}`;
+
 const SanctionsMatcherPage = ({ homeHref, language }: SanctionsMatcherPageProps) => {
   const copy = copyByLanguage[language];
   const typeCopy = typeLabelByLanguage[language];
@@ -212,7 +215,9 @@ const SanctionsMatcherPage = ({ homeHref, language }: SanctionsMatcherPageProps)
 
     const loadDataset = async () => {
       try {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/eu-sanctions-matcher.json`);
+        const response = await fetch(buildDataUrl("eu-sanctions-matcher.json"), {
+          cache: "no-store",
+        });
 
         if (!response.ok) {
           return;
