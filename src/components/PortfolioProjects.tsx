@@ -10,13 +10,6 @@ type PortfolioProjectsProps = {
   };
 };
 
-const financePreview = [
-  { label: "META", value: 34.7 },
-  { label: "MSFT", value: 22.9 },
-  { label: "GOOGL", value: 22.7 },
-  { label: "AMZN", value: 18.4 },
-];
-
 const nlpPreview = {
   query: "Wagner Group",
   matches: [
@@ -41,38 +34,12 @@ const opsPreviewByLanguage = {
   ],
 } as const;
 
-const FinancePreview = ({ language }: { language: Language }) => (
-  <div className="projectPreview projectPreview--finance" aria-hidden="true">
-    <div className="projectPreview__header">
-      <div className="projectPreview__kicker">
-        {language === "de" ? "Kapitalintensität" : "Capex intensity"}
-      </div>
-      <span className="projectPreview__meta">{language === "de" ? "Letztes GJ" : "Latest FY"}</span>
-    </div>
-
-    <div className="projectPreview__bars">
-      {financePreview.map((item) => (
-        <div className="projectPreview__barGroup" key={item.label}>
-          <div className="projectPreview__barTrack">
-            <div
-              className="projectPreview__barFill"
-              style={{ height: `${Math.max((item.value / 36) * 100, 12)}%` }}
-            />
-          </div>
-          <div className="projectPreview__barMeta">
-            <span>{item.label}</span>
-            <strong>{item.value.toFixed(1)}%</strong>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
 const NlpPreview = ({ language }: { language: Language }) => (
   <div className="projectPreview projectPreview--nlp" aria-hidden="true">
     <div className="projectPreview__header">
-      <div className="projectPreview__kicker">{language === "de" ? "Treffervorschau" : "Match preview"}</div>
+      <div className="projectPreview__kicker">
+        {language === "de" ? "Treffervorschau" : "Match preview"}
+      </div>
       <span className="projectPreview__meta">Top 3</span>
     </div>
 
@@ -104,8 +71,12 @@ const NlpPreview = ({ language }: { language: Language }) => (
 const OpsPreview = ({ language }: { language: Language }) => (
   <div className="projectPreview projectPreview--ops" aria-hidden="true">
     <div className="projectPreview__header">
-      <div className="projectPreview__kicker">{language === "de" ? "Pipeline-Checks" : "Pipeline checks"}</div>
-      <span className="projectPreview__meta">{language === "de" ? "Letzter Lauf" : "Latest run"}</span>
+      <div className="projectPreview__kicker">
+        {language === "de" ? "Pipeline-Checks" : "Pipeline checks"}
+      </div>
+      <span className="projectPreview__meta">
+        {language === "de" ? "Letzter Lauf" : "Latest run"}
+      </span>
     </div>
 
     <div className="projectPreview__statusGrid">
@@ -129,7 +100,9 @@ const OpsPreview = ({ language }: { language: Language }) => (
     </div>
 
     <div className="projectPreview__caption">
-      {language === "de" ? "Die Pipeline operativ lesbar machen" : "Make the pipeline operationally legible"}
+      {language === "de"
+        ? "Die Pipeline operativ lesbar machen"
+        : "Make the pipeline operationally legible"}
     </div>
   </div>
 );
@@ -140,17 +113,7 @@ const ProjectPreview = ({
 }: {
   tone: PortfolioProject["tone"];
   language: Language;
-}) => {
-  if (tone === "finance") {
-    return <FinancePreview language={language} />;
-  }
-
-  if (tone === "nlp") {
-    return <NlpPreview language={language} />;
-  }
-
-  return <OpsPreview language={language} />;
-};
+}) => (tone === "nlp" ? <NlpPreview language={language} /> : <OpsPreview language={language} />);
 
 const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
   const projects = portfolioProjectsByLanguage[language];
@@ -158,7 +121,7 @@ const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
   return (
     <section
       className="section section--portfolioProjects reveal-on-scroll"
-      id="projects"
+      id="case-studies"
       style={{ "--reveal-delay": "140ms" } as CSSProperties}
     >
       <div className="container">

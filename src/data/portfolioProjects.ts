@@ -9,7 +9,7 @@ export type PortfolioProject = {
   tech: string[];
   actionLabel?: string;
   href?: string;
-  tone: "finance" | "nlp" | "ops";
+  tone: "nlp" | "ops";
 };
 
 export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> = {

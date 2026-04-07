@@ -1,19 +1,21 @@
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, lazy, useCallback, useEffect, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import PortfolioProjects from "./components/PortfolioProjects";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import CaseStudyPage from "./components/CaseStudyPage";
-import SanctionsMatcherPage from "./components/SanctionsMatcherPage";
-import SanctionsPipelineMonitorPage from "./components/SanctionsPipelineMonitorPage";
 import { copyByLanguage, type Language } from "./i18n/content";
 
 const LANGUAGE_STORAGE_KEY = "portfolio-language";
-const FINANCE_CASE_STUDY_SLUG = "hyperscaler-capital-discipline";
 const SANCTIONS_CASE_STUDY_SLUG = "eu-sanctions-name-match";
 const SANCTIONS_PIPELINE_CASE_STUDY_SLUG = "sanctions-pipeline-monitor";
+const HOME_HREF = "./";
+
+const SanctionsMatcherPage = lazy(() => import("./components/SanctionsMatcherPage"));
+const SanctionsPipelineMonitorPage = lazy(
+  () => import("./components/SanctionsPipelineMonitorPage"),
+);
 
 const detectInitialLanguage = (): Language => {
   const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -31,12 +33,17 @@ const getActiveCaseStudy = () => {
 function App() {
   const [language, setLanguage] = useState<Language>(() => detectInitialLanguage());
   const activeCaseStudy = getActiveCaseStudy();
-  const isFinanceCaseStudy = activeCaseStudy === FINANCE_CASE_STUDY_SLUG;
   const isSanctionsCaseStudy = activeCaseStudy === SANCTIONS_CASE_STUDY_SLUG;
   const isSanctionsPipelineCaseStudy = activeCaseStudy === SANCTIONS_PIPELINE_CASE_STUDY_SLUG;
-  const isCaseStudy =
-    isFinanceCaseStudy || isSanctionsCaseStudy || isSanctionsPipelineCaseStudy;
+  const isCaseStudy = isSanctionsCaseStudy || isSanctionsPipelineCaseStudy;
   const copy = copyByLanguage[language];
+  const backToPortfolioLabel =
+    language === "de" ? "Zurück zum Portfolio" : "Back to portfolio";
+  const backToTopLabel = language === "de" ? "Zurück nach oben" : "Back to top";
+  const caseStudyLoadingCopy =
+    language === "de"
+      ? { eyebrow: "Fallstudie lädt", title: "Einen Moment..." }
+      : { eyebrow: "Loading case study", title: "One moment..." };
 
   const handleLanguageChange = useCallback((nextLanguage: Language) => {
     setLanguage(nextLanguage);
@@ -46,14 +53,12 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = isFinanceCaseStudy
-      ? `Hyperscaler Capital Discipline | Julio Caesar`
-      : isSanctionsCaseStudy
-        ? `EU Sanctions Name Match Explorer | Julio Caesar`
-        : isSanctionsPipelineCaseStudy
-          ? `Sanctions Pipeline Reliability Monitor | Julio Caesar`
+    document.title = isSanctionsCaseStudy
+      ? `${language === "de" ? "EU-Sanktionslisten Name Match Explorer" : "EU Sanctions Name Match Explorer"} | Julio Caesar`
+      : isSanctionsPipelineCaseStudy
+        ? `Sanctions Pipeline Reliability Monitor | Julio Caesar`
         : `Julio Caesar`;
-  }, [isFinanceCaseStudy, isSanctionsCaseStudy, isSanctionsPipelineCaseStudy, language]);
+  }, [isSanctionsCaseStudy, isSanctionsPipelineCaseStudy, language]);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll<HTMLElement>(".reveal-on-scroll");
@@ -110,27 +115,20 @@ function App() {
   }, [isCaseStudy, language]);
 
   const navItems = isCaseStudy
-    ? isFinanceCaseStudy
+    ? isSanctionsCaseStudy
       ? [
-        { href: "#overview", label: copy.caseStudy.nav.overview },
-        { href: "#comparison", label: copy.caseStudy.nav.comparison },
-        { href: "#methodology", label: copy.caseStudy.nav.methodology },
-        { href: "#sources", label: copy.caseStudy.nav.sources },
-      ]
-      : isSanctionsCaseStudy
-        ? [
-        { href: "#matcher", label: language === "de" ? "Matcher" : "Matcher" },
-        { href: "#methodology", label: language === "de" ? "Methodik" : "Methodology" },
-        { href: "#sources", label: language === "de" ? "Quellen" : "Sources" },
-      ]
-        : [
-        { href: "#overview", label: language === "de" ? "Überblick" : "Overview" },
-        { href: "#checks", label: language === "de" ? "Prüfungen" : "Checks" },
-        { href: "#sources", label: language === "de" ? "Quellen" : "Sources" },
-      ]
+          { href: "#matcher", label: "Matcher" },
+          { href: "#methodology", label: language === "de" ? "Methodik" : "Methodology" },
+          { href: "#sources", label: language === "de" ? "Quellen" : "Sources" },
+        ]
+      : [
+          { href: "#overview", label: language === "de" ? "Überblick" : "Overview" },
+          { href: "#checks", label: language === "de" ? "Prüfungen" : "Checks" },
+          { href: "#sources", label: language === "de" ? "Quellen" : "Sources" },
+        ]
     : [
         { href: "#about", label: copy.nav.about },
-        { href: "#projects", label: copy.nav.analysis },
+        { href: "#case-studies", label: copy.nav.analysis },
         { href: "#experience", label: copy.nav.experience },
         { href: "#contact", label: copy.nav.contact },
       ];
@@ -138,8 +136,8 @@ function App() {
   return (
     <>
       <Header
-        brandHref={isCaseStudy ? "./" : "#top"}
-        brandLabel={isCaseStudy ? copy.caseStudy.backLabel : "Back to top"}
+        brandHref={isCaseStudy ? HOME_HREF : "#top"}
+        brandLabel={isCaseStudy ? backToPortfolioLabel : backToTopLabel}
         language={language}
         navItems={navItems}
         languageToggleLabel={copy.languageToggleLabel}
@@ -147,15 +145,29 @@ function App() {
       />
 
       {isCaseStudy ? (
-        isFinanceCaseStudy ? (
-          <CaseStudyPage copy={copy.caseStudy} homeHref="./" language={language} />
-        ) : (
-          isSanctionsCaseStudy ? (
-            <SanctionsMatcherPage homeHref="./" language={language} />
+        <Suspense
+          fallback={(
+            <div id="top">
+              <main className="caseStudyPage">
+                <section className="caseHero">
+                  <div className="container caseHero__content">
+                    <a className="caseHero__back" href={HOME_HREF}>
+                      {backToPortfolioLabel}
+                    </a>
+                    <p className="caseHero__eyebrow">{caseStudyLoadingCopy.eyebrow}</p>
+                    <h1 className="caseHero__title">{caseStudyLoadingCopy.title}</h1>
+                  </div>
+                </section>
+              </main>
+            </div>
+          )}
+        >
+          {isSanctionsCaseStudy ? (
+            <SanctionsMatcherPage homeHref={HOME_HREF} language={language} />
           ) : (
-            <SanctionsPipelineMonitorPage homeHref="./" language={language} />
-          )
-        )
+            <SanctionsPipelineMonitorPage homeHref={HOME_HREF} language={language} />
+          )}
+        </Suspense>
       ) : (
         <div id="top">
           <main>
