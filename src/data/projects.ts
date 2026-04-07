@@ -27,7 +27,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       ],
     },
     {
-      title: "Junior Business Intelligence Consultant",
+      title: "Business Intelligence Consultant",
       company: "InfoFabrik GmbH",
       period: "November 2024 to December 2025",
       description:
@@ -97,7 +97,7 @@ export const projectsByLanguage: Record<Language, Project[]> = {
       ],
     },
     {
-      title: "Junior Business Intelligence Berater",
+      title: "Business Intelligence Berater",
       company: "InfoFabrik GmbH",
       period: "November 2024 bis Dezember 2025",
       description:
