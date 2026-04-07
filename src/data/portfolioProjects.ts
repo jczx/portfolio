@@ -15,21 +15,6 @@ export type PortfolioProject = {
 export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> = {
   en: [
     {
-      eyebrow: "Public Company Analysis",
-      status: "Analysis",
-      title: "Hyperscaler Capital Discipline",
-      summary:
-        "SEC-only market analysis on how aggressively hyperscalers increased capital intensity without preserving the same cash discipline.",
-      highlights: [
-        "Official-source metrics only",
-        "Interactive finance case study",
-      ],
-      tech: ["SEC XBRL", "TypeScript", "Visualization"],
-      actionLabel: "Open project",
-      href: "?case=hyperscaler-capital-discipline",
-      tone: "finance",
-    },
-    {
       eyebrow: "NLP / Entity Resolution",
       status: "Matcher",
       title: "EU Sanctions Name Match Explorer",
@@ -61,21 +46,6 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
     },
   ],
   de: [
-    {
-      eyebrow: "Public-Company-Analyse",
-      status: "Analyse",
-      title: "Kapitaldisziplin bei Hyperscalern",
-      summary:
-        "SEC-basierte Marktanalyse dazu, wie stark Hyperscaler ihre Kapitalintensität erhöht haben, ohne dieselbe Cash-Disziplin zu bewahren.",
-      highlights: [
-        "Nur offizielle Kennzahlen",
-        "Interaktive Finanz-Fallstudie",
-      ],
-      tech: ["SEC XBRL", "TypeScript", "Visualisierung"],
-      actionLabel: "Projekt öffnen",
-      href: "?case=hyperscaler-capital-discipline",
-      tone: "finance",
-    },
     {
       eyebrow: "NLP / Entity Resolution",
       status: "Matcher",

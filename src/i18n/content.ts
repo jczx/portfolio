@@ -124,7 +124,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     projects: {
       title: "Projects",
       lead:
-        "Three portfolio builds across finance analysis, NLP and entity resolution, and operational data reliability.",
+        "Two sanctions-focused case studies across entity resolution and operational data reliability.",
       sourceLabel: "Data basis",
       outputLabel: "Output",
       methodsLabel: "What it proves",
@@ -275,7 +275,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     projects: {
       title: "Projekte",
       lead:
-        "Drei Portfolio-Projekte aus Finanzanalyse, NLP und Entity Resolution sowie operativer Datenzuverlässigkeit.",
+        "Zwei sanktionsbezogene Fallstudien zu Entity Resolution und operativer Datenzuverlässigkeit.",
       sourceLabel: "Datenbasis",
       outputLabel: "Ausgabe",
       methodsLabel: "Was das Projekt zeigt",
