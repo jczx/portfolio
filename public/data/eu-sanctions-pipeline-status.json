@@ -1,33 +1,33 @@
 {
   "meta": {
-    "generatedAt": "2026-03-24T22:15:41.058Z",
+    "generatedAt": "2026-04-25T20:58:40.633Z",
     "sourceKind": "official-xml",
-    "sourceDate": "2026-03-20T00:27:38.159+01:00",
+    "sourceDate": "2026-04-24T15:24:43.646+02:00",
     "sourceLabel": "Official EU FSF XML export",
-    "sourceFileName": "full_sanctions_list_1_1.xml",
-    "globalFileId": "181813",
+    "sourceFileName": "20260424-FULL-1_1-xsd.xml",
+    "globalFileId": "182479",
     "ingestionMode": "local-xml"
   },
   "metrics": {
-    "recordCount": 5819,
+    "recordCount": 5993,
     "previousRecordCount": 5819,
-    "recordDelta": 0,
-    "personCount": 4323,
-    "entityCount": 1496,
-    "aliasTotal": 23561,
-    "entriesWithAliases": 5113,
+    "recordDelta": 174,
+    "personCount": 4408,
+    "entityCount": 1585,
+    "aliasTotal": 23920,
+    "entriesWithAliases": 5265,
     "aliasCoveragePct": 87.9,
-    "latestPublicationDate": "2026-01-29",
-    "matcherDatasetBytes": 2332486,
-    "rawXmlBytes": 24099325,
+    "latestPublicationDate": "2026-04-23",
+    "matcherDatasetBytes": 2388213,
+    "rawXmlBytes": 24750131,
     "topProgrammes": [
       {
         "programme": "UKR",
-        "count": 2596
+        "count": 2713
       },
       {
         "programme": "IRN",
-        "count": 692
+        "count": 711
       },
       {
         "programme": "SYR",
@@ -35,7 +35,7 @@
       },
       {
         "programme": "BLR",
-        "count": 369
+        "count": 372
       },
       {
         "programme": "TAQA",
@@ -48,25 +48,25 @@
       "id": "source-access",
       "label": "Source access",
       "status": "healthy",
-      "detail": "Official FSF XML available via local-xml (full_sanctions_list_1_1.xml)."
+      "detail": "Official FSF XML available via local-xml (20260424-FULL-1_1-xsd.xml)."
     },
     {
       "id": "parse",
       "label": "Parse step",
       "status": "healthy",
-      "detail": "5,819 entities parsed with 23,561 aliases retained."
+      "detail": "5,993 entities parsed with 23,920 aliases retained."
     },
     {
       "id": "freshness",
       "label": "Source freshness",
-      "status": "watch",
-      "detail": "Source export is 118.8 hours old."
+      "status": "healthy",
+      "detail": "Source export is 31.6 hours old."
     },
     {
       "id": "publish",
       "label": "Publish step",
       "status": "healthy",
-      "detail": "Matcher dataset written successfully at 2.22 MB."
+      "detail": "Matcher dataset written successfully at 2.28 MB."
     },
     {
       "id": "coverage",
