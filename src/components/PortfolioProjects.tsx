@@ -8,6 +8,7 @@ type PortfolioProjectsProps = {
     title: string;
     lead: string;
   };
+  onOpenCaseStudy: (caseStudySlug: string) => void;
 };
 
 const nlpPreview = {
@@ -115,7 +116,12 @@ const ProjectPreview = ({
   language: Language;
 }) => (tone === "nlp" ? <NlpPreview language={language} /> : <OpsPreview language={language} />);
 
-const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
+const getCaseStudySlug = (href: string) => {
+  const search = href.startsWith("?") ? href : new URL(href, window.location.href).search;
+  return new URLSearchParams(search).get("case");
+};
+
+const PortfolioProjects = ({ language, copy, onOpenCaseStudy }: PortfolioProjectsProps) => {
   const projects = portfolioProjectsByLanguage[language];
 
   return (
@@ -159,7 +165,20 @@ const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
 
               {project.href && project.actionLabel ? (
                 <div className="portfolioProjectCard__actions">
-                  <a className="portfolioProjectCard__cta" href={project.href}>
+                  <a
+                    className="portfolioProjectCard__cta"
+                    href={project.href}
+                    onClick={(event) => {
+                      const caseStudySlug = getCaseStudySlug(project.href ?? "");
+
+                      if (!caseStudySlug || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+                        return;
+                      }
+
+                      event.preventDefault();
+                      onOpenCaseStudy(caseStudySlug);
+                    }}
+                  >
                     {project.actionLabel}
                   </a>
                 </div>

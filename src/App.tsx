@@ -32,7 +32,7 @@ const getActiveCaseStudy = () => {
 
 function App() {
   const [language, setLanguage] = useState<Language>(() => detectInitialLanguage());
-  const activeCaseStudy = getActiveCaseStudy();
+  const [activeCaseStudy, setActiveCaseStudy] = useState<string | null>(() => getActiveCaseStudy());
   const isSanctionsCaseStudy = activeCaseStudy === SANCTIONS_CASE_STUDY_SLUG;
   const isSanctionsPipelineCaseStudy = activeCaseStudy === SANCTIONS_PIPELINE_CASE_STUDY_SLUG;
   const isCaseStudy = isSanctionsCaseStudy || isSanctionsPipelineCaseStudy;
@@ -49,6 +49,24 @@ function App() {
     setLanguage(nextLanguage);
     document.documentElement.lang = nextLanguage;
     localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+  }, []);
+
+  const handleCaseStudyOpen = useCallback((caseStudySlug: string) => {
+    const nextUrl = new URL(window.location.href);
+    nextUrl.searchParams.set("case", caseStudySlug);
+    nextUrl.hash = "";
+    window.history.pushState({}, "", nextUrl);
+    setActiveCaseStudy(caseStudySlug);
+    window.scrollTo({ top: 0 });
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setActiveCaseStudy(getActiveCaseStudy());
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   useEffect(() => {
@@ -173,7 +191,11 @@ function App() {
           <main>
             <Hero copy={copy.hero} />
             <About copy={copy.about} />
-            <PortfolioProjects language={language} copy={copy.projects} />
+            <PortfolioProjects
+              language={language}
+              copy={copy.projects}
+              onOpenCaseStudy={handleCaseStudyOpen}
+            />
             <Projects language={language} copy={copy.experience} />
             <Contact copy={copy.contact} />
           </main>
