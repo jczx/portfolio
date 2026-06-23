@@ -51,7 +51,7 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
       status: "Matcher",
       title: "EU-Sanktionslisten Name Match Explorer",
       summary:
-        "Ein vorsichtiges Name-Matching-Demo, das Kandidaten, Alias-Hinweise und Erklärsignale priorisiert, statt ein künstliches Compliance-Urteil auszugeben.",
+        "Eine vorsichtige Name-Matching-Demo, die Kandidaten, Alias-Hinweise und Erklärungssignale priorisiert, statt ein künstliches Compliance-Urteil auszugeben.",
       highlights: [
         "Erklärbares Similarity Scoring",
         "Nur Human-Review-Ausgabe",

@@ -8,7 +8,6 @@ type PortfolioProjectsProps = {
     title: string;
     lead: string;
   };
-  onOpenCaseStudy: (caseStudySlug: string) => void;
 };
 
 const nlpPreview = {
@@ -116,12 +115,15 @@ const ProjectPreview = ({
   language: Language;
 }) => (tone === "nlp" ? <NlpPreview language={language} /> : <OpsPreview language={language} />);
 
-const getCaseStudySlug = (href: string) => {
-  const search = href.startsWith("?") ? href : new URL(href, window.location.href).search;
-  return new URLSearchParams(search).get("case");
+const getProjectHref = (href: string) => {
+  if (!href.startsWith("?")) {
+    return href;
+  }
+
+  return `${import.meta.env.BASE_URL}${href}`;
 };
 
-const PortfolioProjects = ({ language, copy, onOpenCaseStudy }: PortfolioProjectsProps) => {
+const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
   const projects = portfolioProjectsByLanguage[language];
 
   return (
@@ -131,8 +133,15 @@ const PortfolioProjects = ({ language, copy, onOpenCaseStudy }: PortfolioProject
       style={{ "--reveal-delay": "140ms" } as CSSProperties}
     >
       <div className="container">
-        <h2>{copy.title}</h2>
-        <p className="section__lead">{copy.lead}</p>
+        <div className="section__heading">
+          <p className="section__index">
+            {language === "de" ? "03 / Projekte" : "03 / Selected work"}
+          </p>
+          <div>
+            <h2>{copy.title}</h2>
+            <p className="section__lead">{copy.lead}</p>
+          </div>
+        </div>
 
         <div className="portfolioProjects__grid">
           {projects.map((project, index) => (
@@ -141,12 +150,26 @@ const PortfolioProjects = ({ language, copy, onOpenCaseStudy }: PortfolioProject
               key={project.title}
               style={{ "--reveal-delay": `${190 + index * 70}ms` } as CSSProperties}
             >
+              {project.href ? (
+                <a
+                  className="portfolioProjectCard__overlayLink"
+                  href={getProjectHref(project.href)}
+                  aria-label={`${project.actionLabel ?? "Open project"}: ${project.title}`}
+                />
+              ) : null}
+
               <div className="portfolioProjectCard__top">
                 <p className="portfolioProjectCard__eyebrow">{project.eyebrow}</p>
                 <span className="portfolioProjectCard__status">{project.status}</span>
               </div>
 
-              <h3 className="portfolioProjectCard__title">{project.title}</h3>
+              <h3 className="portfolioProjectCard__title">
+                {project.href ? (
+                  <a href={getProjectHref(project.href)}>{project.title}</a>
+                ) : (
+                  project.title
+                )}
+              </h3>
               <p className="portfolioProjectCard__summary">{project.summary}</p>
 
               <ProjectPreview language={language} tone={project.tone} />
@@ -167,19 +190,10 @@ const PortfolioProjects = ({ language, copy, onOpenCaseStudy }: PortfolioProject
                 <div className="portfolioProjectCard__actions">
                   <a
                     className="portfolioProjectCard__cta"
-                    href={project.href}
-                    onClick={(event) => {
-                      const caseStudySlug = getCaseStudySlug(project.href ?? "");
-
-                      if (!caseStudySlug || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-                        return;
-                      }
-
-                      event.preventDefault();
-                      onOpenCaseStudy(caseStudySlug);
-                    }}
+                    href={getProjectHref(project.href)}
                   >
-                    {project.actionLabel}
+                    <span>{project.actionLabel}</span>
+                    <span aria-hidden="true">↗</span>
                   </a>
                 </div>
               ) : null}

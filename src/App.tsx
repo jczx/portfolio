@@ -53,15 +53,6 @@ function App() {
     localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
   }, []);
 
-  const handleCaseStudyOpen = useCallback((caseStudySlug: string) => {
-    const nextUrl = new URL(window.location.href);
-    nextUrl.searchParams.set("case", caseStudySlug);
-    nextUrl.hash = "";
-    window.history.pushState({}, "", nextUrl);
-    setActiveCaseStudy(caseStudySlug);
-    window.scrollTo({ top: 0 });
-  }, []);
-
   useEffect(() => {
     const handlePopState = () => {
       setActiveCaseStudy(getActiveCaseStudy());
@@ -194,11 +185,7 @@ function App() {
             <Hero copy={copy.hero} />
             <About copy={copy.about} />
             <Skills copy={copy.skills} />
-            <PortfolioProjects
-              language={language}
-              copy={copy.projects}
-              onOpenCaseStudy={handleCaseStudyOpen}
-            />
+            <PortfolioProjects language={language} copy={copy.projects} />
             <Projects language={language} copy={copy.experience} />
             <Contact copy={copy.contact} />
           </main>
