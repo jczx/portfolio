@@ -20,13 +20,12 @@ const Header = ({
   languageToggleLabel,
   onLanguageChange,
 }: HeaderProps) => {
-  const brandLogo = `${import.meta.env.BASE_URL}favicon-jc.svg`;
-
   return (
     <header className="header">
       <div className="container header__inner">
         <a className="header__brand" href={brandHref} aria-label={brandLabel}>
-          <img className="header__brandLogo" src={brandLogo} alt="JC" />
+          <span className="header__brandName">Julio Caesar</span>
+          <span className="header__brandTagline">Data Engineering &amp; AI Solutions</span>
         </a>
 
         <nav aria-label="Primary">

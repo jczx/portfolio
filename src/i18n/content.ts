@@ -8,7 +8,7 @@ type Copy = {
     contact: string;
   };
   hero: {
-    subtitle: string;
+    headline: string[];
     intro: string[];
     primaryCta: string;
     secondaryCta: string;
@@ -17,6 +17,14 @@ type Copy = {
     title: string;
     lead: string;
     points: string[];
+  };
+  skills: {
+    title: string;
+    lead: string;
+    groups: Array<{
+      label: string;
+      items: string[];
+    }>;
   };
   projects: {
     title: string;
@@ -48,22 +56,56 @@ export const copyByLanguage: Record<Language, Copy> = {
       contact: "Contact",
     },
     hero: {
-      subtitle: "DataOps Consultant / Analytics Engineer",
+      headline: ["Reliable data.", "Better decisions."],
       intro: [
-        "I build reliable data platforms and turn data into usable insights.",
+        "I build reliable data systems and AI-powered solutions that transform raw data into business impact.",
       ],
-      primaryCta: "Get in touch",
-      secondaryCta: "View experience",
+      primaryCta: "View Case Studies",
+      secondaryCta: "Get in Touch",
     },
     about: {
       title: "About",
       lead:
-        "I work at the intersection of data reliability, platform operations, and analytics. From ETL monitoring and release coordination to SQL development, dashboards, and applied data science.",
+        "I work at the intersection of data engineering, analytics, and AI-powered automation - from SQL and reporting workflows to intelligent systems that help teams make better decisions.",
       points: [
         "Hands-on experience across banking, FMCG, and regulated production data environments.",
-        "Core strengths in BI and DWH operations, SQL and PL/SQL implementation, and release reliability.",
-        "I apply analytics and machine learning when the problem needs more than reporting.",
-        "I help teams deliver stable releases and trustworthy reporting.",
+        "Core strengths in analytics engineering, DWH operations, SQL/Python development, and cloud-based data platforms.",
+        "I apply analytics, automation, and machine learning when the problem needs more than standard analytics.",
+        "I help teams deliver stable releases, trustworthy reporting, and smarter data-driven workflows.",
+      ],
+    },
+    skills: {
+      title: "Expertise & Toolkit",
+      lead:
+        "A practical stack for building reliable data platforms, AI-powered workflows, and decision-ready analytics.",
+      groups: [
+        {
+          label: "Data Engineering",
+          items: [
+            "Reliable, efficient & scalable data pipelines",
+            "Data quality & validation",
+            "Batch processing & monitoring",
+            "High-performance DWH architecture & tuning",
+          ],
+        },
+        {
+          label: "Analytics & BI",
+          items: [
+            "Advanced analytics & data modeling",
+            "Requirements & stakeholder management",
+            "Business & financial analysis",
+            "KPI dashboards, regulatory & executive reporting",
+          ],
+        },
+        {
+          label: "AI & Automation",
+          items: [
+            "ML, NLP & generative AI solutions",
+            "RAG & agentic AI workflows",
+            "Model pipelines, evaluation & monitoring",
+            "AI integration, security & compliance",
+          ],
+        },
       ],
     },
     projects: {
@@ -97,22 +139,56 @@ export const copyByLanguage: Record<Language, Copy> = {
       contact: "Kontakt",
     },
     hero: {
-      subtitle: "DataOps Consultant / Analytics Engineer",
+      headline: ["Verlässliche Daten.", "Bessere Entscheidungen."],
       intro: [
-        "Ich baue zuverlässige Datenplattformen und mache Daten zu nutzbaren Erkenntnissen.",
+        "Ich entwickle verlässliche Datensysteme und KI-gestützte Lösungen, die Rohdaten in messbaren Geschäftsnutzen verwandeln.",
       ],
-      primaryCta: "Kontakt",
-      secondaryCta: "Erfahrung ansehen",
+      primaryCta: "Fallstudien ansehen",
+      secondaryCta: "Kontakt aufnehmen",
     },
     about: {
       title: "Über mich",
       lead:
-        "Ich arbeite an der Schnittstelle von Datenzuverlässigkeit, Plattformbetrieb und Analytics. Von ETL-Monitoring und Release-Koordination bis zu SQL-Entwicklung, Dashboards und angewandter Data Science.",
+        "Ich arbeite an der Schnittstelle von Data Engineering, Analytics und KI-gestützter Automatisierung – von SQL- und Reporting-Workflows bis zu intelligenten Systemen, die Teams bessere Entscheidungen ermöglichen.",
       points: [
-        "Praxis in Banken, FMCG und regulierten produktiven Datenumgebungen.",
-        "Stärken in BI- und DWH-Betrieb, SQL- und PL/SQL-Umsetzung sowie Release-Stabilität.",
-        "Ich setze Analytics und Machine Learning ein, wenn ein Problem mehr als Reporting braucht.",
-        "Ich helfe Teams, stabile Releases und verlässliches Reporting zu liefern.",
+        "Praxiserfahrung in Banken, FMCG und regulierten produktiven Datenumgebungen.",
+        "Kernkompetenzen in Analytics Engineering, DWH-Betrieb, SQL/Python-Entwicklung und cloudbasierten Datenplattformen.",
+        "Ich setze Analytics, Automatisierung und Machine Learning ein, wenn Standardanalysen nicht ausreichen.",
+        "Ich helfe Teams, stabile Releases, vertrauenswürdiges Reporting und intelligentere datengetriebene Workflows bereitzustellen.",
+      ],
+    },
+    skills: {
+      title: "Expertise & Toolkit",
+      lead:
+        "Ein praxisnaher Stack für verlässliche Datenplattformen, KI-gestützte Workflows und entscheidungsreife Analysen.",
+      groups: [
+        {
+          label: "Data Engineering",
+          items: [
+            "Zuverlässige, effiziente und skalierbare Datenpipelines",
+            "Datenqualität und Validierung",
+            "Batch-Verarbeitung und Monitoring",
+            "Leistungsstarke DWH-Architektur und Optimierung",
+          ],
+        },
+        {
+          label: "Analytics & BI",
+          items: [
+            "Fortgeschrittene Analysen und Datenmodellierung",
+            "Anforderungs- und Stakeholder-Management",
+            "Geschäfts- und Finanzanalyse",
+            "KPI-Dashboards sowie regulatorisches und Executive Reporting",
+          ],
+        },
+        {
+          label: "AI & Automation",
+          items: [
+            "ML-, NLP- und generative KI-Lösungen",
+            "RAG- und agentische KI-Workflows",
+            "Modellpipelines, Evaluation und Monitoring",
+            "KI-Integration, Sicherheit und Compliance",
+          ],
+        },
       ],
     },
     projects: {
@@ -131,7 +207,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     contact: {
       title: "Kontakt",
       lead:
-        "Standort Berlin, Deutschland. Hier sind ein paar Wege, um mit mir in Kontakt zu treten und mehr über meine Arbeit zu erfahren:",
+        "Standort Berlin, Deutschland. Hier sind einige Wege, um mit mir in Kontakt zu treten und mehr über meine Arbeit zu erfahren:",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
       emailLabel: "E-Mail",

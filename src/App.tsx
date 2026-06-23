@@ -5,6 +5,8 @@ import About from "./components/About";
 import PortfolioProjects from "./components/PortfolioProjects";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Skills from "./components/Skills";
+import Footer from "./components/Footer";
 import { copyByLanguage, type Language } from "./i18n/content";
 
 const LANGUAGE_STORAGE_KEY = "portfolio-language";
@@ -75,7 +77,7 @@ function App() {
       ? `${language === "de" ? "EU-Sanktionslisten Name Match Explorer" : "EU Sanctions Name Match Explorer"} | Julio Caesar`
       : isSanctionsPipelineCaseStudy
         ? `Sanctions Pipeline Reliability Monitor | Julio Caesar`
-        : `Julio Caesar`;
+        : `Julio Caesar | Data Engineering & AI Solutions`;
   }, [isSanctionsCaseStudy, isSanctionsPipelineCaseStudy, language]);
 
   useEffect(() => {
@@ -191,6 +193,7 @@ function App() {
           <main>
             <Hero copy={copy.hero} />
             <About copy={copy.about} />
+            <Skills copy={copy.skills} />
             <PortfolioProjects
               language={language}
               copy={copy.projects}
@@ -199,6 +202,7 @@ function App() {
             <Projects language={language} copy={copy.experience} />
             <Contact copy={copy.contact} />
           </main>
+          <Footer language={language} />
         </div>
       )}
     </>
