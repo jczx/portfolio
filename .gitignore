@@ -27,3 +27,14 @@ analysis/docs/
 analysis/derived/
 analysis/raw/
 analysis/scripts/
+
+# Private source media (the optimized hero JPG remains tracked for deployment)
+src/assets/blacked_out_jc_pp.png
+src/assets/juliocaesarpp.png
+src/assets/juliocaesar_logo.png
+src/assets/juliocaesar_logo_header.png
+
+# Local/private case-study workspaces
+case-studies/
+private-case-studies/
+.case-studies/

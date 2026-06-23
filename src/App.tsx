@@ -72,41 +72,73 @@ function App() {
   }, [isSanctionsCaseStudy, isSanctionsPipelineCaseStudy, language]);
 
   useEffect(() => {
-    const revealElements = document.querySelectorAll<HTMLElement>(".reveal-on-scroll");
-    if (!revealElements.length) {
-      return;
-    }
+    const shouldRevealImmediately =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window);
 
-    const showAllRevealElements = () => {
-      revealElements.forEach((element) => element.classList.add("is-visible"));
+    const intersectionObserver = shouldRevealImmediately
+      ? null
+      : new IntersectionObserver(
+          (entries, currentObserver) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                currentObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.01,
+            rootMargin: "0px 0px -10% 0px",
+          },
+        );
+
+    const revealElement = (element: HTMLElement) => {
+      if (element.classList.contains("is-visible")) {
+        return;
+      }
+
+      if (shouldRevealImmediately) {
+        element.classList.add("is-visible");
+        return;
+      }
+
+      intersectionObserver?.observe(element);
     };
 
-    if (
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      !("IntersectionObserver" in window)
-    ) {
-      showAllRevealElements();
-      return;
-    }
+    const registerRevealElements = (root: ParentNode) => {
+      if (root instanceof HTMLElement && root.matches(".reveal-on-scroll")) {
+        revealElement(root);
+      }
 
-    const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            currentObserver.unobserve(entry.target);
+      root
+        .querySelectorAll<HTMLElement>(".reveal-on-scroll")
+        .forEach(revealElement);
+    };
+
+    registerRevealElements(document);
+
+    // Lazy case-study components mount after this effect initially runs.
+    // Observe DOM additions so their reveal elements cannot remain invisible.
+    const mutationObserver = new MutationObserver((records) => {
+      records.forEach((record) => {
+        record.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement) {
+            registerRevealElements(node);
           }
         });
-      },
-      {
-        threshold: 0.01,
-        rootMargin: "0px 0px -10% 0px",
-      },
-    );
+      });
+    });
 
-    revealElements.forEach((element) => observer.observe(element));
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
 
-    return () => observer.disconnect();
+    return () => {
+      mutationObserver.disconnect();
+      intersectionObserver?.disconnect();
+    };
   }, [isCaseStudy, language]);
 
   useEffect(() => {
