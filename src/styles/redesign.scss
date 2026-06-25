@@ -842,11 +842,11 @@ html:lang(de) .hero__name {
 
   .hero {
     min-height: calc(100svh - 108px);
-    padding: 4rem 0 3.5rem;
+    padding: 2rem 0 2.5rem;
   }
 
   .hero__name {
-    font-size: clamp(2.8rem, 13vw, 4.8rem);
+    font-size: clamp(2.6rem, 12vw, 4.2rem);
     line-height: 0.9;
     letter-spacing: -0.06em;
   }
@@ -861,12 +861,13 @@ html:lang(de) .hero__name {
   }
 
   .hero__portrait img {
-    inset: 0;
+    inset: 0 0 auto;
     width: 100%;
-    height: 100%;
-    transform: none;
-    object-fit: cover;
-    object-position: 64% 24%;
+    height: auto;
+    transform: translateY(-5%) scale(0.86);
+    transform-origin: top center;
+    object-fit: contain;
+    object-position: top center;
   }
 
   .hero__portrait::after {
@@ -874,17 +875,18 @@ html:lang(de) .hero__name {
       linear-gradient(
         0deg,
         rgba(5, 5, 5, 0.98) 0%,
-        rgba(5, 5, 5, 0.72) 35%,
-        rgba(5, 5, 5, 0.05) 70%,
-        rgba(5, 5, 5, 0.38) 100%
+        rgba(5, 5, 5, 0.92) 34%,
+        rgba(5, 5, 5, 0.36) 58%,
+        rgba(5, 5, 5, 0.08) 78%,
+        rgba(5, 5, 5, 0.2) 100%
       ),
-      linear-gradient(90deg, rgba(5, 5, 5, 0.55), transparent 76%);
+      linear-gradient(90deg, rgba(5, 5, 5, 0.46), transparent 78%);
   }
 
   .hero__copy {
     align-self: flex-end;
     max-width: 100%;
-    padding-top: min(46vh, 21rem);
+    padding-top: min(56vh, 24rem);
     transform: none;
   }
 
