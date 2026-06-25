@@ -841,7 +841,8 @@ html:lang(de) .hero__name {
   }
 
   .hero {
-    min-height: calc(100svh - 108px);
+    display: block;
+    min-height: auto;
     padding: 2rem 0 2.5rem;
   }
 
@@ -851,42 +852,45 @@ html:lang(de) .hero__name {
     letter-spacing: -0.06em;
   }
 
+  .hero__content {
+    min-height: auto;
+    display: block;
+  }
+
   html:lang(de) .hero__name {
     font-size: clamp(2.25rem, 9.8vw, 3.65rem);
     line-height: 0.94;
   }
 
   .hero__portrait {
+    position: relative;
+    inset: auto;
+    display: flex;
+    justify-content: center;
+    width: min(72vw, 21rem);
+    height: auto;
+    margin: 1.75rem auto 1.5rem;
     opacity: 1;
+    overflow: visible;
   }
 
   .hero__portrait img {
-    inset: 0 0 auto;
+    position: relative;
+    inset: auto;
     width: 100%;
     height: auto;
-    transform: translateY(-5%) scale(0.86);
-    transform-origin: top center;
+    transform: none;
     object-fit: contain;
-    object-position: top center;
+    object-position: center center;
   }
 
   .hero__portrait::after {
-    background:
-      linear-gradient(
-        0deg,
-        rgba(5, 5, 5, 0.98) 0%,
-        rgba(5, 5, 5, 0.92) 34%,
-        rgba(5, 5, 5, 0.36) 58%,
-        rgba(5, 5, 5, 0.08) 78%,
-        rgba(5, 5, 5, 0.2) 100%
-      ),
-      linear-gradient(90deg, rgba(5, 5, 5, 0.46), transparent 78%);
+    display: none;
   }
 
   .hero__copy {
-    align-self: flex-end;
     max-width: 100%;
-    padding-top: min(56vh, 24rem);
+    padding-top: 0;
     transform: none;
   }
 
@@ -975,8 +979,12 @@ html:lang(de) .hero__name {
     width: 100%;
   }
 
+  .hero__name {
+    font-size: clamp(2.35rem, 11vw, 3.6rem);
+  }
+
   .hero__copy {
-    padding-top: min(42vh, 18rem);
+    padding-top: 1.25rem;
   }
 
   .footer__inner {
