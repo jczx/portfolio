@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import profilePicture from "../assets/blacked_out_jc_pp.jpg";
+import profilePicture from "../assets/julio_colour_blackedout.png";
 
 type HeroProps = {
   copy: {
@@ -16,7 +16,7 @@ const Hero = ({ copy }: HeroProps) => {
       <div className="hero__portrait">
         <img
           src={profilePicture}
-          alt="Black-and-white portrait of Julio Caesar"
+          alt="Portrait of Julio Caesar"
           width="1254"
           height="1254"
           decoding="async"
