@@ -1,29 +1,29 @@
 {
   "meta": {
-    "generatedAt": "2026-04-25T20:58:40.633Z",
+    "generatedAt": "2026-06-25T17:11:38.635Z",
     "sourceKind": "official-xml",
-    "sourceDate": "2026-04-24T15:24:43.646+02:00",
+    "sourceDate": "2026-06-05T15:51:25.849+02:00",
     "sourceLabel": "Official EU FSF XML export",
-    "sourceFileName": "20260424-FULL-1_1-xsd.xml",
-    "globalFileId": "182479",
+    "sourceFileName": "20260605-FULL-1_1-xsd.xml",
+    "globalFileId": "182848",
     "ingestionMode": "local-xml"
   },
   "metrics": {
-    "recordCount": 5993,
-    "previousRecordCount": 5819,
-    "recordDelta": 174,
-    "personCount": 4408,
-    "entityCount": 1585,
-    "aliasTotal": 23920,
-    "entriesWithAliases": 5265,
-    "aliasCoveragePct": 87.9,
+    "recordCount": 5994,
+    "previousRecordCount": 5993,
+    "recordDelta": 1,
+    "personCount": 4405,
+    "entityCount": 1589,
+    "aliasTotal": 23882,
+    "entriesWithAliases": 5260,
+    "aliasCoveragePct": 87.8,
     "latestPublicationDate": "2026-04-23",
-    "matcherDatasetBytes": 2388213,
-    "rawXmlBytes": 24750131,
+    "matcherDatasetBytes": 2387238,
+    "rawXmlBytes": 24730335,
     "topProgrammes": [
       {
         "programme": "UKR",
-        "count": 2713
+        "count": 2722
       },
       {
         "programme": "IRN",
@@ -39,7 +39,7 @@
       },
       {
         "programme": "TAQA",
-        "count": 344
+        "count": 337
       }
     ]
   },
@@ -48,19 +48,19 @@
       "id": "source-access",
       "label": "Source access",
       "status": "healthy",
-      "detail": "Official FSF XML available via local-xml (20260424-FULL-1_1-xsd.xml)."
+      "detail": "Official FSF XML available via local-xml (20260605-FULL-1_1-xsd.xml)."
     },
     {
       "id": "parse",
       "label": "Parse step",
       "status": "healthy",
-      "detail": "5,993 entities parsed with 23,920 aliases retained."
+      "detail": "5,994 entities parsed with 23,882 aliases retained."
     },
     {
       "id": "freshness",
       "label": "Source freshness",
-      "status": "healthy",
-      "detail": "Source export is 31.6 hours old."
+      "status": "watch",
+      "detail": "Source export is 483.3 hours old."
     },
     {
       "id": "publish",
@@ -72,7 +72,7 @@
       "id": "coverage",
       "label": "Alias coverage",
       "status": "healthy",
-      "detail": "87.9% of entities carry at least one alias in the generated dataset."
+      "detail": "87.8% of entities carry at least one alias in the generated dataset."
     }
   ]
 }

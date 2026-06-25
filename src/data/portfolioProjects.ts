@@ -22,7 +22,7 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
         "A cautious name-matching demo that ranks candidate matches, alias evidence, and explanation signals instead of giving a fake compliance verdict.",
       highlights: [
         "Explainable similarity scoring",
-        "Human-review output only",
+        "Official FSF XML dataset",
       ],
       tech: ["NLP", "Levenshtein", "TypeScript"],
       actionLabel: "Open project",
@@ -36,7 +36,7 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
       summary:
         "An operations case study for the same FSF ingestion flow: source freshness, parse health, publish status, and alias-coverage checks.",
       highlights: [
-        "Download-parse-publish checks",
+        "5,994 official records monitored",
         "Source freshness and coverage monitoring",
       ],
       tech: ["Node.js", "ETL", "Observability"],
@@ -54,7 +54,7 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
         "Eine vorsichtige Name-Matching-Demo, die Kandidaten, Alias-Hinweise und Erklärungssignale priorisiert, statt ein künstliches Compliance-Urteil auszugeben.",
       highlights: [
         "Erklärbares Similarity Scoring",
-        "Nur Human-Review-Ausgabe",
+        "Offizieller FSF-XML-Datensatz",
       ],
       tech: ["NLP", "Levenshtein", "TypeScript"],
       actionLabel: "Projekt öffnen",
@@ -68,7 +68,7 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
       summary:
         "Eine Betriebs-Fallstudie für denselben FSF-Ingestion-Flow: Source Freshness, Parse-Gesundheit, Publish-Status und Alias-Coverage-Checks.",
       highlights: [
-        "Download-Parse-Publish-Checks",
+        "5.994 offizielle EintrÃ¤ge Ã¼berwacht",
         "Source-Freshness und Coverage-Monitoring",
       ],
       tech: ["Node.js", "ETL", "Observability"],
