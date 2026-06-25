@@ -281,7 +281,7 @@ html:lang(de) .hero__name {
   height: 100%;
   object-fit: contain;
   object-position: center center;
-  transform: scale(1.1);
+  transform: translateX(clamp(4rem, 10vw, 11rem)) scale(1.1);
   filter: contrast(1.04) brightness(1.06);
 }
 
@@ -866,7 +866,7 @@ html:lang(de) .hero__name {
     height: 100%;
     transform: none;
     object-fit: cover;
-    object-position: center 24%;
+    object-position: 64% 24%;
   }
 
   .hero__portrait::after {
