@@ -304,8 +304,9 @@ html:lang(de) .hero__name {
 
 .section__heading {
   display: grid;
-  grid-template-columns: minmax(100px, 0.3fr) minmax(0, 1fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: 0.9rem;
   margin-bottom: 3rem;
 }
 
