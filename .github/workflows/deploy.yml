@@ -36,8 +36,14 @@ jobs:
       - name: Lint source
         run: npm run lint
 
+      - name: Test guitar music engine
+        run: npm run test:guitar
+
       - name: Build site
         run: npm run build
+
+      - name: Verify guitar page assets
+        run: npm run test:guitar-build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

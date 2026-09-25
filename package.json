@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "analysis:build": "node analysis/scripts/build-hyperscaler-metrics.mjs && node analysis/scripts/build-eu-sanctions-data.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:guitar": "node --experimental-strip-types --test tests/guitar-music.test.mjs",
+    "test:guitar-build": "node --test tests/guitar-build.test.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",

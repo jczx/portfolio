@@ -111,7 +111,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     projects: {
       title: "Case Studies",
       lead:
-        "Two sanctions-focused case studies across entity resolution and operational data reliability.",
+        "Sanctions case studies and an interactive guitar side project.",
     },
     experience: {
       title: "Experience",
@@ -194,7 +194,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     projects: {
       title: "Fallstudien",
       lead:
-        "Zwei sanktionsbezogene Fallstudien zu Entity Resolution und operativer Datenzuverlässigkeit.",
+        "Fallstudien zu Sanktionen und ein interaktives Gitarren-Nebenprojekt.",
     },
     experience: {
       title: "Erfahrung",

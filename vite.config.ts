@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -5,4 +6,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: "./",
   plugins: [react()],
+  build: {
+    rolldownOptions: {
+      input: {
+        portfolio: fileURLToPath(new URL('./index.html', import.meta.url)),
+        guitar: fileURLToPath(new URL('./caesar-guitar-lab/index.html', import.meta.url)),
+      },
+    },
+  },
 })

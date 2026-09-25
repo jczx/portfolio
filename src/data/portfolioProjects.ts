@@ -9,7 +9,7 @@ export type PortfolioProject = {
   tech: string[];
   actionLabel?: string;
   href?: string;
-  tone: "nlp" | "ops";
+  tone: "nlp" | "ops" | "music";
 };
 
 export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> = {
@@ -44,6 +44,18 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
       href: "?case=sanctions-pipeline-monitor",
       tone: "ops",
     },
+
+    {
+      eyebrow: "Personal side project",
+      status: "Interactive app",
+      title: "Caesar Guitar Lab",
+      summary: "An interactive guitar neck for identifying chords, exploring voicings, and practising scales.",
+      highlights: ["20 chord types across 24 frets", "Scale playback and note-finding practice"],
+      tech: ["React", "TypeScript", "Web Audio"],
+      actionLabel: "Open Guitar Lab",
+      href: "./caesar-guitar-lab/",
+      tone: "music",
+    },
   ],
   de: [
     {
@@ -75,6 +87,17 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
       actionLabel: "Projekt öffnen",
       href: "?case=sanctions-pipeline-monitor",
       tone: "ops",
+    },
+    {
+      eyebrow: "Persönliches Nebenprojekt",
+      status: "Interaktive App",
+      title: "Caesar Guitar Lab",
+      summary: "Ein interaktives Gitarrengriffbrett, um Akkorde zu erkennen, Griffvarianten zu erkunden und Tonleitern zu üben.",
+      highlights: ["20 Akkordtypen auf 24 Bünden", "Tonleitern anhören und Noten finden"],
+      tech: ["React", "TypeScript", "Web Audio"],
+      actionLabel: "Guitar Lab öffnen",
+      href: "./caesar-guitar-lab/",
+      tone: "music",
     },
   ],
 };

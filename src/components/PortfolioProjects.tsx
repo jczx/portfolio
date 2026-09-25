@@ -113,7 +113,7 @@ const ProjectPreview = ({
 }: {
   tone: PortfolioProject["tone"];
   language: Language;
-}) => (tone === "nlp" ? <NlpPreview language={language} /> : <OpsPreview language={language} />);
+}) => (tone === "nlp" ? <NlpPreview language={language} /> : tone === "ops" ? <OpsPreview language={language} /> : null);
 
 const getProjectHref = (href: string) => {
   if (!href.startsWith("?")) {
