@@ -31,6 +31,7 @@ export const SCALES: Formula[] = [
   { id: 'minor-pent', name: 'Minor pentatonic', suffix: '', intervals: [0,3,5,7,10], degrees: ['1','♭3','4','5','♭7'], description: 'Five notes used throughout rock, blues, and pop. A useful first scale for improvisation.' },
   { id: 'major-pent', name: 'Major pentatonic', suffix: '', intervals: [0,2,4,7,9], degrees: ['1','2','3','5','6'], description: 'Five notes with an open, melodic sound. Try short phrases that return to the root.' },
   { id: 'blues', name: 'Minor blues', suffix: '', intervals: [0,3,5,6,7,10], degrees: ['1','♭3','4','♭5','5','♭7'], description: 'The minor pentatonic plus a blue note: the flattened fifth. Use it as a passing tone.' },
+  { id: 'major-blues', name: 'Major blues', suffix: '', intervals: [0,2,3,4,7,9], degrees: ['1','2','♭3','3','5','6'], description: 'Major pentatonic with a passing minor third.' },
   { id: 'dorian', name: 'Dorian', suffix: '', intervals: [0,2,3,5,7,9,10], degrees: ['1','2','♭3','4','5','6','♭7'], description: 'A minor mode with a natural sixth. Compare it with natural minor to hear the difference.' },
   { id: 'mixolydian', name: 'Mixolydian', suffix: '', intervals: [0,2,4,5,7,9,10], degrees: ['1','2','3','4','5','6','♭7'], description: 'A major mode with a flattened seventh. Try it alongside a dominant seventh chord.' },
   { id: 'phrygian', name: 'Phrygian', suffix: '', intervals: [0,1,3,5,7,8,10], degrees: ['1','♭2','♭3','4','5','♭6','♭7'], description: 'A minor mode with a flattened second. Hear the half-step between the root and second.' },
@@ -48,6 +49,7 @@ export const QUICK_CHORDS = [
   { name: 'F', frets: [1,3,3,2,1,1] },
   { name: 'A7', frets: [null,0,2,0,2,0] },
   { name: 'Cmaj7', frets: [null,3,2,0,0,0] },
+  { name: 'Cm', frets: [null,3,5,5,4,3] },
 ] satisfies {name: string; frets: Fingering}[];
 export const pc = (note: number) => ((note % 12) + 12) % 12;
 export const noteName = (note: number) => ROOT_NAMES[pc(note)];
@@ -109,7 +111,7 @@ function rateVoicing(frets: Fingering, root: number): Voicing | null {
   if (fingers > 4) return null;
   const bass = pc(Math.min(...soundingNotes(frets)));
   const opens = frets.filter(f => f === 0).length;
-  return {frets: [...frets], position, bass, barre: canBarre,
+  return {frets: [...frets], position, bass, barre: canBarre && opens===0,
     score: position*1.2 + span*1.4 + fingers*0.6 + (6-sounding.length)*1.5 + (bass===root ? 0 : 6) - opens*0.5};
 }
 /** Search all four-fret windows, retaining full formulas and plausible hand spans. */
@@ -139,13 +141,52 @@ export function findVoicings(root: number, formula: Formula): Voicing[] {
     }
     visit([],0);
   }
-  // Present a short, useful list spanning the neck, rather than near-identical shapes.
+  // Keep familiar movable E/A shapes ahead of the generated alternatives.
+  // All templates still pass the pitch, span, and finger-count checks above.
+  const templates: Record<string, {root: number; frets: Fingering}[]> = {
+    major: [{root:4,frets:[0,2,2,1,0,0]},{root:9,frets:[null,0,2,2,2,0]}],
+    minor: [{root:4,frets:[0,2,2,0,0,0]},{root:9,frets:[null,0,2,2,1,0]}],
+    '7': [{root:4,frets:[0,2,0,1,0,0]},{root:9,frets:[null,0,2,0,2,0]}],
+    m7: [{root:4,frets:[0,2,0,0,0,0]},{root:9,frets:[null,0,2,0,1,0]}],
+    maj7: [{root:9,frets:[null,0,2,1,2,0]}],
+  };
+  for (const template of templates[formula.id] ?? []) {
+    for(let offset=pc(root-template.root);offset<=24;offset+=12) {
+      const frets=template.frets.map(f=>f===null?null:f+offset);
+      if(frets.some(f=>f!==null&&f>24)) continue;
+      const tones=pitchClasses(soundingNotes(frets));
+      if(tones.length!==allowed.size||!tones.every(t=>allowed.has(t))) continue;
+      const rated=rateVoicing(frets,root);
+      if(rated) candidates.set(frets.join(','),{...rated,score:rated.score-30});
+    }
+  }
+  for(const shape of QUICK_CHORDS) {
+    const tones=pitchClasses(soundingNotes(shape.frets));
+    if(tones.length!==allowed.size||!tones.every(t=>allowed.has(t))) continue;
+    const rated=rateVoicing(shape.frets,root);
+    if(rated) candidates.set(shape.frets.join(','),{...rated,score:rated.score-30});
+  }
+  // Retain each fret position instead of dropping whole positions in broad buckets.
   const sorted = [...candidates.values()].sort((a,b) => a.score-b.score);
   const result: Voicing[] = [];
-  for (const [from,to] of [[0,4],[5,8],[9,12],[13,16],[17,20],[21,24]]) {
-    result.push(...sorted.filter(v => v.position>=from && v.position<=to).slice(0,5));
+  for (let position=0;position<=24;position++) {
+    result.push(...sorted.filter(v => v.position===position).slice(0,3));
   }
   return result.sort((a,b) => a.position-b.position || a.score-b.score);
+}
+
+/** Prefer the requested fret, then the nearest higher position in the visible neck. */
+export function voicingAtPosition(voicings: Voicing[], start: number): number {
+  const end=Math.min(24,start+11);
+  const visible=voicings.map((voicing,index)=>({voicing,index})).filter(({voicing})=>
+    (voicing.position>=start||start===1&&voicing.position===0)&&
+    voicing.frets.every(f=>f===null||f===0||f>=start&&f<=end));
+  if(start===1) {
+    const lower=visible.filter(({voicing})=>voicing.position<=3).sort((a,b)=>a.voicing.score-b.voicing.score);
+    if(lower.length) return lower[0].index;
+  }
+  visible.sort((a,b)=>a.voicing.position-b.voicing.position||a.voicing.score-b.voicing.score);
+  return visible[0]?.index ?? -1;
 }
 export function scaleSequence(root: number, formula: Formula, direction: 'up'|'down'|'both'): number[] {
   const ascending = [...formula.intervals.map(i => 48+pc(root)+i),60+pc(root)];

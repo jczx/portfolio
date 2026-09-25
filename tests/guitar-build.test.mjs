@@ -17,7 +17,7 @@ async function localAsset(reference,from) {
 
 test('the guitar app has a direct HTML page and all its static assets',async()=>{
   const html=await readFile(guitar,'utf8');
-  assert.match(html,/<title>Caesar Guitar Lab \| Julio Caesar<\/title>/);
+  assert.match(html,/<title>Caesar’s Fret Lab \| Julio Caesar<\/title>/);
   assert.match(html,/https:\/\/julio-caesar\.com\/caesar-guitar-lab\//);
   const assets=[...html.matchAll(/(?:src|href)="([^"]+)"/g)]
     .map(match=>match[1]).filter(value=>!/^https?:/.test(value));
@@ -34,6 +34,8 @@ test('the guitar app has a direct HTML page and all its static assets',async()=>
   }
   const font=await readFile(resolve(dist,'caesar-guitar-lab-assets/fonts/inter-latin-variable.woff2'));
   assert.equal(font.subarray(0,4).toString(),'wOF2');
+  const scriptFont=await readFile(resolve(dist,'caesar-guitar-lab-assets/fonts/lobster-regular.ttf'));
+  assert.equal(scriptFont.readUInt32BE(0),0x00010000);
 });
 
 test('the portfolio homepage stays separate and links to the guitar page in both languages',async()=>{
@@ -42,7 +44,7 @@ test('the portfolio homepage stays separate and links to the guitar page in both
   const appStyles=[...app.matchAll(/href="([^"]+\.css)"/g)].map(match=>match[1].split('/').at(-1));
   for(const stylesheet of appStyles) assert.ok(!home.includes(stylesheet),'Guitar styles leaked into the homepage');
   const data=await readFile(new URL('../src/data/portfolioProjects.ts',import.meta.url),'utf8');
-  assert.equal((data.match(/title: "Caesar Guitar Lab"/g)||[]).length,2);
+  assert.equal((data.match(/title: "Caesar’s Fret Lab"/g)||[]).length,2);
   assert.equal((data.match(/href: "\.\/caesar-guitar-lab\/"/g)||[]).length,2);
   assert.ok(data.includes('?case=eu-sanctions-name-match'));
   assert.ok(data.includes('?case=sanctions-pipeline-monitor'));

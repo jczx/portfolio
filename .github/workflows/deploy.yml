@@ -39,6 +39,9 @@ jobs:
       - name: Test guitar music engine
         run: npm run test:guitar
 
+      - name: Test guitar controls
+        run: npm run test:guitar-ui
+
       - name: Build site
         run: npm run build
 

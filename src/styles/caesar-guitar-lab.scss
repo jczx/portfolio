@@ -1,7 +1,15 @@
-/* Standalone guitar app. Synced from Caesar Guitar Lab; no portfolio styles imported. */
+/* Standalone guitar app. Synced from Caesar’s Fret Lab; no portfolio styles imported. */
 html { line-height: 1.5; -webkit-text-size-adjust: 100%; }
 button,input,select { margin: 0; }
 
+
+@font-face {
+  font-family: "Lobster";
+  src: url("/caesar-guitar-lab-assets/fonts/lobster-regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
 /* Same Inter family and weights used by julio-caesar.com, bundled locally. */
 @font-face {
@@ -182,7 +190,7 @@ select { font-weight: 400; background: #202020; border-color: #414141; }
 }
 
 
-/* Caesar branding follows the published portfolio's uppercase Inter hero. */
+/* Monochrome interface and portfolio links. */
 .intro h1 {
   font-family: var(--font-interface);
   font-size: clamp(3.55rem,5.8vw,5.8rem);
@@ -219,4 +227,50 @@ select { font-weight: 400; background: #202020; border-color: #414141; }
   .site-footer { flex-wrap: wrap; gap: 12px; }
   .site-footer p { max-width: none; text-align: left; order: 3; width: 100%; }
   .site-footer a { font-size: 10px; }
+}
+
+/* A connected, forward-leaning wordmark with a guitar-headstock feel. */
+.script-brand { font-family: "Lobster", cursive; font-weight: 400; text-transform: none; letter-spacing: -.025em; }
+.brand { gap: 12px; }
+.brand .script-brand { font-size: 32px; line-height: 1; transform: rotate(-4deg); }
+.brand-light { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.intro { padding-block: 30px 32px; }
+.intro h1 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 30px; text-transform: none; line-height: 1; }
+.intro h1 .script-brand { position: relative; display: inline-block; font-size: clamp(64px,7.6vw,104px); line-height: 1.15; font-weight: 400; letter-spacing: -.035em; transform: skewX(-5deg) rotate(-4deg); }
+.intro h1 .script-brand::after { content: ''; position: absolute; left: 5%; right: -2%; bottom: -.015em; height: .09em; border-bottom: .045em solid currentColor; border-radius: 0 0 70% 50%; transform: rotate(-2deg); }
+.intro h1 .lab-title { font-family: var(--font-interface); font-size: clamp(20px,2.5vw,34px); font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
+.mode-tab { justify-content: center; min-height: 54px; padding: 14px; }
+.mode-tab strong { font-size: 14px; }
+.workspace-header { padding-block: 16px; }
+.workspace-header h2 { margin: 0; font-size: 18px; }
+.selection-bar { padding: 12px; }
+.neck-position { flex: 1; max-width: 520px; }
+.neck-position input { flex: 1; width: auto; min-width: 50px; }
+.neck-position strong { min-width: 45px; }
+.result-card,.learning-card { padding: 24px; }
+.learning-card h3 { font-size: 15px; font-weight: 500; color: var(--muted); }
+.learning-card .formula-row { margin-top: 16px; }
+.learning-card>.secondary-button { margin-top: 20px; }
+.voicing-grid { max-height: 420px; overflow-y: auto; scrollbar-width: thin; padding: 3px; }
+.quick-grid { grid-template-columns: repeat(auto-fit,minmax(118px,1fr)); }
+.quick-card { padding: 18px 14px; min-height: 130px; flex-direction: column; gap: 16px; }
+.quick-card .mini-shape { margin-left: 18px; }
+.scale-starter { min-height: 80px; padding: 20px; }
+.scale-starter strong { font-size: 17px; }
+.section-heading h3 { font-size: 18px; }
+@media(max-width:600px) {
+  .brand .script-brand { font-size: 28px; }
+  .brand-light { font-size: 10px; }
+  .intro { padding-block: 24px 26px; }
+  .intro h1 { gap: 12px 22px; }
+  .intro h1 .script-brand { font-size: clamp(58px,16vw,80px); }
+  .intro h1 .lab-title { font-size: 19px; }
+  .tuning-badge { margin-top: 24px; }
+  .mode-tab { min-height: 50px; }
+  .mode-tab strong { font-size: 13px; }
+  .sound-toggle { flex-direction: row; align-items: center; }
+  .neck-footer { padding-inline: 12px; }
+  .neck-position { gap: 8px; }
+  .neck-position>span { font-size: 8px; }
+  .result-card,.learning-card { padding: 20px; }
 }

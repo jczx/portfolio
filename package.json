@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test:guitar": "node --experimental-strip-types --test tests/guitar-music.test.mjs",
-    "test:guitar-build": "node --test tests/guitar-build.test.mjs"
+    "test:guitar-build": "node --test tests/guitar-build.test.mjs",
+    "test:guitar-ui": "node --experimental-strip-types --test tests/guitar-ui.test.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -26,6 +27,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "jsdom": "^29.1.1",
     "sass": "^1.97.3",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
