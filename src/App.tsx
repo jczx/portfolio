@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useEffect, useState } from "react";
+import { Suspense, lazy, useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Skills from "./components/Skills";
 import Footer from "./components/Footer";
 import { copyByLanguage, type Language } from "./i18n/content";
+import { getSiteMetadata, getPageFromLocation, type SitePage } from "./data/siteMetadata";
 
 const LANGUAGE_STORAGE_KEY = "portfolio-language";
 const SANCTIONS_CASE_STUDY_SLUG = "eu-sanctions-name-match";
@@ -20,21 +21,39 @@ const SanctionsPipelineMonitorPage = lazy(
 );
 
 const detectInitialLanguage = (): Language => {
-  const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-  if (stored === "en" || stored === "de") {
-    return stored;
+  if (typeof window === "undefined") return "en";
+  try {
+    const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (stored === "en" || stored === "de") {
+      return stored;
+    }
+  } catch {
+    // Browser preferences can block storage; the site still works in this tab.
   }
 
   return navigator.language.toLowerCase().startsWith("de") ? "de" : "en";
 };
 
 const getActiveCaseStudy = () => {
-  return new URLSearchParams(window.location.search).get("case");
+  if (typeof window === "undefined") return null;
+  const page = getPageFromLocation(window.location);
+  return page === "home" ? null : page;
 };
 
-function App() {
-  const [language, setLanguage] = useState<Language>(() => detectInitialLanguage());
-  const [activeCaseStudy, setActiveCaseStudy] = useState<string | null>(() => getActiveCaseStudy());
+const subscribeLanguagePreference = (onChange: () => void) => {
+  window.addEventListener("storage", onChange);
+  return () => window.removeEventListener("storage", onChange);
+};
+
+type AppProps = { initialLanguage?: Language; initialPage?: SitePage };
+
+function App({ initialLanguage, initialPage }: AppProps = {}) {
+  const preferredLanguage = useSyncExternalStore(subscribeLanguagePreference, detectInitialLanguage, () => initialLanguage ?? "en");
+  const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
+  const language = selectedLanguage ?? preferredLanguage;
+  const [activeCaseStudy, setActiveCaseStudy] = useState<string | null>(() =>
+    initialPage ? (initialPage === "home" ? null : initialPage) : getActiveCaseStudy(),
+  );
   const isSanctionsCaseStudy = activeCaseStudy === SANCTIONS_CASE_STUDY_SLUG;
   const isSanctionsPipelineCaseStudy = activeCaseStudy === SANCTIONS_PIPELINE_CASE_STUDY_SLUG;
   const isCaseStudy = isSanctionsCaseStudy || isSanctionsPipelineCaseStudy;
@@ -48,9 +67,13 @@ function App() {
       : { eyebrow: "Loading case study", title: "One moment..." };
 
   const handleLanguageChange = useCallback((nextLanguage: Language) => {
-    setLanguage(nextLanguage);
+    setSelectedLanguage(nextLanguage);
     document.documentElement.lang = nextLanguage;
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    } catch {
+      // Switching languages does not depend on saving the preference.
+    }
   }, []);
 
   useEffect(() => {
@@ -64,11 +87,16 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = isSanctionsCaseStudy
-      ? `${language === "de" ? "EU-Sanktionslisten Name Match Explorer" : "EU Sanctions Name Match Explorer"} | Julio Caesar`
-      : isSanctionsPipelineCaseStudy
-        ? `Sanctions Pipeline Reliability Monitor | Julio Caesar`
-        : `Julio Caesar | Data Engineering & AI Solutions`;
+    const page = isSanctionsCaseStudy ? SANCTIONS_CASE_STUDY_SLUG
+      : isSanctionsPipelineCaseStudy ? SANCTIONS_PIPELINE_CASE_STUDY_SLUG : "home";
+    const metadata = getSiteMetadata(page, language);
+    document.title = metadata.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", metadata.description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", metadata.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", metadata.description);
+    document.querySelector('meta[property="og:locale"]')?.setAttribute("content", language === "de" ? "de_DE" : "en_US");
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", metadata.title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", metadata.description);
   }, [isSanctionsCaseStudy, isSanctionsPipelineCaseStudy, language]);
 
   useEffect(() => {
@@ -171,8 +199,9 @@ function App() {
         ]
     : [
         { href: "#about", label: copy.nav.about },
-        { href: "#case-studies", label: copy.nav.analysis },
+        { href: "#case-studies", label: copy.nav.work },
         { href: "#experience", label: copy.nav.experience },
+        { href: "#skills", label: copy.nav.skills },
         { href: "#contact", label: copy.nav.contact },
       ];
 
@@ -191,7 +220,7 @@ function App() {
         <Suspense
           fallback={(
             <div id="top">
-              <main className="caseStudyPage">
+              <main className="caseStudyPage" id="main-content" tabIndex={-1}>
                 <section className="caseHero">
                   <div className="container caseHero__content">
                     <a className="caseHero__back" href={HOME_HREF}>
@@ -213,12 +242,12 @@ function App() {
         </Suspense>
       ) : (
         <div id="top">
-          <main>
+          <main id="main-content" tabIndex={-1}>
             <Hero copy={copy.hero} />
             <About copy={copy.about} />
-            <Skills copy={copy.skills} />
             <PortfolioProjects language={language} copy={copy.projects} />
             <Projects language={language} copy={copy.experience} />
+            <Skills copy={copy.skills} />
             <Contact copy={copy.contact} />
           </main>
           <Footer language={language} />

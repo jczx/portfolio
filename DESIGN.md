@@ -15,7 +15,7 @@ The style should feel:
 
 ## Color Palette
 
-Use only black, white, and grayscale tones.
+Use black, white, and grayscale tones for the interface. Keep the profile portrait in its original colour.
 
 Preferred colors:
 
@@ -68,6 +68,11 @@ Preferred hero text style:
 * clear call-to-action buttons
 
 The hero should not feel crowded.
+
+Keep the portrait and text in separate layout areas; never place text over the photograph.
+Use "Data & Analytics Professional" as the headline. Keep the supporting sentence focused on business analytics and data solutions; do not add a separate finance/banking focus line.
+Present tools and methods as compact, wrapping tags. Give the pro bono project enough space to explain its business purpose and technical ownership.
+Use sentence-case headings and readable body text with comfortable line spacing. Let longer text wrap naturally on smaller screens.
 
 ## Cards
 

@@ -3,11 +3,13 @@ export type Language = "en" | "de";
 type Copy = {
   nav: {
     about: string;
-    analysis: string;
+    work: string;
     experience: string;
+    skills: string;
     contact: string;
   };
   hero: {
+    eyebrow: string;
     headline: string[];
     intro: string[];
     primaryCta: string;
@@ -15,10 +17,20 @@ type Copy = {
   };
   about: {
     title: string;
-    lead: string;
+    lead: string[];
     points: string[];
   };
+  whatIDo: {
+    indexLabel: string;
+    title: string;
+    lead: string;
+    cards: Array<{
+      title: string;
+      lines: string[];
+    }>;
+  };
   skills: {
+    indexLabel: string;
     title: string;
     lead: string;
     groups: Array<{
@@ -34,10 +46,12 @@ type Copy = {
     title: string;
     lead: string;
     timelineLabel: string;
-    skillsLabel: string;
+    focusLabel: string;
     highlightsLabel: string;
+    clientsLabel: string;
   };
   contact: {
+    indexLabel: string;
     title: string;
     lead: string;
     linkedinLabel: string;
@@ -51,167 +65,299 @@ export const copyByLanguage: Record<Language, Copy> = {
   en: {
     nav: {
       about: "About",
-      analysis: "Case Studies",
+      work: "Projects",
       experience: "Experience",
-      contact: "Contact",
+      skills: "Skills",
+      contact: "Contact"
     },
     hero: {
-      headline: ["Reliable data.", "Better decisions."],
-      intro: [
-        "I build reliable data systems and AI-powered solutions that transform raw data into business impact.",
+      eyebrow: "Julio Caesar · Berlin",
+      headline: [
+        "Data & Analytics",
+        "Professional"
       ],
-      primaryCta: "View Case Studies",
-      secondaryCta: "Get in Touch",
+      intro: [
+        "Business Intelligence Consultant at InfoFabrik. I use data to answer business questions, solve complex problems, and support informed decisions."
+      ],
+      primaryCta: "Explore my work",
+      secondaryCta: "Get in touch"
     },
     about: {
-      title: "About",
-      lead:
-        "I work at the intersection of data engineering, analytics, and AI-powered automation - from SQL and reporting workflows to intelligent systems that help teams make better decisions.",
-      points: [
-        "Hands-on experience across banking, FMCG, and regulated production data environments.",
-        "Core strengths in analytics engineering, DWH operations, SQL/Python development, and cloud-based data platforms.",
-        "I apply analytics, automation, and machine learning when the problem needs more than standard analytics.",
-        "I help teams deliver stable releases, trustworthy reporting, and smarter data-driven workflows.",
+      title: "About me",
+      lead: [
+        "My background spans analytics and data engineering, alongside experience guiding teams and coordinating technical projects from business requirements to implementation.",
+        "Alongside my work, I’m pursuing a part-time Data Science master’s focused on finance and insurance management."
       ],
+      points: [
+        "Part-time MSc in Data Science. Expected completion: summer 2027.",
+        "Based in Berlin. Fluent in German and English; native Indonesian."
+      ]
+    },
+    whatIDo: {
+      indexLabel: "02 / Focus",
+      title: "Areas of expertise",
+      lead: "Reporting, data quality, and platform operations.",
+      cards: [
+        {
+          title: "Reporting & reconciliation",
+          lines: [
+            "End-to-end reporting and data integration for development banks.",
+            "Budget analysis, reconciliation, and plausibility checks across systems."
+          ]
+        },
+        {
+          title: "Data quality & protection",
+          lines: [
+            "Regression testing and validation against business requirements.",
+            "SQL-based anonymisation and pseudonymisation, from rule definition to result validation."
+          ]
+        },
+        {
+          title: "Platform operations",
+          lines: [
+            "DWH, database performance, and batch process monitoring.",
+            "ReportServer and Tomcat administration, log analysis, and patch coordination."
+          ]
+        }
+      ]
     },
     skills: {
-      title: "Expertise & Toolkit",
-      lead:
-        "A practical stack for building reliable data platforms, AI-powered workflows, and decision-ready analytics.",
+      indexLabel: "04 / Skills",
+      title: "Tools & methods",
+      lead: "From business questions to analysis, delivery, and operations.",
       groups: [
         {
-          label: "Data Engineering",
+          label: "Programming",
           items: [
-            "Reliable, efficient & scalable data pipelines",
-            "Data quality & validation",
-            "Batch processing & monitoring",
-            "High-performance DWH architecture & tuning",
-          ],
+            "Python",
+            "SQL / PL/SQL",
+            "Java",
+            "Groovy",
+            "VBScript"
+          ]
         },
         {
-          label: "Analytics & BI",
+          label: "BI & analytics",
           items: [
-            "Advanced analytics & data modeling",
-            "Requirements & stakeholder management",
-            "Business & financial analysis",
-            "KPI dashboards, regulatory & executive reporting",
-          ],
+            "Tableau",
+            "ReportServer",
+            "A/B testing",
+            "Budget analysis"
+          ]
         },
         {
-          label: "AI & Automation",
+          label: "Data platforms",
           items: [
-            "ML, NLP & generative AI solutions",
-            "RAG & agentic AI workflows",
-            "Model pipelines, evaluation & monitoring",
-            "AI integration, security & compliance",
-          ],
+            "Oracle",
+            "PostgreSQL",
+            "SQL Server",
+            "BigQuery",
+            "GCP / Cloud Storage",
+            "Azure"
+          ]
         },
-      ],
+        {
+          label: "DevOps & DataOps",
+          items: [
+            "Airflow",
+            "Tomcat",
+            "Releases",
+            "Batch monitoring",
+            "Performance tuning"
+          ]
+        },
+        {
+          label: "Data quality & screening",
+          items: [
+            "Regression testing",
+            "Reconciliation",
+            "Sanctions screening",
+            "Anonymisation",
+            "Pseudonymisation"
+          ]
+        },
+        {
+          label: "Data science · studies",
+          items: [
+            "Regression / classification",
+            "XGBoost",
+            "Anomaly detection",
+            "Clustering",
+            "Model evaluation",
+            "Statistics"
+          ]
+        }
+      ]
     },
     projects: {
-      title: "Case Studies",
-      lead:
-        "Two sanctions-focused case studies across entity resolution and operational data reliability.",
+      title: "Selected work",
+      lead: "Solving practical problems through analytics, data science, and technical ownership."
     },
     experience: {
       title: "Experience",
-      lead:
-        "Recent roles across DataOps consulting, analytics engineering, DWH operations, and data platform support.",
+      lead: "Business analytics, data engineering, and delivery across teams.",
       timelineLabel: "Career timeline",
-      skillsLabel: "Key skills",
-      highlightsLabel: "Role highlights",
+      focusLabel: "Tools & focus",
+      highlightsLabel: "Responsibilities",
+      clientsLabel: "Client engagements"
     },
     contact: {
+      indexLabel: "05 / Contact",
       title: "Contact",
-      lead:
-        "Based in Berlin, Germany. Here are a few ways to connect and learn more about my work:",
+      lead: "For data science, analytics, and technical delivery opportunities, contact me by email or LinkedIn.",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
-      emailLabel: "Email",
+      emailLabel: "Email me"
     },
-    languageToggleLabel: "Switch language",
+    languageToggleLabel: "Switch language"
   },
   de: {
     nav: {
-      about: "Über mich",
-      analysis: "Fallstudien",
+      about: "Profil",
+      work: "Projekte",
       experience: "Erfahrung",
-      contact: "Kontakt",
+      skills: "Skills",
+      contact: "Kontakt"
     },
     hero: {
-      headline: ["Verlässliche Daten.", "Bessere Entscheidungen."],
-      intro: [
-        "Ich entwickle verlässliche Datensysteme und KI-gestützte Lösungen, die Rohdaten in messbaren Geschäftsnutzen verwandeln.",
+      eyebrow: "Julio Caesar · Berlin",
+      headline: [
+        "Data & Analytics",
+        "Professional"
       ],
-      primaryCta: "Fallstudien ansehen",
-      secondaryCta: "Kontakt aufnehmen",
+      intro: [
+        "Business Intelligence Consultant bei InfoFabrik. Ich nutze Daten, um Geschäftsfragen zu beantworten, komplexe Probleme zu lösen und fundierte Entscheidungen zu unterstützen."
+      ],
+      primaryCta: "Projekte ansehen",
+      secondaryCta: "Kontakt aufnehmen"
     },
     about: {
       title: "Über mich",
-      lead:
-        "Ich arbeite an der Schnittstelle von Data Engineering, Analytics und KI-gestützter Automatisierung – von SQL- und Reporting-Workflows bis zu intelligenten Systemen, die Teams bessere Entscheidungen ermöglichen.",
-      points: [
-        "Praxiserfahrung in Banken, FMCG und regulierten produktiven Datenumgebungen.",
-        "Kernkompetenzen in Analytics Engineering, DWH-Betrieb, SQL/Python-Entwicklung und cloudbasierten Datenplattformen.",
-        "Ich setze Analytics, Automatisierung und Machine Learning ein, wenn Standardanalysen nicht ausreichen.",
-        "Ich helfe Teams, stabile Releases, vertrauenswürdiges Reporting und intelligentere datengetriebene Workflows bereitzustellen.",
+      lead: [
+        "Mein Hintergrund umfasst Analytics und Data Engineering sowie Erfahrung in der fachlichen Anleitung von Teams und der Koordination technischer Projekte – von den Geschäftsanforderungen bis zur Umsetzung.",
+        "Neben meiner Arbeit absolviere ich einen berufsbegleitenden Master in Data Science mit Fokus auf Finanz- und Versicherungsmanagement."
       ],
+      points: [
+        "Berufsbegleitender MSc in Data Science. Geplanter Abschluss: Sommer 2027.",
+        "In Berlin zu Hause. Deutsch und Englisch fließend; Indonesisch als Muttersprache."
+      ]
+    },
+    whatIDo: {
+      indexLabel: "02 / Schwerpunkte",
+      title: "Meine Schwerpunkte",
+      lead: "Reporting, Datenqualität und Plattformbetrieb.",
+      cards: [
+        {
+          title: "Reporting & Abstimmung",
+          lines: [
+            "End-to-End-Reporting und Datenintegration für Förderbanken.",
+            "Systemübergreifende Budgetauswertung, Abstimmung und Plausibilitätsprüfungen."
+          ]
+        },
+        {
+          title: "Datenqualität & Datenschutz",
+          lines: [
+            "Regressionstests und Validierung anhand fachlicher Anforderungen.",
+            "Anonymisierung und Pseudonymisierung mit SQL, von der Regeldefinition bis zur Ergebnisvalidierung."
+          ]
+        },
+        {
+          title: "Plattformbetrieb",
+          lines: [
+            "Überwachung von DWH, Datenbankleistung und Batch-Prozessen.",
+            "ReportServer- und Tomcat-Administration, Log-Analyse und Patch-Koordination."
+          ]
+        }
+      ]
     },
     skills: {
-      title: "Expertise & Toolkit",
-      lead:
-        "Ein praxisnaher Stack für verlässliche Datenplattformen, KI-gestützte Workflows und entscheidungsreife Analysen.",
+      indexLabel: "04 / Tools & Methoden",
+      title: "Tools & Methoden",
+      lead: "Von der Geschäftsfrage über die Analyse bis zur Umsetzung und zum Betrieb.",
       groups: [
         {
-          label: "Data Engineering",
+          label: "Programmierung",
           items: [
-            "Zuverlässige, effiziente und skalierbare Datenpipelines",
-            "Datenqualität und Validierung",
-            "Batch-Verarbeitung und Monitoring",
-            "Leistungsstarke DWH-Architektur und Optimierung",
-          ],
+            "Python",
+            "SQL / PL/SQL",
+            "Java",
+            "Groovy",
+            "VBScript"
+          ]
         },
         {
-          label: "Analytics & BI",
+          label: "BI & Analytics",
           items: [
-            "Fortgeschrittene Analysen und Datenmodellierung",
-            "Anforderungs- und Stakeholder-Management",
-            "Geschäfts- und Finanzanalyse",
-            "KPI-Dashboards sowie regulatorisches und Executive Reporting",
-          ],
+            "Tableau",
+            "ReportServer",
+            "A/B-Tests",
+            "Budgetanalyse"
+          ]
         },
         {
-          label: "AI & Automation",
+          label: "Datenplattformen",
           items: [
-            "ML-, NLP- und generative KI-Lösungen",
-            "RAG- und agentische KI-Workflows",
-            "Modellpipelines, Evaluation und Monitoring",
-            "KI-Integration, Sicherheit und Compliance",
-          ],
+            "Oracle",
+            "PostgreSQL",
+            "SQL Server",
+            "BigQuery",
+            "GCP / Cloud Storage",
+            "Azure"
+          ]
         },
-      ],
+        {
+          label: "DevOps & DataOps",
+          items: [
+            "Airflow",
+            "Tomcat",
+            "Releases",
+            "Batch-Monitoring",
+            "Performance-Tuning"
+          ]
+        },
+        {
+          label: "Datenqualität & Screening",
+          items: [
+            "Regressionstests",
+            "Datenabstimmung",
+            "Sanktionsscreening",
+            "Anonymisierung",
+            "Pseudonymisierung"
+          ]
+        },
+        {
+          label: "Data Science · Studium",
+          items: [
+            "Regression / Klassifikation",
+            "XGBoost",
+            "Anomalieerkennung",
+            "Clustering",
+            "Modellbewertung",
+            "Statistik"
+          ]
+        }
+      ]
     },
     projects: {
-      title: "Fallstudien",
-      lead:
-        "Zwei sanktionsbezogene Fallstudien zu Entity Resolution und operativer Datenzuverlässigkeit.",
+      title: "Ausgewählte Arbeiten",
+      lead: "Praktische Probleme durch Analytics, Data Science und technische Verantwortung lösen."
     },
     experience: {
       title: "Erfahrung",
-      lead:
-        "Aktuelle Rollen in DataOps-Consulting, Analytics Engineering, DWH-Betrieb und Support für Datenplattformen.",
+      lead: "Business Analytics, Data Engineering und teamübergreifende Umsetzung.",
       timelineLabel: "Karriereverlauf",
-      skillsLabel: "Kernkompetenzen",
+      focusLabel: "Tools & Schwerpunkte",
       highlightsLabel: "Aufgabenschwerpunkte",
+      clientsLabel: "Kundenprojekte"
     },
     contact: {
+      indexLabel: "05 / Kontakt",
       title: "Kontakt",
-      lead:
-        "Standort Berlin, Deutschland. Hier sind einige Wege, um mit mir in Kontakt zu treten und mehr über meine Arbeit zu erfahren:",
+      lead: "Für Positionen in Data Science, Analytics und technischer Projektverantwortung erreichen Sie mich per E-Mail oder LinkedIn.",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
-      emailLabel: "E-Mail",
+      emailLabel: "E-Mail schreiben"
     },
-    languageToggleLabel: "Sprache wechseln",
-  },
+    languageToggleLabel: "Sprache wechseln"
+  }
 };

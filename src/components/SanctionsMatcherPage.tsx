@@ -1,11 +1,10 @@
 import {
   useDeferredValue,
-  useEffect,
+  useMemo,
   useState,
   type CSSProperties,
 } from "react";
 import {
-  euSanctionsFallbackPayload,
   type SanctionsDatasetPayload,
 } from "../data/euSanctionsSample";
 import {
@@ -14,6 +13,9 @@ import {
   rankSanctionsMatches,
 } from "../utils/sanctionsMatcher";
 import type { Language } from "../i18n/content";
+import { isSanctionsDataset } from "../utils/sanctionsData";
+import { useLocalJson } from "../utils/useLocalJson";
+import DemoLoadState from "./DemoLoadState";
 
 type SanctionsMatcherPageProps = {
   homeHref: string;
@@ -26,13 +28,13 @@ const copyByLanguage = {
     eyebrow: "NLP / Entity Resolution",
     title: "EU Sanctions Name Match Explorer",
     lead:
-      "A cautious name-matching demo that can now run on the official EU FSF XML export. It ranks candidate matches, alias evidence, and explanation signals instead of faking a compliance verdict.",
+      "Compare names and aliases from the official EU sanctions list. Review ranked candidates and the evidence behind each match.",
     sampleLabel: "Try a sample query",
     sampleQueries: ["Wagner Group", "Maxim Shugaley", "Valery Zakharov", "Lobaye Invest"],
     inputLabel: "Enter a person or entity name",
     inputPlaceholder: "Type a name to compare",
     helperFallback:
-      "Using the fallback sample. Add `FSF_XML_URL` or keep the downloaded XML under `analysis/raw/eu/` to generate the full official dataset.",
+      "A small example dataset is in use, rather than the full official list.",
     resultsTitle: "Top candidate matches",
     emptyState: "Type a name to see ranked matches.",
     noResults: "No candidate cleared the current threshold.",
@@ -45,7 +47,7 @@ const copyByLanguage = {
     reasonsLabel: "Why it surfaced",
     methodologyTitle: "Methodology",
     methodologyLead:
-      "The scoring stays simple on purpose: every step is auditable and every result is presented as review support, not an answer engine.",
+      "Scores combine spelling similarity and shared name tokens. They support manual review.",
     methodologyPoints: [
       "Names are normalized before matching so punctuation, accents, casing, and spacing do not dominate the result.",
       "The score combines edit distance, token overlap, containment, and alias matching instead of relying on a single fuzzy metric.",
@@ -55,8 +57,7 @@ const copyByLanguage = {
     guardrails: [
       "This is not a production screening tool.",
       "It does not decide whether someone is sanctioned.",
-      "The current UI still supports human review only.",
-      "The download token must stay in local environment variables and out of git.",
+      "Scores describe name similarity, not the probability of a sanctions match.",
     ],
     sourcesTitle: "Official Sources",
     sources: [
@@ -79,13 +80,13 @@ const copyByLanguage = {
     eyebrow: "NLP / Entity Resolution",
     title: "EU-Sanktionslisten Name Match Explorer",
     lead:
-      "Ein vorsichtiges Name-Matching-Demo, das jetzt auf dem offiziellen EU-FSF-XML-Export laufen kann. Es priorisiert Kandidaten, Alias-Hinweise und Erklärsignale, statt ein künstliches Compliance-Urteil auszugeben.",
+      "Namen und Aliasse aus der offiziellen EU-Sanktionsliste vergleichen. Priorisierte Kandidaten und die Hinweise zu jedem Treffer nachvollziehen.",
     sampleLabel: "Beispielabfrage",
     sampleQueries: ["Wagner Group", "Maxim Shugaley", "Valery Zakharov", "Lobaye Invest"],
     inputLabel: "Personen- oder Unternehmensnamen eingeben",
     inputPlaceholder: "Namen zum Vergleich eingeben",
     helperFallback:
-      "Aktuell läuft das Fallback-Sample. Lege `FSF_XML_URL` fest oder halte das heruntergeladene XML unter `analysis/raw/eu/` bereit, damit der vollständige offizielle Datensatz erzeugt wird.",
+      "Ein kleiner Beispieldatensatz wird verwendet, anstelle der vollständigen offiziellen Liste.",
     resultsTitle: "Top-Kandidaten",
     emptyState: "Gib einen Namen ein, um priorisierte Treffer zu sehen.",
     noResults: "Kein Kandidat liegt über dem aktuellen Schwellenwert.",
@@ -98,7 +99,7 @@ const copyByLanguage = {
     reasonsLabel: "Warum der Treffer erscheint",
     methodologyTitle: "Methodik",
     methodologyLead:
-      "Das Scoring bleibt bewusst einfach: Jeder Schritt ist nachvollziehbar und jedes Ergebnis ist als Review-Hilfe gerahmt, nicht als Entscheidungsmaschine.",
+      "Die Werte kombinieren Ähnlichkeiten in der Schreibweise mit gemeinsamen Namensbestandteilen. Sie unterstützen die manuelle Prüfung.",
     methodologyPoints: [
       "Namen werden vor dem Matching normalisiert, damit Satzzeichen, Akzente, Großschreibung und Leerzeichen das Ergebnis nicht dominieren.",
       "Der Score kombiniert Edit Distance, Token-Overlap, Containment und Alias-Matching statt nur auf eine Fuzzy-Kennzahl zu setzen.",
@@ -108,8 +109,7 @@ const copyByLanguage = {
     guardrails: [
       "Das ist kein produktives Screening-Tool.",
       "Es entscheidet nicht, ob jemand sanktioniert ist.",
-      "Die UI bleibt bewusst im Human-Review-Modus.",
-      "Das Download-Token gehört nur in lokale Umgebungsvariablen und nicht ins Git-Repo.",
+      "Die Werte beschreiben Namensähnlichkeit, nicht die Wahrscheinlichkeit eines Sanktionstreffers.",
     ],
     sourcesTitle: "Offizielle Quellen",
     sources: [
@@ -173,6 +173,18 @@ const typeLabelByLanguage = {
   },
 } satisfies Record<Language, Record<"P" | "E", string>>;
 
+const formatMatchReason = (reason: string, language: Language) => {
+  if (language === "en") return reason;
+  const translations: Record<string, string> = {
+    "Exact normalized alias match": "Exakter Treffer nach Normalisierung",
+    "Matched via alias set": "Treffer über einen Alias",
+    "Low edit distance to best alias": "Geringer Zeichenabstand zum besten Alias",
+    "Matched after normalization": "Treffer nach Normalisierung",
+    "Closest overall normalized candidate": "Ähnlichster normalisierter Kandidat",
+  };
+  return reason.startsWith("Shared tokens: ") ? reason.replace("Shared tokens: ", "Gemeinsame Namensbestandteile: ") : translations[reason] ?? reason;
+};
+
 const formatSourceDate = (value: string, language: Language) => {
   const parsed = new Date(value);
 
@@ -202,45 +214,16 @@ const SanctionsMatcherPage = ({ homeHref, language }: SanctionsMatcherPageProps)
   const copy = copyByLanguage[language];
   const typeCopy = typeLabelByLanguage[language];
   const [query, setQuery] = useState("Wagner Group");
-  const [dataset, setDataset] = useState<SanctionsDatasetPayload>(euSanctionsFallbackPayload);
-  const [index, setIndex] = useState(() => createSanctionsIndex(euSanctionsFallbackPayload.entries));
+  const load = useLocalJson("data/eu-sanctions-matcher.json", isSanctionsDataset);
+  const dataset = load.data;
+  const index = useMemo(() => createSanctionsIndex(dataset?.entries ?? []), [dataset]);
   const deferredQuery = useDeferredValue(query);
-  const results = rankSanctionsMatches(deferredQuery, index, 5);
-
-  useEffect(() => {
-    let isActive = true;
-
-    const loadDataset = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/eu-sanctions-matcher.json`);
-
-        if (!response.ok) {
-          return;
-        }
-
-        const payload = (await response.json()) as SanctionsDatasetPayload;
-
-        if (isActive) {
-          setDataset(payload);
-          setIndex(createSanctionsIndex(payload.entries));
-        }
-      } catch {
-        // Keep the fallback sample if the generated dataset is unavailable.
-      }
-    };
-
-    void loadDataset();
-
-    return () => {
-      isActive = false;
-    };
-  }, []);
-
-  const helperText = buildHelperText(dataset, language, copy.helperFallback);
+  const results = useMemo(() => rankSanctionsMatches(deferredQuery, index, 5), [deferredQuery, index]);
+  const helperText = dataset ? buildHelperText(dataset, language, copy.helperFallback) : "";
 
   return (
     <div id="top">
-      <main className="caseStudyPage">
+      <main className="caseStudyPage" id="main-content" tabIndex={-1}>
         <section
           className="caseHero reveal-on-scroll"
           style={{ "--reveal-delay": "60ms" } as CSSProperties}
@@ -272,6 +255,7 @@ const SanctionsMatcherPage = ({ homeHref, language }: SanctionsMatcherPageProps)
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder={copy.inputPlaceholder}
                   type="search"
+                  disabled={load.status !== "ready"}
                   value={query}
                 />
               </div>
@@ -285,6 +269,7 @@ const SanctionsMatcherPage = ({ homeHref, language }: SanctionsMatcherPageProps)
                       key={sample}
                       onClick={() => setQuery(sample)}
                       type="button"
+                      disabled={load.status !== "ready"}
                     >
                       {sample}
                     </button>
@@ -292,7 +277,8 @@ const SanctionsMatcherPage = ({ homeHref, language }: SanctionsMatcherPageProps)
                 </div>
               </div>
 
-              <p className="sanctionsMatcher__helper">{helperText}</p>
+              {helperText && <p className="sanctionsMatcher__helper">{helperText}</p>}
+              {load.status !== "ready" && <DemoLoadState status={load.status} language={language} kind="dataset" onRetry={load.retry} />}
             </div>
 
             <div className="sanctionsMatcher__results">
@@ -300,13 +286,13 @@ const SanctionsMatcherPage = ({ homeHref, language }: SanctionsMatcherPageProps)
                 <h2>{copy.resultsTitle}</h2>
               </div>
 
-              {!query.trim() ? (
+              {load.status === "ready" && !query.trim() ? (
                 <div className="sanctionsResultCard sanctionsResultCard--empty">
                   <p>{copy.emptyState}</p>
                 </div>
               ) : null}
 
-              {query.trim() && !results.length ? (
+              {load.status === "ready" && query.trim() && !results.length ? (
                 <div className="sanctionsResultCard sanctionsResultCard--empty">
                   <p>{copy.noResults}</p>
                 </div>
@@ -350,7 +336,7 @@ const SanctionsMatcherPage = ({ homeHref, language }: SanctionsMatcherPageProps)
                     <p className="caseCard__label">{copy.reasonsLabel}</p>
                     <ul className="caseMethodList">
                       {match.reasons.map((reason) => (
-                        <li key={reason}>{reason}</li>
+                        <li key={reason}>{formatMatchReason(reason, language)}</li>
                       ))}
                     </ul>
                   </div>

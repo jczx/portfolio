@@ -40,7 +40,9 @@ const NlpPreview = ({ language }: { language: Language }) => (
       <div className="projectPreview__kicker">
         {language === "de" ? "Treffervorschau" : "Match preview"}
       </div>
-      <span className="projectPreview__meta">Top 3</span>
+      <span className="projectPreview__meta">
+        {language === "de" ? "Beispiel" : "Example"}
+      </span>
     </div>
 
     <div className="projectPreview__searchField">{nlpPreview.query}</div>
@@ -75,7 +77,7 @@ const OpsPreview = ({ language }: { language: Language }) => (
         {language === "de" ? "Pipeline-Checks" : "Pipeline checks"}
       </div>
       <span className="projectPreview__meta">
-        {language === "de" ? "Letzter Lauf" : "Latest run"}
+        {language === "de" ? "Beispielstatus" : "Example status"}
       </span>
     </div>
 
@@ -101,8 +103,8 @@ const OpsPreview = ({ language }: { language: Language }) => (
 
     <div className="projectPreview__caption">
       {language === "de"
-        ? "Die Pipeline operativ lesbar machen"
-        : "Make the pipeline operationally legible"}
+        ? "Datenaktualität und Pipeline-Status prüfen"
+        : "Inspect data freshness and pipeline status"}
     </div>
   </div>
 );
@@ -113,7 +115,17 @@ const ProjectPreview = ({
 }: {
   tone: PortfolioProject["tone"];
   language: Language;
-}) => (tone === "nlp" ? <NlpPreview language={language} /> : <OpsPreview language={language} />);
+}) => {
+  if (tone === "nlp") {
+    return <NlpPreview language={language} />;
+  }
+
+  if (tone === "ops") {
+    return <OpsPreview language={language} />;
+  }
+
+  return null;
+};
 
 const getProjectHref = (href: string) => {
   if (!href.startsWith("?")) {
@@ -124,7 +136,8 @@ const getProjectHref = (href: string) => {
 };
 
 const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
-  const projects = portfolioProjectsByLanguage[language];
+  const projects = portfolioProjectsByLanguage[language].filter(project => project.tone !== "music");
+  const personalProjects = portfolioProjectsByLanguage[language].filter(project => project.tone === "music");
 
   return (
     <section
@@ -135,7 +148,7 @@ const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
       <div className="container">
         <div className="section__heading">
           <p className="section__index">
-            {language === "de" ? "03 / Projekte" : "03 / Selected work"}
+            {language === "de" ? "02 / Projekte" : "02 / Selected work"}
           </p>
           <div>
             <h2>{copy.title}</h2>
@@ -150,14 +163,6 @@ const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
               key={project.title}
               style={{ "--reveal-delay": `${190 + index * 70}ms` } as CSSProperties}
             >
-              {project.href ? (
-                <a
-                  className="portfolioProjectCard__overlayLink"
-                  href={getProjectHref(project.href)}
-                  aria-label={`${project.actionLabel ?? "Open project"}: ${project.title}`}
-                />
-              ) : null}
-
               <div className="portfolioProjectCard__top">
                 <p className="portfolioProjectCard__eyebrow">{project.eyebrow}</p>
                 <span className="portfolioProjectCard__status">{project.status}</span>
@@ -174,13 +179,16 @@ const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
 
               <ProjectPreview language={language} tone={project.tone} />
 
-              <ul className="portfolioProjectCard__highlights">
+              {project.highlights.length > 0 && <ul className="portfolioProjectCard__highlights">
                 {project.highlights.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
-              </ul>
+              </ul>}
 
-              <ul className="portfolioProjectCard__tech" aria-label="Project stack">
+              <ul
+                className="portfolioProjectCard__tech"
+                aria-label={language === "de" ? "Projekt-Stack" : "Project stack"}
+              >
                 {project.tech.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -195,11 +203,40 @@ const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
                     <span>{project.actionLabel}</span>
                     <span aria-hidden="true">↗</span>
                   </a>
+                  {project.secondaryAction && (
+                    <a className="portfolioProjectCard__secondary" href={getProjectHref(project.secondaryAction.href)}>
+                      {project.secondaryAction.label} <span aria-hidden="true">→</span>
+                    </a>
+                  )}
                 </div>
               ) : null}
             </article>
           ))}
         </div>
+        {personalProjects.length > 0 && (
+          <div className="portfolioProjects__personal">
+            <h3>{language === "de" ? "Persönliches Projekt" : "Personal project"}</h3>
+            {personalProjects.map(project => (
+              <article className="personalProject" key={project.title}>
+                <div className="personalProject__identity">
+                  <img
+                    className="personalProject__icon"
+                    src={`${import.meta.env.BASE_URL}caesar-guitar-lab-assets/favicon.ico`}
+                    alt=""
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4>{project.title}</h4>
+                    <p>{project.summary}</p>
+                  </div>
+                </div>
+                {project.href && <a href={getProjectHref(project.href)}>{project.actionLabel} <span aria-hidden="true">↗</span></a>}
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

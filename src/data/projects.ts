@@ -3,151 +3,186 @@ import type { Language } from "../i18n/content";
 export type Project = {
   title: string;
   company: string;
+  location: string;
   period: string;
   description: string;
-  tech: string[];
+  focus: string[];
   highlights: string[];
+  clients?: string[];
+  responsibilities?: Array<{ label: string; detail: string }>;
 };
 
 export const projectsByLanguage: Record<Language, Project[]> = {
   en: [
     {
-      title: "DataOps Consultant / Analytics Engineer",
-      company: "InfoFabrik GmbH",
-      period: "January 2026 to Present",
-      description:
-        "Consulting on and stabilizing BI and DWH environments with release coordination, patch management, regression testing, production support, and analytics engineering delivery.",
-      tech: ["DWH Operations", "Release Management", "Tomcat", "Oracle", "Azure", "SAP BW", "SAP ABAKUS"],
-      highlights: [
-        "Led patch and change management activities ensuring stable and compliant environments.",
-        "Coordinated regression testing for BI and DWH workflows to reduce release risk and improve production readiness.",
-        "Owned day-to-day operations for Operatives to DWH landscapes, including nightly batch and ETL monitoring.",
-        "Planned releases, deployment windows, stakeholder communication, and rollback readiness.",
-        "Designed and implemented end-to-end data pipelines and monitoring dashboards, including data integration, processing, and visualization.",
-      ],
-    },
-    {
       title: "Business Intelligence Consultant",
       company: "InfoFabrik GmbH",
-      period: "November 2024 to December 2025",
+      location: "Berlin, Germany",
+      period: "November 2024 to Present",
       description:
-        "End-to-end BI consulting for German state development banks, covering delivery, SQL development, ELT pipelines, validation workflows, and secure reporting.",
-      tech: ["Oracle", "PL/SQL", "CI/CD", "Azure", "ETL/ELT", "SAP BW", "ReportServer", "Levenshtein"],
-      highlights: [
-        "Developed and optimized SQL logic, procedures, and performance tuning workflows.",
-        "Built CI and CD pipelines for DWH development and implemented plausibility validation for funding applications.",
-        "Developed an automated ELT process and NLP-based sanctions screening workflow.",
-        "Designed ETL and ELT pipelines and migrated legacy data processing workflows.",
+        "Translate business requirements into reporting solutions for German development banks, with responsibility for data quality, releases, and reliable BI operations.",
+      clients: [
+        "Investitionsbank Berlin (IBB)",
+        "Investitions- und Förderbank Niedersachsen – NBank",
+      ],
+      focus: [
+        "Oracle",
+        "PL/SQL",
+        "ReportServer",
+        "Tomcat",
+        "Azure",
+        "Microsoft SQL Server",
+        "Python",
+        "VBScript (VBS)",
+        "Java",
+        "Groovy",
+      ],
+      highlights: [],
+      responsibilities: [
+        {
+          label: "Reporting & data integration",
+          detail: "Develop reporting solutions from business requirements through source integration, data preparation, and delivery.",
+        },
+        {
+          label: "Regression testing & discrepancy analysis",
+          detail: "Test code and releases for unintended changes. Investigate data and reporting discrepancies in test and production environments.",
+        },
+        {
+          label: "Financial data validation",
+          detail: "Analyse budgets and reconcile figures across systems. Investigate technical and business discrepancies and perform plausibility checks.",
+        },
+        {
+          label: "Screening & data protection",
+          detail: "Support sanctions screening. Define anonymisation and pseudonymisation rules, implement the SQL logic, and validate the results.",
+        },
+        {
+          label: "DataOps & performance tuning",
+          detail: "Monitor batch processes, data ingestion, and database performance. Coordinate issue resolution and tune processing performance.",
+        },
+        {
+          label: "DevOps & release management",
+          detail: "Coordinate releases and database, server, and Tomcat patches across test and production environments. Administer NBank’s ReportServer on Tomcat and analyse logs.",
+        },
       ],
     },
     {
-      title: "Business Intelligence / Data Analyst (Working Student)",
+      title: "BI / Data Analyst",
       company: "Magaloop GmbH",
-      period: "December 2023 to September 2024",
+      location: "Berlin, Germany",
+      period: "April 2021 to September 2024",
       description:
-        "Built analytics pipelines and pattern detection workflows with Python and SQL for FMCG data use cases.",
-      tech: ["Python", "PostgreSQL", "BigQuery", "GCP", "ETL", "Analytics"],
+        "Delivered dashboards, product analytics, and data pipelines for product and customer reporting.",
+      focus: [
+        "Python",
+        "SQL",
+        "Airflow",
+        "BigQuery",
+        "Google Cloud (GCP)",
+        "Google Cloud Storage",
+        "PostgreSQL",
+        "Tableau",
+      ],
       highlights: [
-        "Developed and designed an ETL process from OneSignal to BigQuery.",
-        "Implemented trend and pattern detection models using Python and SQL.",
-        "Led a team of four in a data cleansing and integration project.",
+        "Built Tableau dashboards and analysed product and customer trends to support business decisions.",
+        "Built and maintained an ETL pipeline with Python and Airflow, using BigQuery and Google Cloud Storage on GCP.",
+        "Analysed A/B test results to evaluate product changes.",
       ],
     },
     {
-      title: "Business Intelligence / Data Analyst (Intern)",
-      company: "Magaloop GmbH",
-      period: "September 2023 to December 2023",
+      title: "Accounting & E-Commerce Intern",
+      company: "Hotel Santika Premiere Jakarta",
+      location: "Jakarta, Indonesia",
+      period: "November 2014 to May 2015",
       description:
-        "Translated business requirements into technical specifications and delivered dashboards and analytical models for decision-making.",
-      tech: ["Python", "PostgreSQL", "GCP", "Tableau", "Analytics"],
-      highlights: [
-        "Built interactive dashboards to visualize product journeys and market trends.",
-        "Applied statistical and mathematical models in data analysis.",
-        "Presented insights and dashboard findings directly to C-level executives.",
-      ],
-    },
-    {
-      title: "Data Management (Working Student)",
-      company: "Magaloop GmbH",
-      period: "April 2021 to September 2023",
-      description:
-        "Managed high-volume data operations and improved data quality across multiple systems.",
-      tech: ["Data Quality", "Operations", "Master Data", "Risk Management"],
-      highlights: [
-        "Managed and processed high-volume data entries on a daily basis.",
-        "Maintained data integrity across multiple databases.",
-        "Led a team of three in a risk management project to improve master data quality.",
-      ],
+        "Supported accounting and invoicing, with price comparison and exchange-rate analytics for e-commerce operations.",
+      focus: ["Accounting", "Invoicing", "Price comparison analytics", "Exchange-rate analytics"],
+      highlights: [],
     },
   ],
   de: [
     {
-      title: "DataOps-Berater / Analytics Engineer",
+      title: "Business Intelligence Consultant",
       company: "InfoFabrik GmbH",
-      period: "Januar 2026 bis heute",
+      location: "Berlin, Deutschland",
+      period: "November 2024 bis heute",
       description:
-        "Beratung, Betrieb und Stabilisierung von BI- und DWH-Umgebungen mit Release-Koordination, Patch-Management, Regressionstests, Produktivsupport und Analytics-Engineering-Delivery.",
-      tech: ["DWH-Betrieb", "Release-Management", "Tomcat", "Oracle", "Azure", "SAP BW", "SAP ABAKUS"],
-      highlights: [
-        "Steuerung von Patch- und Change-Management-Aktivitäten für stabile und konforme Umgebungen.",
-        "Koordination von Regressionstests für BI- und DWH-Workflows, um Release-Risiken zu senken und die Produktionsreife zu verbessern.",
-        "Verantwortung für den täglichen Betrieb von operativen bis DWH-Landschaften inklusive nächtlichem Batch- und ETL-Monitoring.",
-        "Planung von Releases, Deployment-Fenstern, Stakeholder-Kommunikation und Rollback-Bereitschaft.",
-        "Konzeption und Umsetzung von End-to-End-Datenpipelines und Monitoring-Dashboards für Integration, Verarbeitung und Visualisierung.",
+        "Fachliche Anforderungen in Reporting-Lösungen für deutsche Förderbanken übersetzen und Verantwortung für Datenqualität, Releases und einen verlässlichen BI-Betrieb übernehmen.",
+      clients: [
+        "Investitionsbank Berlin (IBB)",
+        "Investitions- und Förderbank Niedersachsen – NBank",
+      ],
+      focus: [
+        "Oracle",
+        "PL/SQL",
+        "ReportServer",
+        "Tomcat",
+        "Azure",
+        "Microsoft SQL Server",
+        "Python",
+        "VBScript (VBS)",
+        "Java",
+        "Groovy",
+      ],
+      highlights: [],
+      responsibilities: [
+        {
+          label: "Reporting & Datenintegration",
+          detail: "Reporting-Lösungen von der fachlichen Anforderung über Quellenanbindung und Datenaufbereitung bis zur Bereitstellung entwickeln.",
+        },
+        {
+          label: "Regressionstests & Abweichungsanalyse",
+          detail: "Codeänderungen und Releases auf unbeabsichtigte Auswirkungen prüfen. Abweichungen in Daten und im Reporting in Test- und Produktionsumgebungen untersuchen.",
+        },
+        {
+          label: "Validierung von Finanzdaten",
+          detail: "Budgets auswerten und Zahlen systemübergreifend abstimmen. Technische und fachliche Abweichungen untersuchen und Plausibilitätsprüfungen durchführen.",
+        },
+        {
+          label: "Screening & Datenschutz",
+          detail: "Sanktionsscreening unterstützen. Regeln zur Anonymisierung und Pseudonymisierung definieren, in SQL umsetzen und die Ergebnisse validieren.",
+        },
+        {
+          label: "DataOps & Performance-Tuning",
+          detail: "Batch-Prozesse, Datenimporte und Datenbankleistung überwachen. Die Behebung von Störungen koordinieren und die Verarbeitungsleistung optimieren.",
+        },
+        {
+          label: "DevOps & Release-Management",
+          detail: "Releases sowie Datenbank-, Server- und Tomcat-Patches in Test- und Produktionsumgebungen koordinieren. ReportServer der NBank auf Tomcat administrieren und Logs analysieren.",
+        },
       ],
     },
     {
-      title: "Business Intelligence Berater",
-      company: "InfoFabrik GmbH",
-      period: "November 2024 bis Dezember 2025",
-      description:
-        "Ganzheitliches BI-Consulting für deutsche Landesförderbanken mit Fokus auf Delivery, SQL-Entwicklung, ELT-Pipelines, Validierungs-Workflows und sicheres Reporting.",
-      tech: ["Oracle", "PL/SQL", "CI/CD", "Azure", "ETL/ELT", "SAP BW", "ReportServer", "Levenshtein"],
-      highlights: [
-        "Entwicklung und Optimierung von SQL-Logik, Prozeduren und Performance-Tuning-Workflows.",
-        "Aufbau von CI/CD-Pipelines für DWH-Entwicklung sowie Plausibilitätsprüfungen für Förderanträge.",
-        "Entwicklung eines automatisierten ELT-Prozesses und eines NLP-basierten Sanktions-Screenings.",
-        "Design von ETL- und ELT-Pipelines sowie Migration alter Datenverarbeitungsprozesse.",
-      ],
-    },
-    {
-      title: "Business Intelligence / Data Analyst (Werkstudent)",
+      title: "BI / Data Analyst",
       company: "Magaloop GmbH",
-      period: "Dezember 2023 bis September 2024",
+      location: "Berlin, Deutschland",
+      period: "April 2021 bis September 2024",
       description:
-        "Aufbau von Analytics-Pipelines und Mustererkennungs-Workflows mit Python und SQL für FMCG-Datenanwendungen.",
-      tech: ["Python", "PostgreSQL", "BigQuery", "GCP", "ETL", "Analytics"],
+        "Dashboards, Produktanalysen und Datenpipelines für das Produkt- und Kundenreporting umgesetzt.",
+      focus: [
+        "Python",
+        "SQL",
+        "Airflow",
+        "BigQuery",
+        "Google Cloud (GCP)",
+        "Google Cloud Storage",
+        "PostgreSQL",
+        "Tableau",
+      ],
       highlights: [
-        "Konzeption und Umsetzung eines ETL-Prozesses von OneSignal nach BigQuery.",
-        "Implementierung von Trend- und Mustererkennungsmodellen mit Python und SQL.",
-        "Leitung eines vierkopfigen Teams in einem Datenbereinigungs- und Integrationsprojekt.",
+        "Tableau-Dashboards erstellt und Produkt- und Kundentrends als Grundlage für Geschäftsentscheidungen analysiert.",
+        "Eine ETL-Pipeline mit Python und Airflow entwickelt und betreut, mit BigQuery und Google Cloud Storage auf GCP.",
+        "Ergebnisse von A/B-Tests ausgewertet, um Produktänderungen zu bewerten.",
       ],
     },
     {
-      title: "Business Intelligence / Data Analyst (Praktikum)",
-      company: "Magaloop GmbH",
-      period: "September 2023 bis Dezember 2023",
+      title: "Praktikum Accounting & E-Commerce",
+      company: "Hotel Santika Premiere Jakarta",
+      location: "Jakarta, Indonesien",
+      period: "November 2014 bis Mai 2015",
       description:
-        "Übersetzung fachlicher Anforderungen in technische Spezifikationen sowie Lieferung von Dashboards und Analysemodellen für Entscheidungen.",
-      tech: ["Python", "PostgreSQL", "GCP", "Tableau", "Analytics"],
-      highlights: [
-        "Entwicklung interaktiver Dashboards zur Visualisierung von Produktreisen und Markttrends.",
-        "Anwendung statistischer und mathematischer Modelle in der Datenanalyse.",
-        "Präsentation von Erkenntnissen und Dashboard-Ergebnissen direkt an C-Level-Führungskräfte.",
-      ],
-    },
-    {
-      title: "Data Management (Werkstudent)",
-      company: "Magaloop GmbH",
-      period: "April 2021 bis September 2023",
-      description:
-        "Steuerung von Datenoperationen mit hohem Volumen und Verbesserung der Datenqualität über mehrere Systeme hinweg.",
-      tech: ["Datenqualität", "Operations", "Stammdaten", "Risikomanagement"],
-      highlights: [
-        "Tägliche Verarbeitung und Verwaltung großer Datenmengen.",
-        "Sicherstellung der Datenintegrität über mehrere Datenbanken hinweg.",
-        "Leitung eines dreiköpfigen Teams in einem Risikomanagement-Projekt zur Verbesserung der Stammdatenqualität.",
-      ],
+        "Buchhaltung und Rechnungsstellung unterstützt sowie Preisvergleichs- und Wechselkursanalysen für das E-Commerce-Geschäft durchgeführt.",
+      focus: ["Buchhaltung", "Rechnungsstellung", "Preisvergleichsanalysen", "Wechselkursanalysen"],
+      highlights: [],
     },
   ],
 };

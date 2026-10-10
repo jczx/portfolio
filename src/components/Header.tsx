@@ -22,13 +22,16 @@ const Header = ({
 }: HeaderProps) => {
   return (
     <header className="header">
+      <a className="skip-link" href="#main-content">
+        {language === "de" ? "Zum Inhalt springen" : "Skip to content"}
+      </a>
       <div className="container header__inner">
         <a className="header__brand" href={brandHref} aria-label={brandLabel}>
           <span className="header__brandName">Julio Caesar</span>
-          <span className="header__brandTagline">Data Engineering &amp; AI Solutions</span>
+          <span className="header__brandTagline">Data &amp; Analytics</span>
         </a>
 
-        <nav aria-label="Primary">
+        <nav aria-label={language === "de" ? "Hauptnavigation" : "Primary"}>
           <ul className="header__nav">
             {navItems.map((item) => (
               <li key={item.href}>

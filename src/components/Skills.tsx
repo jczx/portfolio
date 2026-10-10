@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 
 type SkillsProps = {
   copy: {
+    indexLabel: string;
     title: string;
     lead: string;
     groups: Array<{
@@ -20,7 +21,7 @@ const Skills = ({ copy }: SkillsProps) => {
     >
       <div className="container">
         <div className="section__heading">
-          <p className="section__index">02 / Expertise</p>
+          <p className="section__index">{copy.indexLabel}</p>
           <div>
             <h2>{copy.title}</h2>
             <p className="section__lead">{copy.lead}</p>
@@ -31,7 +32,7 @@ const Skills = ({ copy }: SkillsProps) => {
           {copy.groups.map((group) => (
             <article className="skillGroup" key={group.label}>
               <h3>{group.label}</h3>
-              <ul>
+              <ul className="skillGroup__tags">
                 {group.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}

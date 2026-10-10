@@ -1,33 +1,33 @@
 {
   "meta": {
-    "generatedAt": "2026-06-25T17:11:38.635Z",
+    "generatedAt": "2026-10-10T13:15:11.235Z",
     "sourceKind": "official-xml",
-    "sourceDate": "2026-06-05T15:51:25.849+02:00",
+    "sourceDate": "2026-09-22T20:01:34.799+02:00",
     "sourceLabel": "Official EU FSF XML export",
-    "sourceFileName": "20260605-FULL-1_1-xsd.xml",
-    "globalFileId": "182848",
+    "sourceFileName": "20260922-FULL-1_1-xsd.xml",
+    "globalFileId": "185564",
     "ingestionMode": "local-xml"
   },
   "metrics": {
-    "recordCount": 5994,
-    "previousRecordCount": 5993,
-    "recordDelta": 1,
-    "personCount": 4405,
-    "entityCount": 1589,
-    "aliasTotal": 23882,
-    "entriesWithAliases": 5260,
-    "aliasCoveragePct": 87.8,
-    "latestPublicationDate": "2026-04-23",
-    "matcherDatasetBytes": 2387238,
-    "rawXmlBytes": 24730335,
+    "recordCount": 6241,
+    "previousRecordCount": 5994,
+    "recordDelta": 247,
+    "personCount": 4465,
+    "entityCount": 1776,
+    "aliasTotal": 24465,
+    "entriesWithAliases": 5500,
+    "aliasCoveragePct": 88.1,
+    "latestPublicationDate": "2026-07-23",
+    "matcherDatasetBytes": 2472817,
+    "rawXmlBytes": 25791425,
     "topProgrammes": [
       {
         "programme": "UKR",
-        "count": 2722
+        "count": 2960
       },
       {
         "programme": "IRN",
-        "count": 711
+        "count": 707
       },
       {
         "programme": "SYR",
@@ -35,7 +35,7 @@
       },
       {
         "programme": "BLR",
-        "count": 372
+        "count": 374
       },
       {
         "programme": "TAQA",
@@ -48,31 +48,31 @@
       "id": "source-access",
       "label": "Source access",
       "status": "healthy",
-      "detail": "Official FSF XML available via local-xml (20260605-FULL-1_1-xsd.xml)."
+      "detail": "Official FSF XML available via local-xml (20260922-FULL-1_1-xsd.xml)."
     },
     {
       "id": "parse",
       "label": "Parse step",
       "status": "healthy",
-      "detail": "5,994 entities parsed with 23,882 aliases retained."
+      "detail": "6,241 entities parsed with 24,465 aliases retained."
     },
     {
       "id": "freshness",
       "label": "Source freshness",
       "status": "watch",
-      "detail": "Source export is 483.3 hours old."
+      "detail": "Source export is 427.2 hours old."
     },
     {
       "id": "publish",
       "label": "Publish step",
       "status": "healthy",
-      "detail": "Matcher dataset written successfully at 2.28 MB."
+      "detail": "Matcher dataset written successfully at 2.36 MB."
     },
     {
       "id": "coverage",
       "label": "Alias coverage",
       "status": "healthy",
-      "detail": "87.8% of entities carry at least one alias in the generated dataset."
+      "detail": "88.1% of entities carry at least one alias in the generated dataset."
     }
   ]
 }

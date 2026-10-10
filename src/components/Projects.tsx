@@ -9,8 +9,9 @@ type ProjectsProps = {
     title: string;
     lead: string;
     timelineLabel: string;
-    skillsLabel: string;
+    focusLabel: string;
     highlightsLabel: string;
+    clientsLabel: string;
   };
 };
 
@@ -20,17 +21,23 @@ const Projects = ({ language, copy }: ProjectsProps) => {
   return (
     <section className="section section--experience reveal-on-scroll" id="experience" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
       <div className="container">
-        <h2>{copy.title}</h2>
-        <p className="section__lead">{copy.lead}</p>
+        <div className="section__heading">
+          <p className="section__index">{language === "de" ? "03 / Erfahrung" : "03 / Experience"}</p>
+          <div>
+            <h2>{copy.title}</h2>
+            <p className="section__lead">{copy.lead}</p>
+          </div>
+        </div>
 
         <div className="timeline" aria-label={copy.timelineLabel}>
           {projects.map((p, index) => (
             <ProjectCard
-              key={`${p.company}-${p.title}`}
+              key={`${p.company}-${p.title}-${p.period}`}
               project={p}
               index={index}
-              skillsLabel={copy.skillsLabel}
+              focusLabel={copy.focusLabel}
               highlightsLabel={copy.highlightsLabel}
+              clientsLabel={copy.clientsLabel}
             />
           ))}
         </div>
