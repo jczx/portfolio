@@ -10,7 +10,7 @@ const fromDist = path => new URL(`../dist/${path}`, import.meta.url);
 test('homepage and demos ship static content and distinct sharing metadata', async () => {
   const urls = new Set();
   const titles = new Set();
-  for (const file of ['index.html', 'sanctions-matcher.html', 'sanctions-monitor.html']) {
+  for (const file of ['index.html', 'sanctions-matcher.html', 'sanctions-monitor.html', 'fraud-detection.html']) {
     const dom = new JSDOM(await readFile(fromDist(file), 'utf8'));
     const document = dom.window.document;
     assert.equal(document.querySelectorAll('h1').length, 1);
@@ -31,6 +31,12 @@ test('homepage and demos ship static content and distinct sharing metadata', asy
       assert.equal(document.querySelectorAll('.portfolioProjectCard').length, 3);
       assert(document.querySelector('.personalProject'));
       assert.equal(document.querySelectorAll('.projectCard__clients').length, 1);
+    } else if (file === 'fraud-detection.html') {
+      assert.match(document.body.textContent, /41 \/ 52/);
+      assert.match(document.body.textContent, /175/);
+      assert.match(document.body.textContent, /Calibration|calibration/);
+      assert(document.querySelector('a[download]'));
+      assert.doesNotMatch(document.body.textContent, /Loading|coming soon/);
     } else {
       assert.match(document.body.textContent, /Loading/);
       assert.doesNotMatch(document.body.textContent, /FSF_XML|analysis\/raw/);
@@ -44,8 +50,8 @@ test('homepage and demos ship static content and distinct sharing metadata', asy
     }
     dom.window.close();
   }
-  assert.equal(titles.size, 3);
-  assert.equal(urls.size, 3);
+  assert.equal(titles.size, 4);
+  assert.equal(urls.size, 4);
 });
 
 test('responsive portraits are smaller, correctly sized, and retain colour', async () => {

@@ -8,6 +8,7 @@ const repoRoot = fileURLToPath(new URL('../../', import.meta.url));
 const cache = new Map();
 export const loadReactSource = relativePath => {
   const path = resolve(repoRoot, relativePath);
+  if (path.endsWith('.json')) return JSON.parse(readFileSync(path, 'utf8'));
   if (cache.has(path)) return cache.get(path);
   const source = readFileSync(path, 'utf8').replaceAll('import.meta.env.BASE_URL', '"./"');
   const { outputText } = ts.transpileModule(source, {

@@ -16,6 +16,7 @@ const SANCTIONS_PIPELINE_CASE_STUDY_SLUG = "sanctions-pipeline-monitor";
 const HOME_HREF = "./";
 
 const SanctionsMatcherPage = lazy(() => import("./components/SanctionsMatcherPage"));
+const FraudDetectionPage = lazy(() => import("./components/FraudDetectionPage"));
 const SanctionsPipelineMonitorPage = lazy(
   () => import("./components/SanctionsPipelineMonitorPage"),
 );
@@ -56,7 +57,8 @@ function App({ initialLanguage, initialPage }: AppProps = {}) {
   );
   const isSanctionsCaseStudy = activeCaseStudy === SANCTIONS_CASE_STUDY_SLUG;
   const isSanctionsPipelineCaseStudy = activeCaseStudy === SANCTIONS_PIPELINE_CASE_STUDY_SLUG;
-  const isCaseStudy = isSanctionsCaseStudy || isSanctionsPipelineCaseStudy;
+  const isFraudCaseStudy = activeCaseStudy === "fraud-detection";
+  const isCaseStudy = isSanctionsCaseStudy || isSanctionsPipelineCaseStudy || isFraudCaseStudy;
   const copy = copyByLanguage[language];
   const backToPortfolioLabel =
     language === "de" ? "Zurück zum Portfolio" : "Back to portfolio";
@@ -88,7 +90,7 @@ function App({ initialLanguage, initialPage }: AppProps = {}) {
   useEffect(() => {
     document.documentElement.lang = language;
     const page = isSanctionsCaseStudy ? SANCTIONS_CASE_STUDY_SLUG
-      : isSanctionsPipelineCaseStudy ? SANCTIONS_PIPELINE_CASE_STUDY_SLUG : "home";
+      : isSanctionsPipelineCaseStudy ? SANCTIONS_PIPELINE_CASE_STUDY_SLUG : isFraudCaseStudy ? "fraud-detection" : "home";
     const metadata = getSiteMetadata(page, language);
     document.title = metadata.title;
     document.querySelector('meta[name="description"]')?.setAttribute("content", metadata.description);
@@ -97,7 +99,7 @@ function App({ initialLanguage, initialPage }: AppProps = {}) {
     document.querySelector('meta[property="og:locale"]')?.setAttribute("content", language === "de" ? "de_DE" : "en_US");
     document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", metadata.title);
     document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", metadata.description);
-  }, [isSanctionsCaseStudy, isSanctionsPipelineCaseStudy, language]);
+  }, [isSanctionsCaseStudy, isSanctionsPipelineCaseStudy, isFraudCaseStudy, language]);
 
   useEffect(() => {
     const shouldRevealImmediately =
@@ -186,7 +188,13 @@ function App({ initialLanguage, initialPage }: AppProps = {}) {
   }, [isCaseStudy, language]);
 
   const navItems = isCaseStudy
-    ? isSanctionsCaseStudy
+    ? isFraudCaseStudy
+      ? [
+          { href: "#results", label: language === "de" ? "Ergebnisse" : "Results" },
+          { href: "#methodology", label: language === "de" ? "Vorgehen" : "Method" },
+          { href: "#sources", label: language === "de" ? "Quellen" : "Sources" },
+        ]
+      : isSanctionsCaseStudy
       ? [
           { href: "#matcher", label: "Matcher" },
           { href: "#methodology", label: language === "de" ? "Methodik" : "Methodology" },
@@ -234,7 +242,9 @@ function App({ initialLanguage, initialPage }: AppProps = {}) {
             </div>
           )}
         >
-          {isSanctionsCaseStudy ? (
+          {isFraudCaseStudy ? (
+            <FraudDetectionPage homeHref={HOME_HREF} language={language} />
+          ) : isSanctionsCaseStudy ? (
             <SanctionsMatcherPage homeHref={HOME_HREF} language={language} />
           ) : (
             <SanctionsPipelineMonitorPage homeHref={HOME_HREF} language={language} />

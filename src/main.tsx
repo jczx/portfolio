@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import "./styles/main.scss";
 import "./styles/redesign.scss";
+import "./styles/fraud-case.scss";
 import { getPageFromLocation } from './data/siteMetadata';
 
 const container = document.getElementById('root')!;

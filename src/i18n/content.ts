@@ -203,7 +203,7 @@ export const copyByLanguage: Record<Language, Copy> = {
     },
     contact: {
       indexLabel: "05 / Contact",
-      title: "Contact",
+      title: "Let’s connect",
       lead: "For data science, analytics, and technical delivery opportunities, contact me by email or LinkedIn.",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",

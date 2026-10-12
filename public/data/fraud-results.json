@@ -1,0 +1,65 @@
+{
+  "run_id": "36decdf5344f",
+  "dataset_url": "https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud",
+  "selected_group": "xgboost_unweighted",
+  "selection_rule": "Highest mean forward-validation average precision within training",
+  "validation_capacity": 0.01,
+  "test": {
+    "n": 42724,
+    "positives": 52,
+    "average_precision": 0.7410580809358976,
+    "precision": 0.18981481481481483,
+    "recall": 0.7884615384615384,
+    "alerts": 216,
+    "alert_rate": 0.005055706394532347,
+    "false_positives": 175,
+    "missed_fraud": 11,
+    "confusion_matrix_tn_fp_fn_tp": [
+      42497,
+      175,
+      11,
+      41
+    ]
+  },
+  "comparison": [
+    {
+      "group": "dummy_unweighted",
+      "validation_ap": 0.0018726043853090387,
+      "test_ap": 0.0012171145023874169
+    },
+    {
+      "group": "logistic_unweighted",
+      "validation_ap": 0.6480264698139049,
+      "test_ap": 0.601763145632246
+    },
+    {
+      "group": "xgboost_unweighted",
+      "validation_ap": 0.8136004576658298,
+      "test_ap": 0.7410580809358976
+    },
+    {
+      "group": "logistic_weighted",
+      "validation_ap": 0.7606794216325604,
+      "test_ap": 0.6879466660649676
+    },
+    {
+      "group": "xgboost_weighted",
+      "validation_ap": 0.7983313591418736,
+      "test_ap": 0.7540229560431487
+    }
+  ],
+  "calibration": {
+    "uncalibrated": {
+      "brier_score": 0.0004566781958448879,
+      "log_loss": 0.003178153360397158
+    },
+    "calibrated": {
+      "brier_score": 0.0004908381309101923,
+      "log_loss": 0.003503443225376977
+    }
+  },
+  "evidence": {
+    "manifest_sha256": "0ce2c62bb1ff39623d4f85ec86845293bc8fdfd1c9b347b9a9e9a637d42aad7c",
+    "metrics_sha256": "ba72a339ac402d4d0b57928d304668f5d61f254cd9b798cc1afe8003e903eed2"
+  }
+}

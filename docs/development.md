@@ -1,5 +1,11 @@
 # Portfolio development
 
+The fraud case study uses `public/data/fraud-results.json`, exported from the completed
+real-data evaluation. Its source download is `public/downloads/credit-fraud-source.zip`.
+From the modelling project, run `python scripts/export_portfolio.py --output <portfolio>/public`
+to refresh both files. The exporter checks the frozen manifest and rejects synthetic results;
+it does not train a model. Keep raw data and model binaries outside this repository.
+
 Use `npm run dev` for local development and `npm run build` for the static GitHub Pages output. The build generates HTML for the homepage, sanctions matcher, and pipeline monitor; interactive data loads from the bundled JSON files. The previous `?case=...` links still work.
 
 Run `npm run test:portfolio` for name matching, data validation, load/retry states, and language/hydration checks. After building, run `npm run test:portfolio-build` to check static content, links, metadata, portraits, and published data. These checks do not inspect browser layout.

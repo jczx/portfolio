@@ -1,4 +1,8 @@
 import type { Language } from "../i18n/content";
+import fraudResults from "../../public/data/fraud-results.json";
+
+const fraudTest = fraudResults.test;
+const fraudDetected = fraudTest.positives - fraudTest.missed_fraud;
 
 export type PortfolioProject = {
   eyebrow: string;
@@ -38,11 +42,13 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
     },
     {
       eyebrow: "Data science",
-      status: "Case study coming soon",
+      status: "Case study",
       title: "Credit card fraud detection",
-      summary: "Credit card fraud detection using XGBoost. Project details and model evaluation to follow.",
-      highlights: [],
-      tech: ["Python", "XGBoost"],
+      summary: "Finding fraud with XGBoost and measuring the tradeoff in manual reviews.",
+      highlights: [`${fraudDetected} of ${fraudTest.positives} fraud cases detected in the final test.`, `${fraudTest.false_positives} legitimate transactions flagged for review.`],
+      tech: ["Python", "DuckDB", "XGBoost", "FastAPI"],
+      actionLabel: "Read the case study",
+      href: "./fraud-detection.html",
       tone: "science"
     },
     {
@@ -98,11 +104,13 @@ export const portfolioProjectsByLanguage: Record<Language, PortfolioProject[]> =
     },
     {
       eyebrow: "Data Science",
-      status: "Projektbeschreibung folgt",
+      status: "Fallstudie",
       title: "Erkennung von Kreditkartenbetrug",
-      summary: "Kreditkartenbetrug mit XGBoost erkennen. Projektbeschreibung und Modellbewertung folgen.",
-      highlights: [],
-      tech: ["Python", "XGBoost"],
+      summary: "Betrug mit XGBoost erkennen und den Aufwand für manuelle Prüfungen messen.",
+      highlights: [`${fraudDetected} von ${fraudTest.positives} Betrugsfällen im abschließenden Test erkannt.`, `${fraudTest.false_positives} legitime Transaktionen zur Prüfung markiert.`],
+      tech: ["Python", "DuckDB", "XGBoost", "FastAPI"],
+      actionLabel: "Fallstudie lesen",
+      href: "./fraud-detection.html",
       tone: "science"
     },
     {

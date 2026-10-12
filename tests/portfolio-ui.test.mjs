@@ -19,6 +19,7 @@ const { createRoot, hydrateRoot } = await import('react-dom/client');
 const { renderToString } = await import('react-dom/server');
 const Matcher = loadReactSource('src/components/SanctionsMatcherPage.tsx').default;
 const Monitor = loadReactSource('src/components/SanctionsPipelineMonitorPage.tsx').default;
+const Fraud = loadReactSource('src/components/FraudDetectionPage.tsx').default;
 const App = loadReactSource('src/App.tsx').default;
 const dataset = JSON.parse(await readFile(new URL('../public/data/eu-sanctions-matcher.json', import.meta.url), 'utf8'));
 const pipeline = JSON.parse(await readFile(new URL('../public/data/eu-sanctions-pipeline-status.json', import.meta.url), 'utf8'));
@@ -33,6 +34,19 @@ after(async () => {
   if (root) await act(() => root.unmount());
   globalThis.fetch = originalFetch;
   dom.window.close();
+});
+
+test('fraud case study shows measured results in both languages without a network request', async () => {
+  globalThis.fetch = () => { throw new Error('Static case study must not fetch'); };
+  for (const language of ['en', 'de']) {
+    await mount(Fraud, language);
+    assert.match(document.querySelector('.fraudCase__metrics').textContent, /41 \/ 52/);
+    assert.match(document.querySelector('.fraudCase__metrics').textContent, /175/);
+    assert.equal(document.querySelectorAll('tbody tr').length, 5);
+    assert.match(document.querySelector('tbody .is-selected').textContent, /XGBoost/);
+    assert.match(document.querySelector('h1').textContent, language === 'de' ? /Kreditkartenbetrug/ : /Credit card fraud/);
+    assert.equal(document.querySelector('a[download]').getAttribute('href'), './downloads/credit-fraud-source.zip');
+  }
 });
 
 test('matcher announces loading and hides results until the actual data arrives', async () => {
