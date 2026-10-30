@@ -21,6 +21,7 @@ const Matcher = loadReactSource('src/components/SanctionsMatcherPage.tsx').defau
 const Monitor = loadReactSource('src/components/SanctionsPipelineMonitorPage.tsx').default;
 const Fraud = loadReactSource('src/components/FraudDetectionPage.tsx').default;
 const App = loadReactSource('src/App.tsx').default;
+const Header = loadReactSource('src/components/Header.tsx').default;
 const dataset = JSON.parse(await readFile(new URL('../public/data/eu-sanctions-matcher.json', import.meta.url), 'utf8'));
 const pipeline = JSON.parse(await readFile(new URL('../public/data/eu-sanctions-pipeline-status.json', import.meta.url), 'utf8'));
 let root;
@@ -34,6 +35,33 @@ after(async () => {
   if (root) await act(() => root.unmount());
   globalThis.fetch = originalFetch;
   dom.window.close();
+});
+
+test('navigation menu dismisses with Escape and transfers focus to the selected section', async () => {
+  if (root) await act(() => root.unmount());
+  root = createRoot(document.getElementById('root'));
+  await act(() => root.render(createElement('div', null,
+    createElement(Header, {
+      language: 'en', navItems: [{href:'#about',label:'About'}],
+      brandHref:'#top', brandLabel:'Back to top', languageToggleLabel:'Language', onLanguageChange:()=>{},
+    }), createElement('section', {id:'about'}, 'About content'))));
+  const button = document.querySelector('.header__menuButton');
+  assert.equal(button.getAttribute('aria-expanded'), 'false');
+  await act(() => button.click());
+  assert.equal(button.getAttribute('aria-expanded'), 'true');
+  assert(document.querySelector('#portfolio-navigation.is-open'));
+  await act(() => document.dispatchEvent(new dom.window.KeyboardEvent('keydown', {key:'Escape',bubbles:true})));
+  assert.equal(button.getAttribute('aria-expanded'), 'false');
+  assert.equal(document.activeElement, button);
+  await act(() => button.click());
+  await act(() => document.querySelector('.header__nav a').click());
+  assert.equal(button.getAttribute('aria-expanded'), 'false');
+  assert.equal(document.activeElement.id, 'about');
+  assert.equal(document.querySelector('.header__nav a').getAttribute('aria-current'), 'location');
+  await act(() => button.click());
+  await act(() => document.body.dispatchEvent(new dom.window.Event('pointerdown', {bubbles:true})));
+  assert.equal(button.getAttribute('aria-expanded'), 'false');
+  dom.reconfigure({url:'https://example.test/'});
 });
 
 test('fraud case study shows measured results in both languages without a network request', async () => {

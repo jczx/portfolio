@@ -9,11 +9,13 @@
 
 :root {
   --header-offset: 96px;
+  --radius-card: 1.25rem;
+  --radius-control: 0.75rem;
   --ink: #f5f5f5;
   --muted: #b5b5b5;
   --quiet: #919191;
-  --line: #2a2a2a;
-  --surface: #101010;
+  --line: #292929;
+  --surface: #111112;
   --brand-blue: #b5b5b5;
   --brand-blue-strong: #f5f5f5;
   --brand-blue-soft: rgba(255, 255, 255, 0.06);
@@ -28,16 +30,11 @@ body {
   color: var(--ink);
   font-size: 1rem;
   line-height: 1.65;
+  font-optical-sizing: auto;
+  letter-spacing: 0;
 }
 
-body::before {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-  background-size: 64px 64px;
-  filter: none;
-  opacity: 0.25;
-}
+body::before { display: none; }
 
 body::after { display: none; }
 
@@ -74,16 +71,24 @@ input:focus-visible {
 }
 
 .header {
-  background: rgba(5, 5, 5, 0.94);
-  border-bottom: 1px solid var(--line);
-  box-shadow: none;
+  position: sticky;
+  top: 0;
+  background: #101011;
+  border-bottom: 0;
+  box-shadow: 0 8px 24px #00000020;
 }
 
 .header::after { display: none; }
 
+@supports (backdrop-filter: blur(20px)) {
+  .header { background: #101011dc; backdrop-filter: blur(20px); }
+}
+
+.header__menuButton { display: none; }
+
 .header__inner {
   height: auto;
-  min-height: 88px;
+  min-height: 80px;
   gap: 1.5rem;
 }
 
@@ -117,22 +122,24 @@ input:focus-visible {
   align-items: center;
   min-height: 44px;
   padding: 0.5rem 0.7rem;
-  border-radius: 0;
-  color: var(--muted);
+  border-radius: var(--radius-control);
+  color: #c6c6c8;
   font-size: 0.875rem;
   font-weight: 500;
 }
 
 .header__nav a:hover {
   color: var(--ink);
-  background: transparent;
+  background: #ffffff0a;
 }
+
+.header__nav a[aria-current="location"] { color: #fff; background: #ffffff10; }
 
 .header__language {
   flex-shrink: 0;
   border-color: var(--line);
-  border-radius: 2px;
-  background: transparent;
+  border-radius: var(--radius-control);
+  background: #222224;
   gap: 0;
   padding: 0.125rem;
 }
@@ -141,7 +148,7 @@ input:focus-visible {
   min-width: 44px;
   min-height: 44px;
   padding: 0.4rem;
-  border-radius: 0;
+  border-radius: 0.55rem;
   color: var(--muted);
   font-size: 0.75rem;
   font-weight: 500;
@@ -198,10 +205,10 @@ input:focus-visible {
 html:lang(de) .hero__name {
   margin: 0 0 1rem;
   font-family: inherit;
-  font-size: clamp(2.125rem, 4.35vw, 3.875rem);
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.045em;
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
   text-transform: none;
   color: var(--ink);
   opacity: 1;
@@ -238,9 +245,9 @@ html:lang(de) .hero__name {
   min-height: 48px;
   padding: 0.8rem 1.25rem;
   border: 1px solid var(--ink);
-  border-radius: 2px;
+  border-radius: var(--radius-control);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.5;
   letter-spacing: 0;
   text-transform: none;
@@ -330,7 +337,7 @@ html:lang(de) .hero__name {
   max-width: 22ch;
   margin: 0 0 1rem;
   font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.18;
   letter-spacing: -0.04em;
   text-wrap: balance;
@@ -411,17 +418,17 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
 .skillsGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
+  gap: 0.875rem;
+  border: 0;
 }
 
 .whatIDoCard,
 .skillGroup {
   min-width: 0;
   padding: clamp(1.25rem, 2.5vw, 2rem);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: #0a0a0a;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
 }
 
 .whatIDoCard h3 {
@@ -469,7 +476,7 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
   max-width: 100%;
   padding: 0.3rem 0.55rem;
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: 0.45rem;
   background: #151515;
   font-size: 0.8125rem;
   line-height: 1.5;
@@ -507,13 +514,14 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
   min-width: 0;
   padding: clamp(1.25rem, 2.5vw, 2rem);
   gap: 1.25rem;
-  transition: border-color 180ms ease;
+  border-radius: var(--radius-card);
+  transition: border-color 160ms ease, background-color 160ms ease;
 }
 
 .portfolioProjectCard.is-nlp,
 .portfolioProjectCard.is-ops { background: var(--surface); }
 
-.portfolioProjectCard.is-community { grid-column: 1 / -1; padding: 1.25rem; gap: 0.875rem; }
+.portfolioProjectCard.is-community { grid-column: 1 / -1; padding: 1.5rem; gap: 0.875rem; }
 .portfolioProjectCard.is-community .portfolioProjectCard__summary { max-width: 78ch; }
 .portfolioProjectCard.is-community .portfolioProjectCard__highlights {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -551,6 +559,7 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
 }
 
 .portfolioProjectCard__status {
+  border-radius: 0.5rem;
   min-height: auto;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
@@ -597,7 +606,7 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
   min-height: 205px;
   padding: 1.25rem;
   border-color: var(--line);
-  border-radius: 2px;
+  border-radius: 0.875rem;
   background: #0a0a0a;
 }
 
@@ -702,7 +711,7 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
   box-shadow: 0 0 0 5px #050505;
 }
 
-.projectCard { padding: clamp(1.25rem, 3vw, 2.25rem); }
+.projectCard { padding: clamp(1.25rem, 3vw, 2.25rem); border-radius: var(--radius-card); }
 .projectCard__meta {
   color: var(--quiet);
   font-size: 0.8125rem;
@@ -783,7 +792,7 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
   min-height: 48px;
   padding: 0.75rem 1.25rem;
   border-color: #454545;
-  border-radius: 2px;
+  border-radius: var(--radius-control);
   background: transparent;
   font-size: 0.875rem;
   font-weight: 500;
@@ -838,14 +847,16 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
   transform: none;
 }
 
-/* Navigation gets its own row before it can crowd the brand. */
+/* Keep the mobile navigation anchored to its trigger, with native page scrolling. */
 @media (max-width: 960px) {
-  :root { --header-offset: 148px; }
-  .header__inner { flex-wrap: wrap; gap: 0.4rem 1rem; padding: 0.75rem 0 0.4rem; }
-  .header__inner nav { order: 3; width: 100%; margin: 0; }
+  :root { --header-offset: 96px; }
+  .header__inner { position: relative; flex-wrap: wrap; gap: 0.5rem; padding: 0.65rem 0; min-height: 76px; }
+  .header__menuButton { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; order: 2; min-height: 44px; padding: 0.5rem 0.65rem; border: 1px solid #ffffff20; border-radius: var(--radius-control); background: #ffffff0a; color: var(--ink); font: inherit; font-size: 0.8125rem; cursor: pointer; }
+  .header__inner .header__navigation { display: none; order: 3; width: 100%; margin: 0; }
+  .header__inner .header__navigation.is-open { display: block; }
   .header__language { margin-left: auto; }
-  .header__nav { flex-wrap: wrap; justify-content: space-between; gap: 0; }
-  .header__nav a { padding-inline: 0.5rem; }
+  .header__nav { display: grid; grid-template-columns: 1fr; gap: 0.25rem; padding-top: 0.5rem; }
+  .header__nav a { display: flex; padding: 0.75rem; min-height: 48px; font-size: 1rem; }
   .section--about .container { gap: 2rem; }
   .whatIDoGrid, .skillsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .whatIDoCard:last-child { grid-column: 1 / -1; }
@@ -871,11 +882,10 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
 }
 
 @media (max-width: 520px) {
-  :root { --header-offset: 16px; }
-  .header { position: relative; }
+  .header__brandTagline { display: none; }
   .header__brandName { font-size: 1rem; }
   .header__brandTagline { font-size: 0.75rem; }
-  .header__nav a { font-size: 0.8125rem; padding-inline: 0.3rem; }
+  .header__languageButton { min-width: 36px; }
   .about__points, .whatIDoGrid, .skillsGrid { grid-template-columns: minmax(0, 1fr); }
   .about__points { gap: 0; }
   .hero__actions { gap: 0.65rem; }
@@ -890,4 +900,38 @@ html:lang(de) .section--about h2::before { content: "01 / Profil"; }
   html { scroll-behavior: auto; }
   .reveal-on-scroll { transition: none; }
   .hero__cta, .portfolioProjectCard { transition: none; }
+}
+
+/* Feedback on press; keep content stationary so the reading flow is predictable. */
+.hero__cta, .portfolioProjectCard__cta, .contact__links a,
+.header__nav a, .header__languageButton, .header__menuButton {
+  touch-action: manipulation;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+.hero__cta:active, .portfolioProjectCard__cta:active, .contact__links a:active,
+.header__menuButton:active, .header__languageButton:not(:disabled):active {
+  transform: scale(0.97);
+  transition-duration: 60ms;
+}
+.section--contact > .container {
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+.contact__links { gap: 0.75rem; }
+.contact__links a { overflow-wrap: anywhere; }
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .header { background: #101011; backdrop-filter: none; border-bottom: 1px solid #666; }
+}
+@media (prefers-contrast: more) {
+  :root { --muted: #dedede; --quiet: #c6c6c6; --line: #777; }
+  .header__nav a[aria-current="location"] { outline: 1px solid currentColor; outline-offset: -1px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta, .portfolioProjectCard__cta, .contact__links a,
+  .header__nav a, .header__languageButton, .header__menuButton { transition: none; }
+  .hero__cta:active, .portfolioProjectCard__cta:active, .contact__links a:active,
+  .header__menuButton:active, .header__languageButton:not(:disabled):active { transform: none; }
 }
