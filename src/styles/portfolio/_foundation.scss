@@ -1,0 +1,73 @@
+/* Monochrome presentation layer. Case-study layouts stay in main.scss. */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --header-offset: 112px;
+  --radius-card: 1.5rem;
+  --radius-inset: 1rem;
+  --section-space: clamp(3.5rem, 7vw, 6rem);
+  --radius-control: 0.75rem;
+  --ink: #f5f5f5;
+  --muted: #b5b5b5;
+  --quiet: #919191;
+  --line: #292929;
+  --surface: #111112;
+  --brand-blue: #b5b5b5;
+  --brand-blue-strong: #f5f5f5;
+  --brand-blue-soft: rgba(255, 255, 255, 0.06);
+  --brand-blue-soft-strong: rgba(255, 255, 255, 0.1);
+  --brand-blue-line: rgba(255, 255, 255, 0.14);
+  --brand-blue-text: #b5b5b5;
+  --brand-blue-surface: #101010;
+}
+
+body {
+  background: #050505;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.65;
+  font-optical-sizing: auto;
+  letter-spacing: 0;
+}
+
+body::before { display: none; }
+
+body::after { display: none; }
+
+::selection {
+  color: #050505;
+  background: var(--ink);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--ink) !important;
+  outline-offset: 4px !important;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  color: #050505;
+  background: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 1rem));
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.container {
+  width: min(1180px, calc(100% - 4rem));
+}

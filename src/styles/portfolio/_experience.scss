@@ -1,0 +1,128 @@
+.timeline::before { background: var(--line); }
+.timeline__dot {
+  border-color: #aaa;
+  background: #050505;
+  box-shadow: 0 0 0 5px #050505;
+}
+
+.projectCard { padding: clamp(1.25rem, 3vw, 2.25rem); border-radius: var(--radius-card); }
+.projectCard__meta {
+  color: var(--quiet);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+}
+.projectCard__title {
+  font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+.projectCard__highlights { max-width: 70ch; color: #c8c8c8; }
+
+.projectCard__clients {
+  margin-block: 1.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid #555;
+}
+
+.projectCard__clientsLabel {
+  margin: 0 0 0.5rem;
+  color: var(--quiet);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.projectCard__clients ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.projectCard__responsibilities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+  margin: 2rem 0 0;
+}
+
+.projectCard__responsibilities > div {
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.projectCard__responsibilities dt {
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.projectCard__responsibilities dd {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+}
+
+.projectCard__focusLabel {
+  margin: 1.5rem 0 0.6rem;
+  color: var(--quiet);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.section--contact .section__lead { margin-bottom: 0; }
+.contact__links a {
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border-color: #454545;
+  border-radius: var(--radius-control);
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.contact__links a:hover { color: #050505; background: var(--ink); }
+.contact__links .contact__email {
+  color: #050505;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.contact__links .contact__email:hover { background: #d8d8d8; }
+
+.footer { background: #050505; }
+.footer__inner {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--quiet);
+  font-size: 0.8125rem;
+}
+.footer__inner p { margin: 0; }
+.footer__inner a { color: var(--muted); text-decoration: none; padding: 0.75rem 0; }
+
+.caseHero { background: #080808; border-bottom: 1px solid var(--line); }
+.analysisChart,
+.sanctionsMatcher__input,
+.projectPreview__searchField,
+.projectPreview__statusCell,
+.sanctionsResultCard__score,
+.analysisFigure__railBlock {
+  border-color: #303030;
+  border-radius: 2px;
+  background: #151515;
+}
+.monitorStatus--healthy,
+.monitorStatus--watch,
+.monitorStatus--risk { color: var(--ink); background: #1b1b1b; }

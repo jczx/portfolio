@@ -54,7 +54,7 @@ test('homepage and demos ship static content and distinct sharing metadata', asy
   assert.equal(urls.size, 4);
 });
 
-test('responsive portraits are smaller, correctly sized, and retain colour', async () => {
+test('portrait assets retain colour and the homepage shows one compact navigation portrait', async () => {
   for (const width of [480, 800, 1254]) {
     const buffer = await readFile(fromDist(`images/julio-${width}.webp`));
     const image = sharp(buffer);
@@ -66,7 +66,13 @@ test('responsive portraits are smaller, correctly sized, and retain colour', asy
     assert(Math.abs(stats.channels[0].mean - stats.channels[1].mean) > 0.5, 'Portrait lost its colour');
   }
   const dom = new JSDOM(await readFile(fromDist('index.html'), 'utf8'));
-  assert.match(dom.window.document.querySelector('.hero__portrait img').srcset, /480w.*800w.*1254w/);
+  const portrait = dom.window.document.querySelector('.header__brand img');
+  assert(portrait);
+  assert.match(portrait.getAttribute('src'), /images\/julio-480\.webp$/);
+  assert.equal(portrait.getAttribute('width'), '80');
+  assert.equal(portrait.getAttribute('height'), '80');
+  assert.equal(dom.window.document.querySelectorAll('img[src*="julio-"]').length, 1);
+  assert.equal(dom.window.document.querySelector('.hero img'), null);
   dom.window.close();
 });
 

@@ -74,8 +74,18 @@ const Header = ({
       </a>
       <div className="container header__inner">
         <a className="header__brand" href={brandHref} aria-label={brandLabel}>
-          <span className="header__brandName">Julio Caesar</span>
-          <span className="header__brandTagline">Data &amp; Analytics</span>
+          <img
+            className="header__portrait"
+            src={`${import.meta.env.BASE_URL}images/julio-480.webp`}
+            alt=""
+            width="80"
+            height="80"
+            decoding="async"
+          />
+          <span className="header__identity">
+            <span className="header__brandName">Julio Caesar</span>
+            <span className="header__brandTagline">Data &amp; Analytics</span>
+          </span>
         </a>
 
         <button

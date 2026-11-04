@@ -1,0 +1,119 @@
+/* Text-led introduction; the portrait lives in the navigation. */
+.hero {
+  display: block;
+  min-height: auto;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  overflow: visible;
+  background: #050505;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero::before,
+.hero::after,
+.hero__blend,
+.hero__copy::before,
+.hero__portrait::after { display: none; }
+
+.hero__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: 2rem;
+  min-height: 0;
+  transform: none;
+}
+
+.hero__copy {
+  min-width: 0;
+  max-width: 48rem;
+  transform: none;
+}
+
+.hero__copy .hero__eyebrow {
+  margin: 0 0 1.75rem;
+  color: var(--quiet);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero__name,
+html:lang(de) .hero__name {
+  margin: 0 0 1rem;
+  font-family: inherit;
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  text-transform: none;
+  color: var(--ink);
+  opacity: 1;
+  transform: none;
+  text-shadow: none;
+  animation: none;
+  transition: none;
+  overflow-wrap: anywhere;
+}
+
+.hero__name span { display: block; }
+.hero__name span + span { color: var(--muted); }
+.hero__intro + .hero__intro { margin-top: 0.5rem; }
+.hero__name:hover { transform: none; text-shadow: none; }
+
+.hero__copy .hero__intro {
+  max-width: 47ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  line-height: 1.75;
+  text-shadow: none;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.hero__cta,
+.portfolioProjectCard__cta,
+.analysisFeature__toggle {
+  min-height: 48px;
+  padding: 0.8rem 1.25rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-control);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hero__cta--primary,
+.portfolioProjectCard__cta {
+  color: #050505;
+  background: var(--ink);
+}
+
+.hero__cta--primary:hover,
+.portfolioProjectCard__cta:hover {
+  color: #050505;
+  background: #d8d8d8;
+  transform: none;
+}
+
+.hero__cta--secondary {
+  color: var(--ink);
+  background: transparent;
+  border-color: #454545;
+}
+
+.hero__cta--secondary:hover {
+  color: var(--ink);
+  background: #151515;
+  transform: none;
+}

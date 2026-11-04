@@ -31,18 +31,6 @@ const Hero = ({ copy }: HeroProps) => {
             </a>
           </div>
         </div>
-        <div className="hero__portrait">
-          <img
-            src={`${import.meta.env.BASE_URL}images/julio-800.webp`}
-            srcSet={[480, 800, 1254].map(width => `${import.meta.env.BASE_URL}images/julio-${width}.webp ${width}w`).join(", ")}
-            sizes="(max-width: 520px) min(320px, calc(100vw - 40px)), (max-width: 760px) min(400px, calc(100vw - 40px)), (max-width: 1244px) 44vw, 512px"
-            alt="Julio Caesar"
-            width="1254"
-            height="1254"
-            decoding="async"
-            fetchPriority="high"
-          />
-        </div>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { portfolioProjectsByLanguage, type PortfolioProject } from "../data/portfolioProjects";
 import type { Language } from "../i18n/content";
+import fraudResults from "../../public/data/fraud-results.json";
 
 type PortfolioProjectsProps = {
   language: Language;
@@ -109,6 +110,34 @@ const OpsPreview = ({ language }: { language: Language }) => (
   </div>
 );
 
+const FraudPreview = ({ language }: { language: Language }) => {
+  const { positives, missed_fraud: missed } = fraudResults.test;
+  const detected = positives - missed;
+  const german = language === "de";
+
+  return (
+    <div className="projectPreview projectPreview--fraud">
+      <div className="projectPreview__header">
+        <span className="projectPreview__kicker">{german ? "Betrugserkennung" : "Fraud detection"}</span>
+      </div>
+      <div className="projectPreview__metric">
+        <strong>{detected}<span> / {positives}</span></strong>
+        <span>{german ? "Betrugsfälle erkannt" : "fraud cases detected"}</span>
+      </div>
+      <div className="projectPreview__caseGrid" aria-hidden="true">
+        {Array.from({ length: positives }, (_, index) => (
+          <span className={index < detected ? "is-detected" : "is-missed"} key={index} />
+        ))}
+      </div>
+      <div className="projectPreview__legend">
+        <span><i className="is-detected" aria-hidden="true" />{detected} {german ? "erkannt" : "detected"}</span>
+        <span><i className="is-missed" aria-hidden="true" />{missed} {german ? "übersehen" : "missed"}</span>
+      </div>
+      <p className="projectPreview__caption">{german ? "Ein Feld entspricht einem Betrugsfall im Test." : "Each square represents one fraud case in the test."}</p>
+    </div>
+  );
+};
+
 const ProjectPreview = ({
   tone,
   language,
@@ -122,6 +151,10 @@ const ProjectPreview = ({
 
   if (tone === "ops") {
     return <OpsPreview language={language} />;
+  }
+
+  if (tone === "science") {
+    return <FraudPreview language={language} />;
   }
 
   return null;
@@ -196,6 +229,11 @@ const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
 
               {project.href && project.actionLabel ? (
                 <div className="portfolioProjectCard__actions">
+                  {project.secondaryAction && (
+                    <a className="portfolioProjectCard__secondary" href={getProjectHref(project.secondaryAction.href)}>
+                      {project.secondaryAction.label} <span aria-hidden="true">→</span>
+                    </a>
+                  )}
                   <a
                     className="portfolioProjectCard__cta"
                     href={getProjectHref(project.href)}
@@ -203,11 +241,6 @@ const PortfolioProjects = ({ language, copy }: PortfolioProjectsProps) => {
                     <span>{project.actionLabel}</span>
                     <span aria-hidden="true">↗</span>
                   </a>
-                  {project.secondaryAction && (
-                    <a className="portfolioProjectCard__secondary" href={getProjectHref(project.secondaryAction.href)}>
-                      {project.secondaryAction.label} <span aria-hidden="true">→</span>
-                    </a>
-                  )}
                 </div>
               ) : null}
             </article>
