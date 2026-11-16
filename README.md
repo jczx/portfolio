@@ -4,6 +4,10 @@ A bilingual portfolio for my work in business intelligence, data engineering, an
 
 [View the portfolio](https://julio-caesar.com/)
 
+[![Deploy to GitHub Pages](https://github.com/jczx/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/jczx/portfolio/actions/workflows/deploy.yml)
+
+![Portfolio preview](public/og-image.png)
+
 ## What is here
 
 - A one-page portfolio with selected work, experience, skills, and contact details in English and German.
@@ -55,7 +59,6 @@ The build runs TypeScript checking and prerenders the portfolio and case studies
 | `src/styles/portfolio/` | Monochrome presentation, grouped by area |
 | `src/caesar-guitar-lab/` | Fret Lab application and music logic |
 | `public/` | Fonts, images, and published dataset snapshots |
-| `analysis/` | Offline data preparation and analysis |
 | `scripts/` | Asset preparation and static HTML generation |
 | `tests/` | Behavior, keyboard interactions, and build checks |
 
@@ -69,7 +72,7 @@ The grayscale interface uses locally hosted Inter. A compact colour portrait sit
 
 ## GitHub Pages
 
-[The deployment workflow](.github/workflows/deploy.yml) installs dependencies, runs checks, builds the site, and publishes `dist/` on pushes to `main` or `master`. It also supports manual runs.
+[The deployment workflow](.github/workflows/deploy.yml) installs dependencies, audits them, runs checks, builds the site, and publishes `dist/` on pushes to `main` or `master`. Pull requests run the same checks without deployment permissions. Manual runs publish only from `main` or `master`.
 
 The production domain is `julio-caesar.com`. For another host, update the canonical metadata and domain configuration. For subpath hosting, also set Vite's `base` and verify generated asset and page links.
 
@@ -77,3 +80,7 @@ The production domain is `julio-caesar.com`. For another host, update the canoni
 
 - English copy is the source of truth
 - German copy mirrors the English version
+
+## Contributing and security
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for checks and change guidelines, and [SECURITY.md](SECURITY.md) to report a vulnerability privately. Offline analysis workspaces are kept outside the public repository; published snapshots and reproduction downloads live in `public/`.

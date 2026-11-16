@@ -1,5 +1,9 @@
 # Portfolio development
 
+## Dependency security
+
+The scoped `minimatch` override in `package.json` addresses [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249) in the TypeScript ESLint parser's dependency tree. The first patched release is 11.0.1; the parent currently requests version 10. Recheck this override when updating TypeScript ESLint and remove it once the parent resolves a patched version itself. Verify lint and the full build after dependency changes.
+
 The fraud case study uses `public/data/fraud-results.json`, exported from the completed
 real-data evaluation. Its source download is `public/downloads/credit-fraud-source.zip`.
 From the modelling project, run `python scripts/export_portfolio.py --output <portfolio>/public`

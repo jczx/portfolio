@@ -7,6 +7,37 @@ import sharp from 'sharp';
 const exists = async url => { try { await access(url); return true; } catch { return false; } };
 const fromDist = path => new URL(`../dist/${path}`, import.meta.url);
 
+test('all production pages restrict scripts and resolve local assets', async () => {
+  for (const file of ['index.html', 'sanctions-matcher.html', 'sanctions-monitor.html', 'fraud-detection.html', 'caesar-guitar-lab/index.html']) {
+    const dom = new JSDOM(await readFile(fromDist(file), 'utf8'));
+    const document = dom.window.document;
+    const policy = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+    assert(policy, `Missing CSP: ${file}`);
+    const directives = new Map(policy.content.split(';').map(item => {
+      const [name, ...values] = item.trim().split(/\s+/);
+      return [name, values];
+    }));
+    assert.deepEqual(directives.get('script-src'), ["'self'"]);
+    assert.deepEqual(directives.get('connect-src'), ["'self'"]);
+    for (const name of ['object-src', 'base-uri', 'form-action', 'frame-src']) {
+      assert.deepEqual(directives.get(name), ["'none'"]);
+    }
+    for (const script of document.querySelectorAll('script')) {
+      assert(script.src, `Inline script blocked by CSP: ${file}`);
+    }
+    for (const element of document.querySelectorAll('[src], link[href]')) {
+      const path = element.getAttribute('src') ?? element.getAttribute('href');
+      if (/^(?:https?:|data:)/.test(path)) continue;
+      const target = path.startsWith('/') ? fromDist(path.slice(1)) : new URL(path, fromDist(file));
+      target.search = '';
+      target.hash = '';
+      assert(await exists(target), `Missing asset: ${file}: ${path}`);
+    }
+    assert.equal(document.querySelector('meta[name="referrer"]').content, 'strict-origin-when-cross-origin');
+    dom.window.close();
+  }
+});
+
 test('homepage and demos ship static content and distinct sharing metadata', async () => {
   const urls = new Set();
   const titles = new Set();

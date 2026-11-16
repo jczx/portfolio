@@ -9,12 +9,16 @@
     "assets:optimize": "node scripts/prepare-portfolio-images.mjs",
     "test:portfolio": "node --experimental-strip-types --test tests/sanctions-matcher.test.mjs tests/portfolio-ui.test.mjs",
     "test:portfolio-build": "node --test tests/portfolio-build.test.mjs",
-    "analysis:build": "node analysis/scripts/build-hyperscaler-metrics.mjs && node analysis/scripts/build-eu-sanctions-data.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "test:guitar": "node --experimental-strip-types --test tests/guitar-music.test.mjs",
     "test:guitar-build": "node --test tests/guitar-build.test.mjs",
     "test:guitar-ui": "node --experimental-strip-types --test tests/guitar-ui.test.mjs"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^11.0.1"
+    }
   },
   "dependencies": {
     "react": "^19.2.0",
